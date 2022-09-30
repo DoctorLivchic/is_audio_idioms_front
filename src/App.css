@@ -1,38 +1,116 @@
-.App {
-  text-align: center;
+.info{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+   width: 20em;
+  
+    
+}
+body{
+    background-color: rgb(119, 206, 180);
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+ .headerleft{
+    display: table-cell;
+    vertical-align: middle;
+    
+    background-color: #eeeeee;
+    border-radius: 10px;
+    border: 2.5mm outset rgb(164, 144, 42);
+}
+.headercenter{
+    display: table-cell;
+    vertical-align:middle;
+    
+    background-color: #eeeeee;
+    border-radius: 10px;
+    border: 2.5mm outset rgb(74, 156, 78);
+   
+}
+.headerRight{
+    display: table-cell;
+    vertical-align: middle;
+    
+    background-color: #eeeeee;
+    border-radius: 10px;
+    border: 2.5mm outset rgb(164, 144, 42);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.languageleft{
+   
+   
+
+    
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    max-width: 80px;
+    margin: 50px ;
+    display: table;  
+    margin-top: 70px;
+    margin-left: 30vw;
+    margin-right: 10vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.languageRight{
+   
+
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    max-width: 80px;
+    margin: 50px;
+    display: table;
+    margin-top: 70px;
+    margin-left: 14vw;
+    margin-right: 5vw;
+    
 }
 
-.App-link {
-  color: #61dafb;
+.buttom-block-left{
+   
+    vertical-align: middle;
+    display: table;
+    margin-left: 30vw;
+    margin-right: 10vw;
+    margin-bottom: 30px;
+    margin-top: 20px;
+   
 }
+.buttom-block-right{
+   
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    display: table;
+    margin-left: 15vw;
+    margin-right: 5vw;
+
+}
+.search-block-left{
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    max-width: 80px;
+    margin: 50px ;
+   
+
+    display: block;
+    margin-left: 27vw;
+    margin-right: 5vw;
+    width: 10em;
+    margin-top: 50px;
+}
+.search-block-right{
+    background: #ffffff;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    max-width: 80px;
+    margin: 50px ;
+    
+    display: block;
+    margin-left: 13vw;
+    margin-right: 5vw;
+    width: 10em;
+    margin-top: 82px;
 }
