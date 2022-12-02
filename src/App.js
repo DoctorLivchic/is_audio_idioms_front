@@ -1,62 +1,34 @@
 import React, { Component } from 'react';
-import Ap from "./App.css"
-import { input1 } from './CONST';
+import Ap from "./App.css";
+import Main from './main/Main';
+import Od from './Other.Js';
+import Authorization from './avtorizacia/Authorization';
+import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
 
-class App extends Component {
+
+class App extends React.Component {
   render() {
     return(
-      <div className="Ap">
-       <header>
-       <div className='info'><h1>{input1}</h1></div>
-       </header>
+     <div className='App'>
+      <Router>
+             <div className="ty">
+            <ul>
+                <li><a href="/main/Main">Переводчик</a></li>
+                <li><a href="/avtorizacia/Authorization">Авторизация</a></li>
+                <li><a href="/Od">Другое</a></li>
 
-      <div className='headerleft'>
-        <div className='languageleft'>
-          <p>language 1</p>
-        </div>
-          <div className='buttom-block-left'>
-                <button>
-                <img width={30} height={30} src='img/micro.png' />
-                </button>              
-          </div>
-        <div className='search-block-left'>
-            <input placeholder='Поиск...'/>
-        </div>
-      </div>
-        <div className='headercenter'>
-          <button>
-          <img width={30} height={30} src='img/zam.png' />
-          </button>
-        </div>
-        
-        <div className='headerRight'>
-          <div className='languageRight'>
-            <p>language 2</p>
-          </div>
-              
-          <div className='buttom-block-right'>
-            <button>
-            <img width={30} height={30} src='img/micro.png' />
-            </button>
-          </div>
-              <div className='search-block-right'>
-                <input placeholder='Поиск...'/>
-                 </div>                
-        </div>
+            </ul>
+            <Switch>
+              <Route exact path='/main/Main' component={Main}/>
+              <Route exact path='/avtorizacia/Authorization' component={Authorization}/>
+              <Route exact path='/Od' component={Od}/>
+            </Switch>
+          </div>  
+      </Router>
 
 
+     </div>
 
-
-           
-         
-
-
-
-
-
-         </div> 
-
-        
     );
   }
 }
