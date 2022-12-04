@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import { input1 } from '../CONST';
-import './Main.css';
+
 
 class Main extends React.Component {
     render() {
