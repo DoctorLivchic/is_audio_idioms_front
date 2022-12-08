@@ -31,7 +31,11 @@ class Main_page extends React.Component{
                         </div>
                     </div>
 
-                    </div>
+
+                   
+                </div>
+
+                   
         )
     }
 }
