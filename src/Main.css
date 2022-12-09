@@ -460,7 +460,7 @@ h6 span{
 	margin:0;
 }
 .header .nav li a {
-	color: #d5d5d5;
+	color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
@@ -541,4 +541,66 @@ a,button{
 	outline:none;
 	box-shadow:none;
 	text-decoration:none;
+}
+
+
+
+
+.slider{
+	position:relative;
+  top:-990%;
+}
+.slider:before{
+	position:absolute;
+	left:0%;
+	top:-90%;
+	content:"";
+	height:350%;
+	width:100%;
+	background:rgba(23, 25, 36, 0.711);
+	opacity:0.4;
+}
+.slider{
+	height:140%;
+	background-size:cover;
+	background-position:center;
+}
+.slider .text {
+	margin-top: 227px;
+}
+.slider h1 {
+	color: #fff;
+	font-size: 60px;
+	font-weight: 600;
+	margin: 0 0 30px;
+}
+.slider p{
+	color:#fff;
+}
+.slider .button{
+	margin-top:30px;
+}
+.slider .button .btn{
+	margin-right:10px;
+	background:#fff;
+	color:#333;
+	border-radius:0px;
+}
+.slider .button .btn:last-child{
+	margin-right:0px;
+}
+.slider .button .btn i{
+	margin-right:7px;
+}
+.slider .button .btn:hover{
+	color:#fff;
+	background:#102770;
+}
+.slider .button .primary{
+	background:#102770;
+	color:#fff;
+}
+.slider .button .primary:hover{
+	color:rgb(34, 34, 34);
+	background:#fff;
 }
