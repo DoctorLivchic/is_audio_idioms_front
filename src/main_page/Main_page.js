@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useEffect} from 'react';
+import {Button, Form, Input, Checkbox } from 'antd';
+import {useNavigate} from "react-router-dom";
 
-class Main_page extends React.Component{
-    render(){
+export default function Main_page() {
+	const navigate = useNavigate();
+    
         return(
                 <div className="main_page" id="main_page">
                     <header>
@@ -11,8 +14,11 @@ class Main_page extends React.Component{
                             <li class="dropdown"><a href="index.html">Избранное</a></li>
                             <li class="active"><a href="index.html">Перевод фразеологизмов</a></li>
                             <li><a href="avtorization/Authorization.js">Вход</a></li>
-                        </ul>
+						 </ul>
                         </nav>
+						<Form.Item>
+							<Button onClick={() => {navigate("/Authorization")}} className='active'>Вход</Button>
+						</Form.Item>
                     </header>
 
 
@@ -96,6 +102,5 @@ class Main_page extends React.Component{
 
         </div>           
         )
-    }
+    
 }
-export default Main_page
