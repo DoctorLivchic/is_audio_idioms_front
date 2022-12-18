@@ -110,7 +110,7 @@ a {
   cursor: pointer;
   transition: all 200ms linear;
   position: relative;
-  left: -7%;
+  left: 0%;
 }
 a:hover {
   text-decoration: none;

@@ -22,7 +22,6 @@ export default function Main_page() {
                     </header>
 
 
-
                     <div className="header-inne">
                         <div className="container">
                             <div className="row">
@@ -38,11 +37,7 @@ export default function Main_page() {
                                     </div>
                                     <nav className="navbar navbar-default">
                                         <div className="collapse navbar-collapse">
-                                            <ul id="nav" className="nav navbar-nav">
-                                                <li className="current">
-                                                    <a href="">Вход</a>
-                                                </li>
-                                            </ul>
+                                           
                                         </div>
                                     </nav>
                                 </div>
