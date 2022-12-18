@@ -34,7 +34,7 @@ class Authorization extends React.Component {
                                 type="email"
                                 name="logemail"
                                 class="form-style"
-                                placeholder="Ваш адрес электронной почты"
+                                placeholder="Адрес электронной почты"
                                 id="logemail"
                                 autocomplete="off"
                               />
@@ -45,7 +45,7 @@ class Authorization extends React.Component {
                                 type="password"
                                 name="logpass"
                                 class="form-style"
-                                placeholder="Ваш пароль"
+                                placeholder="Пароль"
                                 id="logpass"
                                 autocomplete="off"
                               />
