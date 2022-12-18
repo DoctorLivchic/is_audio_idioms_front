@@ -4,6 +4,19 @@ class Main_page extends React.Component{
     render(){
         return(
                 <div className="main_page" id="main_page">
+                    <header>
+                        <nav>
+                        <ul class="navig">
+                            <li class="dropdown"><a href="index.html">Чат</a></li>
+                            <li class="dropdown"><a href="index.html">Избранное</a></li>
+                            <li class="active"><a href="index.html">Перевод фразеологизмов</a></li>
+                            <li><a href="avtorization/Authorization.js">Вход</a></li>
+                        </ul>
+                        </nav>
+                    </header>
+
+
+
                     <div className="header-inne">
                         <div className="container">
                             <div className="row">
@@ -48,7 +61,37 @@ class Main_page extends React.Component{
 			</div>
 		</div>
 
-       
+        <footer id="footer" class="footer section">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="logo">
+								<a>Логотип</a>
+							</div>
+							
+							<ul class="social">
+								<li><a href="#"><span class="fa fa-facebook"></span></a></li>
+								<li><a href="#"><span class="fa fa-twitter"></span></a></li>
+								<li><a href="#"><span class="fa fa-dribbble"></span></a></li>
+								<li><a href="#"><span class="fa fa-instagram"></span></a></li>
+								<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+							</ul>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
                 
 
         </div>           
