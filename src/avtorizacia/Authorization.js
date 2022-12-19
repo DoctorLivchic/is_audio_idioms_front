@@ -111,7 +111,7 @@ class Authorization extends React.Component {
                               <i class="input-icon uil uil-lock-alt"></i>
                             </div>
                             <div className="button">
-                              <a href="#" class="btn1 mt-4" >
+                              <a href="#" class="btn mt-4" >
                                 Регистрация
                               </a>
                             </div>

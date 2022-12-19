@@ -207,7 +207,6 @@ h6 span{
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg);
 }
-
 .card-3d-wrap {
   position: relative;
   width: 440px;
