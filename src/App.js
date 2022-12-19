@@ -15,12 +15,12 @@ class App extends React.Component {
                 <li><a href="/main/Main">Переводчик</a></li>
                 <li><a href="/avtorizacia/Authorization">Авторизация</a></li>
                 <li><a href="/main_page/Main_page">Главная</a></li>
-            </ul>
+        </ul>
       <BrowserRouter>  
           <Routes>               
-           <Route  path='/main/Main' element={<Main/>}/>
-              <Route  path='/avtorizacia/Authorization' element={<Authorization/>}/>
-              <Route  path='/main_page/Main_page' element={<Main_page/>}/>
+              <Route  path='/main/Main' element={<Main />}/>
+              <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
+              <Route  path='/main_page/Main_page' element={<Main_page />}/>
             </Routes>
           </BrowserRouter>
       </div>  

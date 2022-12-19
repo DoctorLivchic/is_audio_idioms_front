@@ -1,8 +1,10 @@
 import React from "react";
-
-class Authorization extends React.Component {
-  render() {
-    return (
+import {Button, Form, Input, Checkbox } from 'antd';
+import {useNavigate} from "react-router-dom";
+ 
+export default function Authorization()  {
+  const navigate = useNavigate();
+      return (
       <div className="authorization">
         <div class="section">
           <div class="container">
@@ -51,14 +53,10 @@ class Authorization extends React.Component {
                               />
                               <i class="input-icon uil uil-lock-alt"></i>
                             </div>
-                            <a href="#" class="btn mt-4">
-                              Авторизоваться
-                            </a>
-                            <p class="mb-0 mt-4 text-center">
-                              <a href="#0" class="link">
-                                Забыли свой пароль?
-                              </a>
-                            </p>
+                            <Form.Item>
+                                <Button onClick={() => {navigate("Main_page")}} className='btn'>Авторизоваться</Button>
+                                <Button onClick={() => {navigate("/main_page/Main_page")}} className='btn'>Назад</Button>
+                              </Form.Item>
                           </div>
                         </div>
                       </div>
@@ -111,9 +109,10 @@ class Authorization extends React.Component {
                               <i class="input-icon uil uil-lock-alt"></i>
                             </div>
                             <div className="button">
-                              <a href="#" class="btn mt-4" >
-                                Регистрация
-                              </a>
+                              <Form.Item>
+                                <Button onClick={() => {navigate("-")}} className='btn'>Регистрация</Button>
+                                <Button onClick={() => {navigate("/main_page/Main_page")}} className='btn'>Назад</Button>
+                              </Form.Item>
                             </div>
                           </div>
                         </div>
@@ -125,9 +124,40 @@ class Authorization extends React.Component {
             </div>
           </div>
         </div>
+          <footer id="footer" class="footer section">
+            <div class="footer-top">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="logo">
+                      <a>Логотип</a>
+                    </div>
+                    
+                    <ul class="social">
+                      <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                      <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                      <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
+                      <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                      <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+                    </ul>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="copyright">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
       </div>
     );
-  }
+  
 }
 
-export default Authorization;
+

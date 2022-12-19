@@ -1,24 +1,34 @@
 import React, {useEffect} from 'react';
-import {Button, Form, Input, Checkbox } from 'antd';
+import {Button, Form, Input, Checkbox,Select,Menu } from 'antd';
 import {useNavigate} from "react-router-dom";
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 
 export default function Main_page() {
 	const navigate = useNavigate();
     
         return(
                 <div className="main_page" id="main_page">
+					
                     <header>
+						
                         <nav>
                         <ul class="navig">
-                            <li class="dropdown"><a href="index.html">Чат</a></li>
-                            <li class="dropdown"><a href="index.html">Избранное</a></li>
-                            <li class="active"><a href="index.html">Перевод фразеологизмов</a></li>
-                            <li><a href="avtorization/Authorization.js">Вход</a></li>
+                 		<Form.Item>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Добавление</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Фразеологизм дня</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Чат</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
+							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Вход</Button>
+							
+						</Form.Item>
+						
+						
+						
 						 </ul>
                         </nav>
-						<Form.Item>
-							<Button onClick={() => {navigate("/Authorization")}} className='active'>Вход</Button>
-						</Form.Item>
+						
                     </header>
 
 
@@ -53,8 +63,7 @@ export default function Main_page() {
 							<h1>Добро пожаловать в LINGUA IDIOM</h1>
 							<p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit. Hic Laboriosam Ipsa Sequi? Laudantium Aspernatur Iusto Blanditiis, Totam Perferendis Dicta Magni. tincidunt dui. Vestibulum sodales posuere ullamcorper. Proin convallis neque pulvinar mauris vehicula, quis dictum diam ullamcorper</p>
 							<div class="button">
-								<a href="#" class="btn mt-4 "><i class="fa fa-briefcase"></i>Найти фразеологизм</a>
-								<a href="#" class="btn"><i class="fa fa-phone"></i>Перевести фразеологизм</a>
+								<Button onClick={() => {navigate('/main/Main')}} className='btn'>Перевести фразеологизм</Button>
 							</div>
 						</div>
 					</div>
