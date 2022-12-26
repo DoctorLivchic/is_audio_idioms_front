@@ -1,50 +1,51 @@
 .info {
-  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 21em;
 }
 body {
   background-color: rgb(119, 206, 180);
 }
-
-.headerleft {
+.headerleft{
   display: table-cell;
   vertical-align: middle;
-
   background-color: #eeeeee;
-  border-radius: 10px;
-  border: 2.5mm outset rgb(164, 144, 42);
+  position: relative;
+  left: 20%;
+  border-radius: 20px;
+  width: 45%;
 }
-.headercenter {
+.headercenter{
+  display: table-cell;
+  vertical-align:middle;
+  position: relative;
+  left: 39%;
+}
+.headerRight{
   display: table-cell;
   vertical-align: middle;
-
   background-color: #eeeeee;
-  border-radius: 10px;
-  border: 2.5mm outset rgb(74, 156, 78);
-}
-.headerRight {
-  display: table-cell;
-  vertical-align: middle;
-
-  background-color: #eeeeee;
-  border-radius: 10px;
-  border: 2.5mm outset rgb(164, 144, 42);
+  position: relative;
+  left: 50%;
+  border-radius: 20px;
 }
 
+
+
+/*
 .languageleft {
   background: #ffffff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  max-width: 80px;
+  position: relative;
+  max-width: 60px;
   margin: 50px;
   display: table;
   margin-top: 70px;
-  margin-left: 30vw;
-  margin-right: 10vw;
+  margin-left: 62%;
+  margin-right: 0vw;
+  
 }
-
+*/
 .languageRight {
   background: #ffffff;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
@@ -56,39 +57,33 @@ body {
   margin-left: 14vw;
   margin-right: 5vw;
 }
-
+/*
 .buttom-block-left {
   vertical-align: middle;
   display: table;
   margin-left: 30vw;
-  margin-right: 10vw;
+  margin-right: 14vw;
   margin-bottom: 30px;
-  margin-top: 20px;
+  margin-top: 70px;
 }
+*/
 .buttom-block-right {
   display: table;
   margin-left: 15vw;
   margin-right: 5vw;
 }
-.search-block-left {
-  background: #ffffff;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  max-width: 80px;
-  margin: 50px;
 
-  display: block;
-  margin-left: 27vw;
-  margin-right: 5vw;
-  width: 10em;
+.search-block-left{
+
+ 
+  
+  margin-right: 2vw;
+  width: 0em;
   margin-top: 50px;
 }
+
 .search-block-right {
-  background: #ffffff;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
-  max-width: 80px;
-  margin: 50px;
+ 
 
   display: block;
   margin-left: 13vw;
@@ -596,6 +591,11 @@ header {
 .navig {
   position: relative;
   left: 56%;
+  width: -100%;
+}
+.navig_main{
+  position: relative;
+  left: 93%;
   width: -100%;
 }
 .navig a {

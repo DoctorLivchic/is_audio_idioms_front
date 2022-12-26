@@ -14,13 +14,13 @@ export default function Main_page() {
                         <nav>
                         <ul class="navig">
                  		<Form.Item>
-						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active1'>Редактирование</Button>
 						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Добавление</Button>
 						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Фразеологизм дня</Button>
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Чат</Button>
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
 							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Вход</Button>
+							<Button onClick={() => {navigate('/Users_personal_account')}} className='active'>Вход</Button>
 							
 						</Form.Item>
 						
