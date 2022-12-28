@@ -17,46 +17,39 @@ const navigate = useNavigate();
         </ul>
       </nav>
         </header>    
-         
+       
         <div className='info' align="center"><h1>{input1}</h1></div>   
        <div className='headerleft'>
-         <div className='languageleft'>
+         <div className='languageleftlabel' align="center">
            <p>language 1</p>
          </div>
            <div className='buttom-block-left'>
            <Form.Item>
-              <Button onClick={() => {navigate('')}} className='active'>перевести</Button>
+              <Button onClick={() => {navigate('')}} className='buttom-left'>перевести</Button>
           </Form.Item>              
            </div>
-         <div className='search-block-left'>
-           
-
-         
-        
+         <div className='search-block-left'>           
          </div>
        </div>
          <div className='headercenter'>
              <Form.Item>
               <Button onClick={() => {navigate('')}} className='active'>Заменить</Button>
              </Form.Item> 
-         </div>
-         
+         </div>        
          <div className='headerRight'>
            <div className='languageRight'>
-             <p>language 2</p>
-           </div>
-               
+             <p className='languageRightlabel'>language 2</p>
+           </div>               
            <div className='buttom-block-right'>            
              <Form.Item>
-              <Button onClick={() => {navigate('')}} className='active'>перевести</Button>
+              <Button onClick={() => {navigate('')}} className='buttom-right'>перевести</Button>
              </Form.Item>            
            </div>
                <div className='search-block-right'>
                  <input placeholder='Поиск...'/>
-              </div> 
-              
+              </div>              
                 </div>
-
+        
 
 
 

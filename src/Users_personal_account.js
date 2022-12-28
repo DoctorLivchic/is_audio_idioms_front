@@ -8,21 +8,15 @@ export default function Main_page() {
     
         return(
           <div className='Users_personal_account'>
-          <header>
-						
+          <header>					
           <nav>
           <ul class="navig">
-
           <Form.Item>
               <Button onClick={() => {navigate('/main_page/Main_page')}} className='active1'>Главная</Button>
           </Form.Item>
-
-
-
           </ul>
-            </nav>
-						
-                    </header>
+            </nav>				
+          </header>
 
 
 
@@ -47,8 +41,7 @@ export default function Main_page() {
                     <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
                     <li><a href="#"><span class="fa fa-instagram"></span></a></li>
                     <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
-                  </ul>
-                  
+                  </ul>                 
                 </div>
               </div>
             </div>
