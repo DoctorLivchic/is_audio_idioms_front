@@ -32,28 +32,7 @@ export default function Main_page() {
                     </header>
 
 
-                    <div className="header-inne">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="logo">
-                                        <a>Логотип</a> 
-                                        
-                                    </div>
-                                </div>
-                                <div className="button bar">
-                                    <div className="modile-menu">
-
-                                    </div>
-                                    <nav className="navbar navbar-default">
-                                        <div className="collapse navbar-collapse">
-                                           
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
 
     <div className="slider" id="slider">
 			<div class="container">

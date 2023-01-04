@@ -16,43 +16,53 @@ const navigate = useNavigate();
           </Form.Item>
         </ul>
       </nav>
-        </header>    
-       
-        <div className='info' align="center"><h1>{input1}</h1></div>   
-       <div className='headerleft'>
-         <div className='languageleftlabel' align="center">
-           <p>language 1</p>
-         </div>
-           <div className='buttom-block-left'>
-           <Form.Item>
-              <Button onClick={() => {navigate('')}} className='buttom-left'>перевести</Button>
-          </Form.Item>              
-           </div>
-         <div className='search-block-left'>           
-         </div>
-       </div>
-         <div className='headercenter'>
-             <Form.Item>
-              <Button onClick={() => {navigate('')}} className='active'>Заменить</Button>
-             </Form.Item> 
-         </div>        
-         <div className='headerRight'>
-           <div className='languageRight'>
-             <p className='languageRightlabel'>language 2</p>
-           </div>               
-           <div className='buttom-block-right'>            
-             <Form.Item>
-              <Button onClick={() => {navigate('')}} className='buttom-right'>перевести</Button>
-             </Form.Item>            
-           </div>
-               <div className='search-block-right'>
-                 <input placeholder='Поиск...'/>
-              </div>              
-                </div>
-        
+        </header>  
+
+        <div className='input'>
+          <div className='text' align="center">
+          <h1>{input1}</h1>
+          </div>
+        </div>
+
+        <div className="slidermain" id="slidermain">
+          <div class="container">           
+                <div class="text">
+                 
+                     <div className='headerleft'>
+                        <div className='languageleftlabel' >
+                         <p>language 1</p>
+                        </div>
+                          <div className='buttom-block-left'>
+                          <Form.Item>
+                          <Button onClick={() => {navigate('')}} className='buttom-block-left' >перевести</Button>
+                          </Form.Item>
+                        </div>
+                    </div>
 
 
 
+                    <div className='headercenter'>
+                          <div className='buttom-block-center'>
+                          <Form.Item>
+                          <Button onClick={() => {navigate('')}} className='buttom-block-center' >Заменить</Button>
+                          </Form.Item>
+                        </div>
+                    </div>
+
+                    <div className='headerRight'>
+                        <div className='languageRight' >
+                         <p>language 1</p>
+                        </div>
+                          <div className='buttom-block-right'>
+                          <Form.Item>
+                          <Button onClick={() => {navigate('')}} className='buttom-block-right' >перевести</Button>
+                          </Form.Item>
+                        </div>
+                    </div>
+
+            
+          </div>
+        </div>
                   <footer id="footer" class="footer section">
                     <div class="footer-top">
                       <div class="container">
@@ -87,6 +97,6 @@ const navigate = useNavigate();
 
         </div> 
 
-          
+    </div>      
     )
 }
