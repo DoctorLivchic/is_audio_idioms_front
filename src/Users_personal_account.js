@@ -8,18 +8,26 @@ export default function Main_page() {
     
         return(
           <div className='Users_personal_account'>
-          <header>					
+          <header>
+            <h2>Личный кабинет пользователя</h2>					
           <nav>
-          <ul class="navig">
+          <ul class="navig_us_acc">
           <Form.Item>
+          <Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active1'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Добавление</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Фразеологизм дня</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Чат</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
+							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
               <Button onClick={() => {navigate('/main_page/Main_page')}} className='active1'>Главная</Button>
+							<Button onClick={() => {navigate('/Users_personal_account')}} className='active'>Выйти</Button>     
           </Form.Item>
           </ul>
             </nav>				
           </header>
 
 
-
+          
 
 
 
@@ -50,7 +58,7 @@ export default function Main_page() {
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
-                  <p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+                  <p>2023 © Словарь аудио-фразеологизмов</p>
                 </div>
               </div>
             </div>

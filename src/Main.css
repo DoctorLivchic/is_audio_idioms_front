@@ -1,20 +1,14 @@
-.info {
- position: relative;
-
-}
-body {
-  background-color: rgb(119, 206, 180);
-}
+/*===========================
+  Меню перевода
+============================*/
 .headerleft{
   display: table-cell;
   vertical-align: middle;
   background-color: #eeeeee;
   position: relative;
   left: 24%;
-  top: -60%;
   border-radius: 20px;
   width: 44%;
-
 }
 .headercenter{
   display: table-cell;
@@ -29,9 +23,8 @@ body {
   position: relative;
   left: 100%;
   border-radius: 20px;
+  width: 44%;
 }
-
-
 
 .languageRight {
   background: #ffffff;
@@ -42,7 +35,6 @@ body {
   display: table;
   left: 25%;
 }
-
 .languageleftlabel{
   background: #ffffff;
   position: relative;
@@ -53,37 +45,34 @@ body {
   left: 25%;
 }
 
-
-.buttom-right{
-  position: relative;
-  margin-top: -0%;
-
-}
 .buttom-block-left {
   display: table;
-  margin-left: 23%;
+  margin-left: 25%;
   margin-right: 7vw;
   margin-top: 60%;
 }
 .buttom-block-right {
   display: table;
-  margin-left: 30%;
+  margin-left: 25%;
   margin-right: 7vw;
   margin-top: 60%;
 }
-
 .search-block-left{
   margin-right: 2vw;
   width: 0em;
   margin-top: 50px;
 }
-
 .search-block-right {
   display: block;
   margin-left: 13vw;
   margin-right: 5vw;
   width: 10em;
   margin-top: 82px;
+}
+.buttom-audio{
+  position: relative;
+  left: 68%;
+  background-image: url('./img/Logo.png');
 }
 
 body {
@@ -128,6 +117,12 @@ h6 span {
   position: relative;
   left: 2.9%;
 }
+h2{
+  position: relative;
+  left: 1%;
+  color: #cececeea;
+  font-size: 200%;
+}
 .section {
   position: relative;
 
@@ -142,6 +137,9 @@ h6 span {
   position: absolute;
   left: -9999px;
 }
+/*===========================
+	Авторизация
+============================*/
 .checkbox:checked + label,
 .checkbox:not(:checked) + label {
   position: relative;
@@ -365,9 +363,7 @@ h6 span {
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
-.button {
-  left: 70%;
-}
+
 
 .logo {
   position: absolute;
@@ -376,16 +372,11 @@ h6 span {
   display: block;
   z-index: 100;
   transition: all 250ms linear;
+  background-image: url("./img/Logo.png");
 }
-.logo img {
-  height: 26px;
-  width: auto;
-  display: block;
-}
-.md {
-  position: relative;
-  left: 5%;
-}
+/*===========================
+	Авторизация конец
+============================*/
 
 /*Main_page*/
 
@@ -610,7 +601,12 @@ header {
 }
 .navig_main {
   position: relative;
-  left: 90%;
+  left: 95%;
+  width: -100%;
+}
+.navig_us_acc{
+  position: relative;
+  left: 52%;
   width: -100%;
 }
 .navig a {
@@ -627,7 +623,7 @@ header {
 ============================*/
 .footer {
   position: absolute;
-  top: 105%;
+  top: 280%;
   padding: 0;
 }
 .footer .footer-top {
@@ -678,27 +674,27 @@ header {
 /*===========================
 	Footer CSS Main
 ============================*/
-.footer {
+.footer_main {
   position: absolute;
-  top: 290%;
+  top: 183%;
   padding: 0;
 }
-.footer .footer-top {
+.footer_main .footer-top {
   text-align: center;
   padding: 90px 0;
   background: #232328;
 }
-.footer .logo {
+.footer_main .logo {
   margin-bottom: 10%;
 }
-.footer .social li {
+.footer_main .social li {
   display: inline-block;
   margin-right: 10px;
 }
-.footer .social li:last-child {
+.footer_main .social li:last-child {
   margin: 0;
 }
-.footer .social li a {
+.footer_main .social li a {
   width: 42px;
   height: 42px;
   border-radius: 0px;
@@ -709,21 +705,72 @@ header {
   display: block;
   color: #42bc7f;
 }
-.footer .social li a:hover {
+.footer_main .social li a:hover {
   box-shadow: 0px 0px 5px #42bc7f inset;
   color: #fff;
 }
-.footer .social li span {
+.footer_main .social li span {
   font-size: 18px;
 }
-.footer .copyright {
+.footer_main .copyright {
   background: #1d1d21;
   text-align: center;
   padding: 25px 0;
 }
-.footer .copyright p {
+.footer_main .copyright p {
   color: #666666;
 }
 /*===========================
 	End Footer CSS Main
 ============================*/
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.searchModule {
+  width: 500px;
+  color: #252a32;
+  overflow: hidden;
+}
+
+.searchModule input {
+  padding: 15px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 1.3rem;
+  border: 1px solid transparent;
+  background-color: #ffffff;
+}
+
+.searchModule input:focus {
+  border: 1px solid rgb(47, 110, 245);
+}
+
+.searchModule ul {
+  padding: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  margin-top: 1px;
+  border-radius: 3px;
+  max-height: 310px;
+  background-color: #ffffff;
+}
+
+.searchModule ul li {
+  padding: 15px;
+  background: white;
+  border-bottom: 1px solid #c7c0c0;
+  margin-top: 0.5px;
+}
+
+.searchModule li:hover {
+  color: rgb(241, 249, 249);
+  border-color: rgb(47, 110, 245);
+  background-color: rgb(47, 110, 245);
+}

@@ -50,7 +50,7 @@ export default function Main_page() {
 			</div>
 		</div>
 
-        <footer id="footer" class="footer section">
+        <footer id="footer_main" class="footer_main section">
 			<div class="footer-top">
 				<div class="container">
 					<div class="row">
@@ -75,7 +75,7 @@ export default function Main_page() {
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+							<p>2023 © Словарь аудио-фразеологизмов</p>
 						</div>
 					</div>
 				</div>

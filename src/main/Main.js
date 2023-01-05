@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Form, Input, Checkbox } from 'antd';
+import {Button, Form, Input, Checkbox, Select } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
 
@@ -30,11 +30,20 @@ const navigate = useNavigate();
                  
                      <div className='headerleft'>
                         <div className='languageleftlabel' >
-                         <p>language 1</p>
+                        <Form.Item 
+                        name="language"
+                        label="Выбор языка">
+                            <Select onChange={(value) => { 
+                                
+                            }}>
+                                
+                            </Select>
+                        </Form.Item >
                         </div>
                           <div className='buttom-block-left'>
                           <Form.Item>
-                          <Button onClick={() => {navigate('')}} className='buttom-block-left' >перевести</Button>
+                          <Button onClick={() => {navigate('')}} className='buttom-block-left' >Перевести</Button>
+                          <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
                     </div>
@@ -51,11 +60,20 @@ const navigate = useNavigate();
 
                     <div className='headerRight'>
                         <div className='languageRight' >
-                         <p>language 1</p>
+                        <Form.Item 
+                        name="language"
+                        label="Выбор языка">
+                            <Select onChange={(value) => { 
+                                
+                            }}>
+                                
+                            </Select>
+                         </Form.Item>   
                         </div>
                           <div className='buttom-block-right'>
                           <Form.Item>
-                          <Button onClick={() => {navigate('')}} className='buttom-block-right' >перевести</Button>
+                          <Button onClick={() => {navigate('')}} className='buttom-block-right' >Перевести</Button>
+                          <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
                     </div>
@@ -69,7 +87,7 @@ const navigate = useNavigate();
                         <div class="row">
                           <div class="col-md-12">
                             <div class="logo">
-                              <a>Логотип</a>
+                              
                             </div>
                             
                             <ul class="social">
@@ -88,7 +106,7 @@ const navigate = useNavigate();
                       <div class="container">
                         <div class="row">
                           <div class="col-md-12">
-                            <p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+                            <p>2023 © Словарь аудио-фразеологизмов</p>
                           </div>
                         </div>
                       </div>

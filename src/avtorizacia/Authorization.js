@@ -149,7 +149,7 @@ export default function Authorization()  {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <p>© 2018 Distributed by <a href="https://themewagon.com/">ThemeWagon</a></p>
+                    <p>2023 © Словарь аудио-фразеологизмов</p>
                   </div>
                 </div>
               </div>
