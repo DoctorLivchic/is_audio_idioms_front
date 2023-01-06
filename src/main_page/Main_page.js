@@ -2,7 +2,9 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox,Select,Menu } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-
+const handleChange = (value) => {
+	console.log(`selected ${value}`);
+  };
 export default function Main_page() {
 	const navigate = useNavigate();
     
@@ -10,7 +12,7 @@ export default function Main_page() {
                 <div className="main_page" id="main_page">
 					
                     <header>
-						
+						{/* Кнопки навигации */}
                         <nav>
                         <ul class="navig">
                  		<Form.Item>
@@ -21,11 +23,34 @@ export default function Main_page() {
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
 							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
 							<Button onClick={() => {navigate('/Users_personal_account')}} className='active'>Вход</Button>
-							
+							<Select
+							defaultValue="Дополнительно"
+							style={{
+								width: 150,
+							}}
+							onChange={handleChange}
+							options={[
+								{
+								value: '1',
+								label: 'Версия для слабовидящих',
+								},
+								{
+								value: '2',
+								label: 'Дополнение 1',
+								},
+								{
+								value: '3',
+								disabled: true,
+								label: 'Дополнение 3',
+								},
+								{
+								value: '4',
+								label: 'Дополнение 4',
+								},
+							]}
+							/>
 						</Form.Item>
-						
-						
-						
+												
 						 </ul>
                         </nav>
 						

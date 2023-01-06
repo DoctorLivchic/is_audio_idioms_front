@@ -19,7 +19,7 @@ export default function Main_page() {
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Чат</Button>
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
 							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
-              <Button onClick={() => {navigate('/main_page/Main_page')}} className='active1'>Главная</Button>
+              <Button onClick={() => {navigate('/')}} className='active1'>Главная</Button>
 							<Button onClick={() => {navigate('/Users_personal_account')}} className='active'>Выйти</Button>     
           </Form.Item>
           </ul>

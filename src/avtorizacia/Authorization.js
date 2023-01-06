@@ -42,6 +42,7 @@ export default function Authorization()  {
                               />
                               <i class="input-icon uil uil-at"></i>
                             </div>
+                            
                             <div class="form-group mt-2">
                               <input
                                 type="password"
@@ -55,7 +56,7 @@ export default function Authorization()  {
                             </div>
                             <Form.Item>
                                 <Button onClick={() => {navigate("Main_page")}} className='btn'>Авторизоваться</Button>
-                                <Button onClick={() => {navigate("/main_page/Main_page")}} className='btn'>Назад</Button>
+                                <Button onClick={() => {navigate("/")}} className='btn'>Назад</Button>
                               </Form.Item>
                           </div>
                         </div>
@@ -111,7 +112,7 @@ export default function Authorization()  {
                             <div className="button">
                               <Form.Item>
                                 <Button onClick={() => {navigate("-")}} className='btn'>Регистрация</Button>
-                                <Button onClick={() => {navigate("/main_page/Main_page")}} className='btn'>Назад</Button>
+                                <Button onClick={() => {navigate("/м")}} className='btn'>Назад</Button>
                               </Form.Item>
                             </div>
                           </div>

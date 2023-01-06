@@ -26,36 +26,28 @@
   width: 44%;
 }
 
-.languageRight {
+.languagelabel {
   background: #ffffff;
   position: relative;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   margin: 20%;
   display: table;
-  left: 25%;
-}
-.languageleftlabel{
-  background: #ffffff;
-  position: relative;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  margin: 20%;
-  display: table;
-  left: 25%;
+  left: 10%;
+  width: 50%;
 }
 
 .buttom-block-left {
   display: table;
   margin-left: 25%;
   margin-right: 7vw;
-  margin-top: 60%;
+  margin-top: 35%;
 }
 .buttom-block-right {
   display: table;
   margin-left: 25%;
   margin-right: 7vw;
-  margin-top: 60%;
+  margin-top: 35%;
 }
 .search-block-left{
   margin-right: 2vw;
@@ -72,7 +64,7 @@
 .buttom-audio{
   position: relative;
   left: 68%;
-  background-image: url('./img/Logo.png');
+  
 }
 
 body {
@@ -119,7 +111,8 @@ h6 span {
 }
 h2{
   position: relative;
-  left: 1%;
+  left: 0.5%;
+  top: -60px;
   color: #cececeea;
   font-size: 200%;
 }
@@ -136,6 +129,16 @@ h2{
 [type="checkbox"]:not(:checked) {
   position: absolute;
   left: -9999px;
+}
+.Text_area{
+  position: relative;
+  left: -24%;
+  height: 150px;
+  width: 130%;
+
+  
+
+
 }
 /*===========================
 	Авторизация
@@ -470,7 +473,7 @@ h2{
 }
 .header .nav li .dropdown .sub-dropdown {
   position: absolute;
-  top: 0;
+  top: 10%;
   left: 150%;
   width: 220px;
   background: #333;
@@ -590,19 +593,20 @@ button {
 }
 
 header {
-  padding-top: 1%;
+  padding-top: 2%;
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.04);
 }
 .navig {
   position: relative;
-  left: 56%;
-  width: -100%;
+  left: 48%;
+  top: 60px;
+  width: -90%;
 }
 .navig_main {
   position: relative;
   left: 95%;
-  width: -100%;
+  width: -90%;
 }
 .navig_us_acc{
   position: relative;

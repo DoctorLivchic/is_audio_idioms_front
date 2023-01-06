@@ -2,7 +2,10 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox, Select } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
-
+const { TextArea } = Input;
+const onChange = (e) => {
+  console.log('Change:', e.target.value);
+};
 
 export default function Main(){
 const navigate = useNavigate();
@@ -12,7 +15,7 @@ const navigate = useNavigate();
       <nav>
         <ul class="navig_main">
           <Form.Item>
-              <Button onClick={() => {navigate('/main_page/Main_page')}} className='active1'>Главная</Button>
+              <Button onClick={() => {navigate('/')}} className='active1'>Главная</Button>
           </Form.Item>
         </ul>
       </nav>
@@ -29,7 +32,9 @@ const navigate = useNavigate();
                 <div class="text">
                  
                      <div className='headerleft'>
-                        <div className='languageleftlabel' >
+                        <div className='languagelabel'>
+                        <Form
+                        layout={"vertical"}>
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
@@ -39,10 +44,12 @@ const navigate = useNavigate();
                                 
                             </Select>
                         </Form.Item >
+                        </Form>
                         </div>
                           <div className='buttom-block-left'>
                           <Form.Item>
-                          <Button onClick={() => {navigate('')}} className='buttom-block-left' >Перевести</Button>
+                          <TextArea showCount maxLength={100} onChange={onChange} placeholder="Введите текст" className='Text_area' />
+                          <Button onClick={() => {navigate('')}} className='buttom-block-left' >Перевести</Button>                         
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
@@ -59,7 +66,9 @@ const navigate = useNavigate();
                     </div>
 
                     <div className='headerRight'>
-                        <div className='languageRight' >
+                        <div className='languagelabel'>
+                        <Form
+                        layout='vertical'>
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
@@ -69,16 +78,16 @@ const navigate = useNavigate();
                                 
                             </Select>
                          </Form.Item>   
+                         </Form>
                         </div>
                           <div className='buttom-block-right'>
                           <Form.Item>
+                          <TextArea showCount maxLength={100} onChange={onChange} placeholder="Введите текст" className='Text_area' />
                           <Button onClick={() => {navigate('')}} className='buttom-block-right' >Перевести</Button>
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
-                    </div>
-
-            
+                    </div>            
           </div>
         </div>
                   <footer id="footer" class="footer section">
@@ -86,8 +95,7 @@ const navigate = useNavigate();
                       <div class="container">
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="logo">
-                              
+                            <div class="logo">                              
                             </div>
                             
                             <ul class="social">
