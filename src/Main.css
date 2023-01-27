@@ -179,6 +179,8 @@ h2{
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg);
 }
+
+/*----------------------------------------------*/
 .card-3d-wrap {
   position: relative;
   width: 440px;
@@ -520,14 +522,23 @@ button {
 .slidermain:before {
   position: absolute;
   left: 0%;
-  top: -5%;
+  top: -3%;
   content: "";
   height: 300%;
   width: 100%;
   background: rgba(23, 25, 36, 0.711);
   opacity: 0.4;
 }
-
+.slider_account:before {
+  position: absolute;
+  left: 0%;
+  top: 40%;
+  content: "";
+  height: 280%;
+  width: 100%;
+  background: rgba(23, 25, 36, 0.711);
+  opacity: 0.4;
+}
 .slider:before {
   position: absolute;
   left: 0%;

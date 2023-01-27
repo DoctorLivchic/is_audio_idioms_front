@@ -15,9 +15,12 @@ export default function Authorization()  {
                   align="center"
                 >
                   <h6 class="mb-0 pb-3">
-                    <span>Авторизоваться </span>
+                    <span  >Авторизоваться </span>
                     <span>Зарегистрироваться</span>
+                   
                   </h6>
+
+
                   <input
                     class="checkbox"
                     type="checkbox"
@@ -111,8 +114,8 @@ export default function Authorization()  {
                             </div>
                             <div className="button">
                               <Form.Item>
-                                <Button onClick={() => {navigate("-")}} className='btn'>Регистрация</Button>
-                                <Button onClick={() => {navigate("/м")}} className='btn'>Назад</Button>
+                                <Button onClick={() => {navigate("Main_page")}} className='btn'>Регистрация</Button>
+                                <Button onClick={() => {navigate("/")}} className='btn'>Назад</Button>
                               </Form.Item>
                             </div>
                           </div>

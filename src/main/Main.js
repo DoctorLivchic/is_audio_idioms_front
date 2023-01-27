@@ -73,8 +73,7 @@ const navigate = useNavigate();
                         name="language"
                         label="Выбор языка">
                             <Select onChange={(value) => { 
-                                
-                            }}>
+                              }}>
                                 
                             </Select>
                          </Form.Item>   

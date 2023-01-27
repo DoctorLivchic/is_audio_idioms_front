@@ -65,8 +65,9 @@ export default function Main_page() {
 					<div class="col-md-7 col-sm-12 col-xs-12">
 						<div class="text">
 							<h1>Добро пожаловать в LINGUA IDIOM</h1>
-							<p>Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit. Hic Laboriosam Ipsa Sequi? Laudantium Aspernatur Iusto Blanditiis, Totam Perferendis Dicta Magni. tincidunt dui. Vestibulum sodales posuere ullamcorper. Proin convallis neque pulvinar mauris vehicula, quis dictum diam ullamcorper</p>
+							<p>В нашем словаре фразеологизмов вы узнаете много нового!</p>
 							<div class="button">
+								
 								<Button onClick={() => {navigate('/main/Main')}} className='btn'>Перевести фразеологизм</Button>
 							</div>
 						</div>
@@ -74,7 +75,7 @@ export default function Main_page() {
 				</div>
 			</div>
 		</div>
-
+		{/* футер */}
         <footer id="footer_main" class="footer_main section">
 			<div class="footer-top">
 				<div class="container">
