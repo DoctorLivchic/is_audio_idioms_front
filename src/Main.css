@@ -608,6 +608,7 @@ header {
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.04);
 }
+/*Панели навигации кнопок*/
 .navig {
   position: relative;
   left: 48%;
@@ -622,6 +623,16 @@ header {
 .navig_us_acc{
   position: relative;
   left: 52%;
+  width: -100%;
+}
+.navig_ex_acc{
+  position: relative;
+  left: 87%;
+  width: -100%;
+}
+.navig_mod_acc{
+  position: relative;
+  left: 87%;
   width: -100%;
 }
 .navig a {

@@ -25,9 +25,6 @@ export default function Main_page() {
           </ul>
             </nav>				
           </header>
-        
-
-   
 							<h1>Личные данные</h1>
            
 		
