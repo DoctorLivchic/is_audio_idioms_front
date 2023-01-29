@@ -20,8 +20,6 @@ export default function Moderator_page() {
           </nav>				
         </header>
 
-
-
         <footer id="footer" class="footer section">
           <div class="footer-top">
             <div class="container">

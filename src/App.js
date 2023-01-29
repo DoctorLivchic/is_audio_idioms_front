@@ -6,28 +6,73 @@ import Users_personal_account from './Users_personal_account';
 import Expert_personal_account from './Expert_personal_account';
 import Moderator_personal_account from './Moderator_personal_account';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { supabase } from './supabaseClient'
+import Auth from './Auth'
+import Account from './Account'
+
+//class App extends React.Component {
+
+  
+//   render() {
+//     return(
+//      <div className='App'>
+//        <div className="ty">      
+//       <BrowserRouter>  
+//           <Routes>               
+//               <Route  path='/main/Main' element={<Main />}/>
+//               <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
+//               <Route  path='/' element={<Main_page />}/>
+//               <Route  path='/Users_personal_account' element={<Users_personal_account />}/>
+//               <Route  path='/Expert_personal_account' element={<Expert_personal_account />}/>
+//               <Route  path='/Moderator_personal_account' element={<Moderator_personal_account />}/>
+//             </Routes>
+//           </BrowserRouter>
+//       </div>  
+//      </div>
+
+//     );
+//   }
+// }
+
+export default function App() {
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+  return(
+    <div className='App'>
+      <div className="ty">      
+     <BrowserRouter>  
+         <Routes>               
+             <Route  path='/main/Main' element={<Main />}/>
+             <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
+             <Route  path='/' element={<Main_page />}/>
+             <Route  path='/Users_personal_account' element={<Users_personal_account />}/>
+             <Route  path='/Expert_personal_account' element={<Expert_personal_account />}/>
+             <Route  path='/Moderator_personal_account' element={<Moderator_personal_account />}/>
+           </Routes>
+         </BrowserRouter>
+     </div>  
+    </div>
+
+   );
+ }
 
 
-class App extends React.Component {
-  render() {
-    return(
-     <div className='App'>
-       <div className="ty">      
-      <BrowserRouter>  
-          <Routes>               
-              <Route  path='/main/Main' element={<Main />}/>
-              <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
-              <Route  path='/' element={<Main_page />}/>
-              <Route  path='/Users_personal_account' element={<Users_personal_account />}/>
-              <Route  path='/Expert_personal_account' element={<Expert_personal_account />}/>
-              <Route  path='/Moderator_personal_account' element={<Moderator_personal_account />}/>
-            </Routes>
-          </BrowserRouter>
-      </div>  
-     </div>
 
-    );
-  }
-}
+  // return (
+  //   <div className="container" style={{ padding: '50px 0 100px 0' }}>
+  //     {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+  //   </div>
+  // )
 
-export default App;
+
+
