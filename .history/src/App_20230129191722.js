@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Main from './main/Main';
 import Main_page from './main_page/Main_page';
-import Authorization from './Authorization';
+import Authorization from './avtorizacia/Authorization';
 import Users_personal_account from './Users_personal_account';
 import Expert_personal_account from './Expert_personal_account';
 import Moderator_personal_account from './Moderator_personal_account';
