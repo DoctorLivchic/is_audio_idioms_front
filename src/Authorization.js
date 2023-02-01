@@ -31,12 +31,20 @@ function comparePass(password, passAffirm){
 
 
 export default function Authorization()  {
-
+ 
+  function setRed(formId){
+    document.getElementById(formId).setAttribute("class","form-style1")
+  }
+  function setWhite(formId){
+    document.getElementById(formId).setAttribute("class","form-style")
+  }
   //Получение таблицы profiles
   async function getUser(){
     const profiles = await supabase.from('profiles').select();
     return profiles;
   }
+  //const el = document.querySelector('.form-style'); // получаем наш параграф
+  //const styles = window.getComputedStyle(el); // получаем объект со всеми вычисленными стилями
 
   //Регистрация нового пользователя
   async function addUser(){
@@ -45,7 +53,7 @@ export default function Authorization()  {
     const password1 = document.getElementById("logpassUp").value;
     const name1 = document.getElementById("logname").value;
     const passAffirm = document.getElementById("logpassAffirm").value;
-    
+    //console.log(styles.box-shadow)
 
     //Запись 
     if(validName(name1)){
@@ -99,12 +107,15 @@ export default function Authorization()  {
     }
 
     if(index == -1){
+      setRed('logemailIn');
       alert("Почта введена некорректно или такой почты не существует!");
     }else{
       if(data[index]['password']==password){
         navigate('/');
         alert("Вы успешно авторизовались!");
       }else{
+        setRed('logpassIn');
+        setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
       }
     }  
