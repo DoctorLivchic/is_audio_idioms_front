@@ -111,7 +111,7 @@ export default function Authorization()  {
       alert("Почта введена некорректно или такой почты не существует!");
     }else{
       if(data[index]['password']==password){
-        navigate('/');
+        navigate('/main_page/Main_page_aut');
         alert("Вы успешно авторизовались!");
       }else{
         setRed('logpassIn');

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Main from './main/Main';
+import Main_page_aut from './main_page/Main_page_aut';
 import Main_page from './main_page/Main_page';
+import Main_aut from './main/Main_aut'
 import Authorization from './Authorization';
 import Users_personal_account from './Users_personal_account';
 import Expert_personal_account from './Expert_personal_account';
@@ -58,6 +60,8 @@ export default function App() {
              <Route  path='/Users_personal_account' element={<Users_personal_account />}/>
              <Route  path='/Expert_personal_account' element={<Expert_personal_account />}/>
              <Route  path='/Moderator_personal_account' element={<Moderator_personal_account />}/>
+             <Route  path='/main_page/Main_page_aut' element={<Main_page_aut />}/>
+             <Route  path='/main/Main_aut' element={<Main_aut />}/>
            </Routes>
          </BrowserRouter>
      </div>  

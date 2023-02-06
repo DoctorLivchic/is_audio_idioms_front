@@ -2,6 +2,9 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox,Select,Menu } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+
+
+
 const handleChange = (value) => {
 	console.log(`selected ${value}`);
   };
@@ -14,10 +17,15 @@ export default function Main_page() {
                     <header>
 						{/* Кнопки навигации */}
                         <nav>
-                        <ul class="navig">
+                        <ul class="navig_main_page_aut">
                  		<Form.Item>
-							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Вход</Button>
+                         <Button onClick={() => {navigate('-')}} className='active1'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('-')}} className='active'>Добавление</Button>
+						 	<Button onClick={() => {navigate('-')}} className='active'>Фразеологизм дня</Button>
+							<Button onClick={() => {navigate('-')}} className='active'>Чат</Button>
+							<Button onClick={() => {navigate('-')}} className='active'>Избранное</Button>
+							<Button onClick={() => {navigate('/main/Main_aut')}} className='active'>Перевод фразеологизмов</Button>
+							<Button onClick={() => {navigate('/')}} className='active'>Выход</Button>
 							<Select
 							defaultValue="Дополнительно"
 							style={{

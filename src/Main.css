@@ -629,13 +629,18 @@ header {
 /*Панели навигации кнопок*/
 .navig {
   position: relative;
-  left: 48%;
+  left: 78%;
   top: 60px;
   width: -90%;
 }
 .navig_main {
   position: relative;
   left: 95%;
+  width: -90%;
+}
+.navig_main_page_aut{
+  position: relative;
+  left: 48%;
   width: -90%;
 }
 .navig_us_acc{
