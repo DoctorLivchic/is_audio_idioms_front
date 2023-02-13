@@ -19,13 +19,14 @@ export default function Main_page() {
                         <nav>
                         <ul class="navig_main_page_aut">
                  		<Form.Item>
-                         <Button onClick={() => {navigate('-')}} className='active1'>Редактирование</Button>
-						 	<Button onClick={() => {navigate('-')}} className='active'>Добавление</Button>
-						 	<Button onClick={() => {navigate('-')}} className='active'>Фразеологизм дня</Button>
-							<Button onClick={() => {navigate('-')}} className='active'>Чат</Button>
-							<Button onClick={() => {navigate('-')}} className='active'>Избранное</Button>
-							<Button onClick={() => {navigate('/main/Main_aut')}} className='active'>Перевод фразеологизмов</Button>
-							<Button onClick={() => {navigate('/')}} className='active'>Выход</Button>
+                         <Button onClick={() => {navigate('-')}} className='btn-7'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('-')}} className='btn-7'>Добавление</Button>
+						 	<Button onClick={() => {navigate('-')}} className='btn-7'>Фразеологизм дня</Button>
+							<Button onClick={() => {navigate('-')}} className='btn-7'>Чат</Button>
+							<Button onClick={() => {navigate('-')}} className='btn-7'>Избранное</Button>
+							<Button onClick={() => {navigate('/Users_personal_account')}} className='btn-7'>Личный кабинет</Button>
+							<Button onClick={() => {navigate('/main/Main_aut')}} className='btn-7'>Перевод фразеологизмов</Button>
+							<Button onClick={() => {navigate('/')}} className='btn-7'>Выход</Button>
 							<Select
 							defaultValue="Дополнительно"
 							style={{

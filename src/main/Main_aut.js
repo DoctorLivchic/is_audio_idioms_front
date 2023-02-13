@@ -15,7 +15,7 @@ const navigate = useNavigate();
       <nav>
         <ul class="navig_main">
           <Form.Item>
-              <Button onClick={() => {navigate('/main_page/Main_page_aut')}} className='active1'>Главная</Button>
+              <Button onClick={() => {navigate('/main_page/Main_page_aut')}} className='btn-7'>Главная</Button>
           </Form.Item>
         </ul>
       </nav>
@@ -60,7 +60,7 @@ const navigate = useNavigate();
                     <div className='headercenter'>
                           <div className='buttom-block-center'>
                           <Form.Item>
-                          <Button onClick={() => {navigate('')}} className='buttom-block-center' >Заменить</Button>
+                          <Button onClick={() => {navigate('')}} className='-' >Заменить</Button>
                           </Form.Item>
                         </div>
                     </div>

@@ -13,14 +13,14 @@ export default function Main_page() {
           <nav>
           <ul class="navig_us_acc">
           <Form.Item>
-          <Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active1'>Редактирование</Button>
-						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Добавление</Button>
-						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Фразеологизм дня</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Чат</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Избранное</Button>
-							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
-              <Button onClick={() => {navigate('/')}} className='active1'>Главная</Button>
-							<Button onClick={() => {navigate('/Users_personal_account')}} className='active'>Выйти</Button>     
+          <Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Добавление</Button>
+						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Фразеологизм дня</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Чат</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Избранное</Button>
+							<Button onClick={() => {navigate('/main/Main_aut')}} className='btn-7'>Перевод фразеологизмов</Button>
+              <Button onClick={() => {navigate('/main_page/Main_page_aut')}} className='btn-7'>Главная</Button>
+							<Button onClick={() => {navigate('/')}} className='btn-7'>Выйти</Button>     
           </Form.Item>
           </ul>
             </nav>				

@@ -16,8 +16,8 @@ export default function Main_page() {
                         <nav>
                         <ul class="navig">
                  		<Form.Item>
-							<Button onClick={() => {navigate('/main/Main')}} className='active'>Перевод фразеологизмов</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='active'>Вход</Button>
+							<Button onClick={() => {navigate('/main/Main')}} className='btn-7'>Перевод фразеологизмов</Button>
+							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Вход</Button>
 							<Select
 							defaultValue="Дополнительно"
 							style={{

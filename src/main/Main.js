@@ -15,7 +15,7 @@ const navigate = useNavigate();
       <nav>
         <ul class="navig_main">
           <Form.Item>
-              <Button onClick={() => {navigate('/')}} className='active1'>Главная</Button>
+              <Button onClick={() => {navigate('/')}} className='btn-7'>Главная</Button>
           </Form.Item>
         </ul>
       </nav>
