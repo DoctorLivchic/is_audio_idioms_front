@@ -206,7 +206,7 @@ h2{
   width: 100%;
   height: 100%;
   background-color: #2a2b38;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");
+  /*background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg");*/
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: 300%;
@@ -358,7 +358,7 @@ h2{
 }
 .btn-86 {
   -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: button;
+  
   background-color: #000;
   background-image: none;
   color: #fff;
@@ -370,7 +370,6 @@ h2{
   font-weight: 900;
   line-height: 1;
   margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
 }
 .btn-86:disabled {
@@ -381,7 +380,6 @@ h2{
 }
 .btn-86 svg {
   display: block;
-  vertical-align: middle;
 }
 .btn-86 [hidden] {
   display: none;
@@ -503,7 +501,6 @@ h2{
   text-align: center;
   border: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: button;
   background-color: #000;
   background-image: none;
   color: #fff;
@@ -515,7 +512,6 @@ h2{
   font-weight: 900;
   line-height: 0.5;
   margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
   padding: 0;
   text-transform: uppercase;
 }
@@ -532,7 +528,6 @@ h2{
 .btn-7 {
   border-radius: 99rem;
   border-width: 2px;
-  -webkit-mask-image: none;
   overflow: hidden;
   padding: 0.8rem 3rem;
   position: relative;

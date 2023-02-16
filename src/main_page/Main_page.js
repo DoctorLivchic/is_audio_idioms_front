@@ -14,7 +14,7 @@ export default function Main_page() {
                     <header>
 						{/* Кнопки навигации */}
                         <nav>
-                        <ul class="navig">
+                        <ul className="navig">
                  		<Form.Item>
 							<Button onClick={() => {navigate('/main/Main')}} className='btn-7'>Перевод фразеологизмов</Button>
 							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Вход</Button>
@@ -55,13 +55,13 @@ export default function Main_page() {
                    
 
     <div className="slider" id="slider">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-12 col-xs-12">
-						<div class="text">
+			<div className="container">
+				<div className="row">
+					<div className="col-md-7 col-sm-12 col-xs-12">
+						<div className="text">
 							<h1>Добро пожаловать в LINGUA IDIOM</h1>
 							<p>В нашем словаре фразеологизмов вы узнаете много нового!</p>
-							<div class="button">
+							<div className="button">
 								
 								<Button onClick={() => {navigate('/main/Main')}} className='btn'>Перевести фразеологизм</Button>
 							</div>
@@ -71,31 +71,31 @@ export default function Main_page() {
 			</div>
 		</div>
 		{/* футер */}
-        <footer id="footer_main" class="footer_main section">
-			<div class="footer-top">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="logo">
+        <footer id="footer_main" className="footer_main section">
+			<div className="footer-top">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
+							<div className="logo">
 								<a>Логотип</a>
 							</div>
 							
-							<ul class="social">
-								<li><a href="#"><span class="fa fa-facebook"></span></a></li>
-								<li><a href="#"><span class="fa fa-twitter"></span></a></li>
-								<li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-								<li><a href="#"><span class="fa fa-instagram"></span></a></li>
-								<li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+							<ul className="social">
+								<li><a href="#"><span className="fa fa-facebook"></span></a></li>
+								<li><a href="#"><span className="fa fa-twitter"></span></a></li>
+								<li><a href="#"><span className="fa fa-dribbble"></span></a></li>
+								<li><a href="#"><span className="fa fa-instagram"></span></a></li>
+								<li><a href="#"><span className="fa fa-pinterest-p"></span></a></li>
 							</ul>
 							
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
+			<div className="copyright">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
 							<p>2023 © Словарь аудио-фразеологизмов</p>
 						</div>
 					</div>

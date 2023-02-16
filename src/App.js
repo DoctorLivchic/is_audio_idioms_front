@@ -10,8 +10,7 @@ import Moderator_personal_account from './Moderator_personal_account';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
-import Auth from './Auth'
-import Account from './Account'
+
 
 //class App extends React.Component {
 

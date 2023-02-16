@@ -29,7 +29,6 @@ function comparePass(password, passAffirm){
 }
 
 
-
 export default function Authorization()  {
  
   function setRed(formId){
@@ -127,15 +126,15 @@ export default function Authorization()  {
   const navigate = useNavigate();
       return (
       <div className="authorization">
-        <div class="section">
-          <div class="container">
-            <div class="row full-height justify-content-center">
-              <div class="col-12 text-center align-self-center py-5">
+        <div className="section">
+          <div className="container">
+            <div className="row full-height justify-content-center">
+              <div className="col-12 text-center align-self-center py-5">
                 <div
-                  class="section pb-5 pt-5 pt-sm-2 text-center"
+                  className="section pb-5 pt-5 pt-sm-2 text-center"
                   align="center"
                 >
-                  <h6 class="mb-0 pb-3">
+                  <h6 className="mb-0 pb-3">
                     <span  >Авторизоваться </span>
                     <span>Зарегистрироваться</span>
                    
@@ -143,40 +142,40 @@ export default function Authorization()  {
 
 
                   <input
-                    class="checkbox"
+                    className="checkbox"
                     type="checkbox"
                     id="reg-log"
                     name="reg-log"
                   />
                   <label for="reg-log"></label>
-                  <div class="card-3d-wrap mx-auto">
-                    <div class="card-3d-wrapper">
-                      <div class="card-front">
-                        <div class="center-wrap">
-                          <div class="section text-center">
-                            <h4 class="mb">Авторизоваться</h4>
-                            <div class="form-group">
+                  <div className="card-3d-wrap mx-auto">
+                    <div className="card-3d-wrapper">
+                      <div className="card-front">
+                        <div className="center-wrap">
+                          <div className="section text-center">
+                            <h4 className="mb">Авторизоваться</h4>
+                            <div className="form-group">
                               <input
                                 type="email"
                                 name="logemail"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Адрес электронной почты"
                                 id="logemailIn"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-at"></i>
+                              <i className="input-icon uil uil-at"></i>
                             </div>
                             
-                            <div class="form-group mt-2">
+                            <div className="form-group mt-2">
                               <input
                                 type="password"
                                 name="logpass"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Пароль"
                                 id="logpassIn"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-lock-alt"></i>
+                              <i className="input-icon uil uil-lock-alt"></i>
                             </div>
                             <Form.Item>
                                 <Button onClick={() => {logIn()}} className='btn'>Авторизоваться</Button>
@@ -185,54 +184,54 @@ export default function Authorization()  {
                           </div>
                         </div>
                       </div>
-                      <div class="card-back">
-                        <div class="center-wrap">
-                          <div class="section text-center">
-                            <h4 class="mb-4 pb-3">Зарегистрироваться</h4>
-                            <div class="form-group">
+                      <div className="card-back">
+                        <div className="center-wrap">
+                          <div className="section text-center">
+                            <h4 className="mb-4 pb-3">Зарегистрироваться</h4>
+                            <div className="form-group">
                               <input
                                 type="text"
                                 name="logname"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Имя"
                                 id="logname"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-user"></i>
+                              <i className="input-icon uil uil-user"></i>
                             </div>
-                            <div class="form-group mt-2">
+                            <div className="form-group mt-2">
                               <input
                                 type="email"
                                 name="logemail"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Адрес электронной почты"
                                 id="logemailUp"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-at"></i>
+                              <i className="input-icon uil uil-at"></i>
                             </div>
                             
-                            <div class="form-group mt-2">
+                            <div className="form-group mt-2">
                               <input
                                 type="password"
                                 name="logpass"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Пароль"
                                 id="logpassUp"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-lock-alt"></i>
+                              <i className="input-icon uil uil-lock-alt"></i>
                             </div>
-                            <div class="form-group mt-2">
+                            <div className="form-group mt-2">
                               <input
                                 type="password"
                                 name="logpass"
-                                class="form-style"
+                                className="form-style"
                                 placeholder="Подтвердите пароль"
                                 id="logpassAffirm"
                                 autocomplete="off"
                               />
-                              <i class="input-icon uil uil-lock-alt"></i>
+                              <i className="input-icon uil uil-lock-alt"></i>
                             </div>
                             <div className="button">
                               <Form.Item>
@@ -250,31 +249,31 @@ export default function Authorization()  {
             </div>
           </div>
         </div>
-          <footer id="footer" class="footer section">
-            <div class="footer-top">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="logo">
+          <footer id="footer" className="footer section">
+            <div className="footer-top">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="logo">
                       <a>Логотип</a>
                     </div>
                     
-                    <ul class="social">
-                      <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                      <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                      <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                      <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-                      <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+                    <ul className="social">
+                      <li><a href="#"><span className="fa fa-facebook"></span></a></li>
+                      <li><a href="#"><span clasName="fa fa-twitter"></span></a></li>
+                      <li><a href="#"><span className="fa fa-dribbble"></span></a></li>
+                      <li><a href="#"><span className="fa fa-instagram"></span></a></li>
+                      <li><a href="#"><span className="fa fa-pinterest-p"></span></a></li>
                     </ul>
                     
                   </div>
                 </div>
               </div>
             </div>
-            <div class="copyright">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
+            <div className="copyright">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
                     <p>2023 © Словарь аудио-фразеологизмов</p>
                   </div>
                 </div>

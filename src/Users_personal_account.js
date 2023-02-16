@@ -11,7 +11,7 @@ export default function Main_page() {
           <header>
             <h2>Личный кабинет пользователя</h2>					
           <nav>
-          <ul class="navig_us_acc">
+          <ul className="navig_us_acc">
           <Form.Item>
           <Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Редактирование</Button>
 						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Добавление</Button>
@@ -32,21 +32,21 @@ export default function Main_page() {
 
 
 
-          <footer id="footer" class="footer section">
-          <div class="footer-top">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="logo">
+          <footer id="footer" className="footer section">
+          <div className="footer-top">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="logo">
                     <a>Логотип</a>
                   </div>
                   
                   <ul class="social">
-                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fa fa-dribbble"></span></a></li>
-                    <li><a href="#"><span class="fa fa-instagram"></span></a></li>
-                    <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+                    <li><a href="#"><span className="fa fa-facebook"></span></a></li>
+                    <li><a href="#"><span className="fa fa-twitter"></span></a></li>
+                    <li><a href="#"><span className="fa fa-dribbble"></span></a></li>
+                    <li><a href="#"><span className="fa fa-instagram"></span></a></li>
+                    <li><a href="#"><span className="fa fa-pinterest-p"></span></a></li>
                   </ul>                 
                 </div>
               </div>
