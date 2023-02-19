@@ -9,3 +9,7 @@ w
 G.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a,9\d\9d19eaab4327edc07435a682d68ef383811840e5
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+<
+src/Other.Js,e\e\ee5f3c3d2679a0adc1781f60c9f043deb1880472
+M
+src/Users_personal_account.js,2\2\228d9ed79e8e14caca9e11c89f416551fe23d1bf

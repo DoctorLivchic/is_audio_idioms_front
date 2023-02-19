@@ -2,14 +2,15 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox, Select } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
+
+
 const { TextArea } = Input;
+
 const onChange = (e) => {
-  console.log('Change:', e.target.value);
+ console.log('Change:', e.target.value);
 };
 
-
-function getComboA(selectObject) {
-  var value = selectObject.value;  
+function onChangeInput(value){
   console.log(value);
 }
 
@@ -34,8 +35,8 @@ const navigate = useNavigate();
         </div>
 
         <div className="slidermain" id="slidermain">
-          <div class="container">           
-                <div class="text">
+          <div className="container">           
+                <div className="text">
                  
                      <div className='headerleft'>
                         <div className='languagelabel'>
@@ -44,11 +45,11 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                            <Select onChange={(value) => { 
-                                
-                            }}>
-                                
-                            </Select>
+                          <Select id="select_lang" onChange={onChangeInput}>
+                            <Select.Option value="Russian">Russian</Select.Option>
+                            <Select.Option value="French">French</Select.Option>
+                            <Select.Option value="Korean">Korean</Select.Option>
+                          </Select>
                         </Form.Item >
                         </Form>
                         </div>
@@ -79,13 +80,13 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                            <select id="comboA" onChange="getComboA(this)">
-                            <option value="">Select combo</option>
-                            <option value="Value1">Text1</option>
-                            <option value="Value2">Text2</option>
-                            <option value="Value3">Text3</option>
-                          </select>
-                         </Form.Item>   
+                          <Select id="select_lang" onChange={onChangeInput}>
+                            <Select.Option value="Russian">Russian</Select.Option>
+                            <Select.Option value="French">French</Select.Option>
+                            <Select.Option value="Korean">Korean</Select.Option>
+                          </Select>
+    
+                        </Form.Item >
                          </Form>
                         </div>
                           <div className='buttom-block-right'>
@@ -105,7 +106,7 @@ const navigate = useNavigate();
                             <div className="logo">                              
                             </div>
                             
-                            <ul class="social">
+                            <ul className="social">
                               <li><a href="#"><span className="fa fa-facebook"></span></a></li>
                               <li><a href="#"><span className="fa fa-twitter"></span></a></li>
                               <li><a href="#"><span className="fa fa-dribbble"></span></a></li>

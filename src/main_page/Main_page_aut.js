@@ -64,13 +64,13 @@ export default function Main_page() {
                    
 
     <div className="slider" id="slider">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-12 col-xs-12">
-						<div class="text">
+			<div className="container">
+				<div className="row">
+					<div className="col-md-7 col-sm-12 col-xs-12">
+						<div className="text">
 							<h1>Добро пожаловать в LINGUA IDIOM</h1>
 							<p>В нашем словаре фразеологизмов вы узнаете много нового!</p>
-							<div class="button">
+							<div className="button">
 								
 								<Button onClick={() => {navigate('/main/Main')}} className='btn'>Перевести фразеологизм</Button>
 							</div>

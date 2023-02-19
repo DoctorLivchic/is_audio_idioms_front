@@ -41,7 +41,7 @@ export default function Main_page() {
                     <a>Логотип</a>
                   </div>
                   
-                  <ul class="social">
+                  <ul className="social">
                     <li><a href="#"><span className="fa fa-facebook"></span></a></li>
                     <li><a href="#"><span className="fa fa-twitter"></span></a></li>
                     <li><a href="#"><span className="fa fa-dribbble"></span></a></li>
@@ -52,10 +52,10 @@ export default function Main_page() {
               </div>
             </div>
           </div>
-          <div class="copyright">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
+          <div className="copyright">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
                   <p>2023 © Словарь аудио-фразеологизмов</p>
                 </div>
               </div>

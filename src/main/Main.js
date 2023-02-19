@@ -2,17 +2,16 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox, Select } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
+
 const { TextArea } = Input;
+
 const onChange = (e) => {
   console.log('Change:', e.target.value);
 };
 
-function getComboA(selectObject) {
-  var value = selectObject.value;  
+function onChangeInput(value){
   console.log(value);
-  alert(value);
 }
-
 
 export default function Main(){
 const navigate = useNavigate();
@@ -35,8 +34,8 @@ const navigate = useNavigate();
         </div>
 
         <div className="slidermain" id="slidermain">
-          <div class="container">           
-                <div class="text">
+          <div className="container">           
+                <div className="text">
                  
                      <div className='headerleft'>
                         <div className='languagelabel'>
@@ -45,12 +44,12 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                        <select id="comboA" onChange="getComboA(this)">
-                            <option value="">Select combo</option>
-                            <option value="Value1">Text1</option>
-                            <option value="Value2">Text2</option>
-                            <option value="Value3">Text3</option>
-                          </select>
+                          <Select id="select_lang" onChange={onChangeInput}>
+                            <Select.Option value="Russian">Russian</Select.Option>
+                            <Select.Option value="French">French</Select.Option>
+                            <Select.Option value="Korean">Korean</Select.Option>
+                          </Select>
+    
                         </Form.Item >
                         </Form>
                         </div>
@@ -82,10 +81,11 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                            <Select onChange={(value) => { 
-                              }}>
-                                
-                            </Select>
+                          <Select id="select_lang" onChange={onChangeInput}>
+                            <Select.Option value="Russian">Russian</Select.Option>
+                            <Select.Option value="French">French</Select.Option>
+                            <Select.Option value="Korean">Korean</Select.Option>
+                          </Select>
                          </Form.Item>   
                          </Form>
                         </div>

@@ -32,7 +32,7 @@ export default function Expert_page() {
                     <a>Логотип</a>
                   </div>
                   
-                  <ul class="social">
+                  <ul className="social">
                     <li><a href="#"><span className="fa fa-facebook"></span></a></li>
                     <li><a href="#"><span className="fa fa-twitter"></span></a></li>
                     <li><a href="#"><span className="fa fa-dribbble"></span></a></li>
