@@ -37,9 +37,9 @@ export default function Authorization()  {
   function setWhite(formId){
     document.getElementById(formId).setAttribute("class","form-style")
   }
-  //Получение таблицы profiles
+  //Получение таблицы user
   async function getUser(){
-    const profiles = await supabase.from('profiles').select();
+    const profiles = await supabase.from('user').select();
     return profiles;
   }
   //const el = document.querySelector('.form-style'); // получаем наш параграф
@@ -52,6 +52,13 @@ export default function Authorization()  {
     const password1 = document.getElementById("logpassUp").value;
     const name1 = document.getElementById("logname").value;
     const passAffirm = document.getElementById("logpassAffirm").value;
+    const surname1 = document.getElementById("logsurname").value;
+    const lastname = document.getElementById("loglastname").value;
+    const passport_series1 = document.getElementById("logpassport_series").value;
+    const passport_id1 = document.getElementById("logpassport_id").value;
+    const data1 = document.getElementById("logdata").value;
+    const phone_number = document.getElementById("logphone_number").value;
+    const diploma_id1 = document.getElementById("logdiploma_id").value;
     //console.log(styles.box-shadow)
 
     //Запись 
@@ -60,8 +67,9 @@ export default function Authorization()  {
         if(comparePass(password1, passAffirm)){
           try{
             const { error } = await supabase
-            .from('profiles')
-            .insert({ name: name1, email: email1, password: password1 })
+            .from('user')
+            .insert({ name: name1, email: email1, password: password1,surname : surname1,patronymic : lastname,passport_series : passport_series1, passport_id : passport_id1,date_of_birth : data1,contact_number : phone_number,diploma_id : diploma_id1
+            })
           }catch (error) {
               alert(error.error_description || error.message)
             }
@@ -90,7 +98,7 @@ export default function Authorization()  {
     // const usr = data[data.length-1]; //получаем последнюю запись
   }
 
-  //Авторизация пользователя
+  //Авторизация эксперта\модератора
   async function logIn(){
     const email = document.getElementById("logemailIn").value;
     const password = document.getElementById("logpassIn").value;
@@ -242,6 +250,42 @@ export default function Authorization()  {
                                 className="form-style"
                                 placeholder="Номер паспорта"
                                 id="logpassport_id"
+                                autoComplete="off"
+                              />
+                              <i className="input-icon uil uil-at"></i>
+                            </div>
+
+                            <div className="form-group mt-2">
+                              <input
+                                type="text"
+                                name="logdata"
+                                className="form-style"
+                                placeholder="Дата рождения"
+                                id="logdata"
+                                autoComplete="off"
+                              />
+                              <i className="input-icon uil uil-at"></i>
+                            </div>
+
+                            <div className="form-group mt-2">
+                              <input
+                                type="text"
+                                name="logphone_number"
+                                className="form-style"
+                                placeholder="Номер телефона"
+                                id="logphone_number"
+                                autoComplete="off"
+                              />
+                              <i className="input-icon uil uil-at"></i>
+                            </div>
+
+                            <div className="form-group mt-2">
+                              <input
+                                type="text"
+                                name="logdiploma_id"
+                                className="form-style"
+                                placeholder="Номер диплома"
+                                id="logdiploma_id"
                                 autoComplete="off"
                               />
                               <i className="input-icon uil uil-at"></i>
