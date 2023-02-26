@@ -45,11 +45,13 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                          <Select id="select_lang" onChange={onChangeInput}>
-                            <Select.Option value="Russian">Russian</Select.Option>
-                            <Select.Option value="French">French</Select.Option>
-                            <Select.Option value="Korean">Korean</Select.Option>
-                          </Select>
+                          <select id="select_lang" onChange={e => {
+                                        console.log(e.target.value)
+                                      }}>
+                            <option value="Russian">Russian</option>
+                            <option value="French">French</option>
+                            <option value="Korean">Korean</option>
+                          </select>
                         </Form.Item >
                         </Form>
                         </div>
@@ -80,11 +82,13 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                          <Select id="select_lang" onChange={onChangeInput}>
-                            <Select.Option value="Russian">Russian</Select.Option>
-                            <Select.Option value="French">French</Select.Option>
-                            <Select.Option value="Korean">Korean</Select.Option>
-                          </Select>
+                          <select id="select_lang" onChange={e => {
+                                        console.log(e.target.value)
+                                      }}>
+                            <option value="Russian">Russian</option>
+                            <option value="French">French</option>
+                            <option value="Korean">Korean</option>
+                          </select>
     
                         </Form.Item >
                          </Form>

@@ -13,6 +13,11 @@ function onChangeInput(value){
   console.log(value);
 }
 
+
+//const lang1 = document.getElementById("select_lang_left").value;
+//const lang2 = document.getElementById("select_reg").value;
+
+
 export default function Main(){
 const navigate = useNavigate();
     return(
@@ -42,13 +47,16 @@ const navigate = useNavigate();
                         <Form
                         layout={"vertical"}>
                         <Form.Item 
-                        name="language"
+                        name="language_left"
+                        id="language_left"
                         label="Выбор языка">
-                          <Select id="select_lang" onChange={onChangeInput}>
-                            <Select.Option value="Russian">Russian</Select.Option>
-                            <Select.Option value="French">French</Select.Option>
-                            <Select.Option value="Korean">Korean</Select.Option>
-                          </Select>
+                          <select id="select_lang_left" onChange={e => {
+                                        console.log(e.target.value)
+                                      }}>
+                            <option value="Russian">Russian</option>
+                            <option value="French">French</option>
+                            <option value="Korean">Korean</option>
+                          </select>
     
                         </Form.Item >
                         </Form>
@@ -81,11 +89,13 @@ const navigate = useNavigate();
                         <Form.Item 
                         name="language"
                         label="Выбор языка">
-                          <Select id="select_lang" onChange={onChangeInput}>
-                            <Select.Option value="Russian">Russian</Select.Option>
-                            <Select.Option value="French">French</Select.Option>
-                            <Select.Option value="Korean">Korean</Select.Option>
-                          </Select>
+                          <select id="select_lang" onChange={e => {
+                                        console.log(e.target.value)
+                                      }} >
+                            <option value="Russian">Russian</option>
+                            <option value="French">French</option>
+                            <option value="Korean">Korean</option>
+                          </select>
                          </Form.Item>   
                          </Form>
                         </div>

@@ -14,7 +14,7 @@ export default function Moderator_page() {
         <ul className="navig_mod_acc">
         <Form.Item>
             <Button onClick={() => {navigate('-')}} className='active1'>Заявки пользователей</Button>
-            <Button onClick={() => {navigate('-')}} className='active'>Выйти</Button>     
+            <Button onClick={() => {navigate('/Authorization_Other')}} className='active'>Выйти</Button>     
         </Form.Item>
         </ul>
           </nav>				
