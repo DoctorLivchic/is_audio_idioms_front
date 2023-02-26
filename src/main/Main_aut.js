@@ -43,9 +43,10 @@ const navigate = useNavigate();
                         <Form
                         layout={"vertical"}>
                         <Form.Item 
-                        name="language"
+                        name="language_left"
+                        id="language_left"
                         label="Выбор языка">
-                          <select id="select_lang" onChange={e => {
+                          <select id="select_lang_left" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
                             <option value="Russian">Russian</option>
@@ -80,9 +81,10 @@ const navigate = useNavigate();
                         <Form
                         layout='vertical'>
                         <Form.Item 
-                        name="language"
+                        name="language_right"
+                        id="language_right"
                         label="Выбор языка">
-                          <select id="select_lang" onChange={e => {
+                          <select id="select_lang_right" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
                             <option value="Russian">Russian</option>
