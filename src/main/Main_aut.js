@@ -2,7 +2,8 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox, Select } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
-
+import { supabase } from '../supabaseClient.js';
+import { async } from "q";
 
 const { TextArea } = Input;
 
@@ -13,6 +14,58 @@ const onChange = (e) => {
 function onChangeInput(value){
   console.log(value);
 }
+
+function changeLanguage(){
+  const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
+  const translationLanguage = document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+  document.getElementById("select_lang_enter").value = translationLanguage; 
+  document.getElementById("select_lang_exit").value = chosenLanguage;
+  const firstT = document.getElementById("textAreaEnter").value;
+  const firstText = firstT.toLowerCase(); //Возвращаем текст из левого блока
+  const secondT = document.getElementById("textAreaExit").value; 
+  const secondText = secondT.toLowerCase(); //Возвращаем текст из правого блока
+  document.getElementById("textAreaEnter").value = secondT;
+  document.getElementById("textAreaExit").value = firstT; 
+
+
+}
+
+async function getPhrase(){
+  const phrase = await supabase.from('phraseological').select();
+  return phrase;
+}
+
+async function translateFunction(){
+  
+  const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
+  console.log(chosenLanguage);
+
+  const translationLanguage = document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+  console.log(translationLanguage);
+
+  const firstT = document.getElementById("textAreaEnter").value;
+  const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+  console.log(firstText);
+
+  const phrase = getPhrase();
+    
+  const data  = (await phrase).data;
+
+  // console.log(data[0][chosenLanguage]);
+
+  for (let i=0; i<data.length; i++){
+
+    if(data[i][chosenLanguage] == firstText){ //Сравниваем, если текст выбранного языка == введенному тексту
+      document.getElementById("textAreaExit").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+    }
+
+  }
+
+
+ 
+}
+
+
 
 export default function Main(){
 const navigate = useNavigate();
@@ -46,19 +99,21 @@ const navigate = useNavigate();
                         name="language_left"
                         id="language_left"
                         label="Выбор языка">
-                          <select id="select_lang_left" onChange={e => {
+                          <select id="select_lang_enter" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
-                            <option value="Russian">Russian</option>
-                            <option value="French">French</option>
-                            <option value="Korean">Korean</option>
+                            <option id='rus' value="rus">Русский</option>
+                            <option id='fre' value="fre">French</option>
+                            <option id='kor' value="kor">Korean</option>
                           </select>
                         </Form.Item >
                         </Form>
                         </div>
                           <div className='buttom-block-left'>
                           <Form.Item>
-                          <TextArea showCount maxLength={100} onChange={onChange} placeholder="Введите текст" className='Text_area' />                       
+
+                            {/* Поле ввода фразеологизма  */}
+                          <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                       
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
@@ -69,9 +124,9 @@ const navigate = useNavigate();
                     <div className='headercenter'>
                           <div className='buttom-block-center'>
                           <Form.Item>
-                          <Button onClick={() => {navigate('')}} className='-' >Заменить</Button>
+                          <Button onClick={changeLanguage} className='-' >Заменить</Button>
                           <br></br>
-                          <Button onClick={() => {navigate('')}} className='-' >Перевести</Button>  
+                          <Button onClick={translateFunction} className='-' id='translateButton' >Перевести</Button>  
                           </Form.Item>
                         </div>
                     </div>
@@ -84,12 +139,12 @@ const navigate = useNavigate();
                         name="language_right"
                         id="language_right"
                         label="Выбор языка">
-                          <select id="select_lang_right" onChange={e => {
+                          <select id="select_lang_exit" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
-                            <option value="Russian">Russian</option>
-                            <option value="French">French</option>
-                            <option value="Korean">Korean</option>
+                            <option id='rus1' value="rus">Русский</option>
+                            <option id='fre1' value="fre">French</option>
+                            <option id='kor1' value="kor">Korean</option>
                           </select>
     
                         </Form.Item >
@@ -97,7 +152,9 @@ const navigate = useNavigate();
                         </div>
                           <div className='buttom-block-right'>
                           <Form.Item>
-                          <TextArea showCount maxLength={100} onChange={onChange} placeholder="Введите текст" className='Text_area' />
+
+                            {/* Поле вывода переведенного фразеологизма  */}
+                          <TextArea showCount id='textAreaExit' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
