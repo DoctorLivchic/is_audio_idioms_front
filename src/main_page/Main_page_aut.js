@@ -19,8 +19,8 @@ export default function Main_page() {
                         <nav>
                         <ul className="navig_main_page_aut">
                  		<Form.Item>
-                         <Button onClick={() => {navigate('-')}} className='btn-7'>Редактирование</Button>
-						 	<Button onClick={() => {navigate('-')}} className='btn-7'>Добавление</Button>
+                         <Button onClick={() => {navigate('/user_action/Addendum')}} className='btn-7'>Редактирование</Button>
+						 	<Button onClick={() => {navigate('/user_action/Editing')}} className='btn-7'>Добавление</Button>
 						 	<Button onClick={() => {navigate('-')}} className='btn-7'>Фразеологизм дня</Button>
 							<Button onClick={() => {navigate('-')}} className='btn-7'>Чат</Button>
 							<Button onClick={() => {navigate('-')}} className='btn-7'>Избранное</Button>

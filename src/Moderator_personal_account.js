@@ -13,8 +13,8 @@ export default function Moderator_page() {
         <nav>
         <ul className="navig_mod_acc">
         <Form.Item>
-            <Button onClick={() => {navigate('-')}} className='active1'>Заявки пользователей</Button>
-            <Button onClick={() => {navigate('/Authorization_Other')}} className='active'>Выйти</Button>     
+            <Button onClick={() => {navigate('-')}} className='btn-7'>Заявки пользователей</Button>
+            <Button onClick={() => {navigate('/Authorization_Other')}} className='btn-7'>Выйти</Button>     
         </Form.Item>
         </ul>
           </nav>				

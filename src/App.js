@@ -8,6 +8,8 @@ import Authorization_Other from './Authorization_Other';
 import Users_personal_account from './Users_personal_account';
 import Expert_personal_account from './Expert_personal_account';
 import Moderator_personal_account from './Moderator_personal_account';
+import Addendum from './user_action/Addendum';
+import Editing from './user_action/Editing';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
@@ -53,7 +55,7 @@ export default function App() {
     <div className='App'>
       <div className="ty">      
      <BrowserRouter>  
-         <Routes>               
+         <Routes>             
              <Route  path='/main/Main' element={<Main />}/>
              <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
              <Route  path='/' element={<Main_page />}/>
@@ -63,6 +65,8 @@ export default function App() {
              <Route  path='/main_page/Main_page_aut' element={<Main_page_aut />}/>
              <Route  path='/main/Main_aut' element={<Main_aut />}/>
              <Route  path='/Authorization_Other' element={<Authorization_Other />}/>
+             <Route  path='/user_action/Addendum' element={<Addendum />}/>
+             <Route  path='/user_action/Editing' element={< Editing  />}/>
            </Routes>
          </BrowserRouter>
      </div>  

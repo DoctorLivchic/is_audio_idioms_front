@@ -6,10 +6,6 @@ import { async } from "q";
 
 //const empty_item={role_id:0,name:"name",email:"email",password:"123",surname:"surname",patronymic:"patronymic",passport_series:123,passport_id:123,date_of_birth:"10.10.2020",contact_number:8952,diploma_id:134}
 
-
-
-
-
 //Валидация мэйла
 function ValidMail(email) {
   var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
@@ -63,7 +59,7 @@ function comparePass(password, passAffirm){
 }
 
 
-export default function Authorization()  {
+export default function Authorization_Other()  {
  
   function setRed(formId){
     document.getElementById(formId).setAttribute("class","form-style1")
@@ -97,7 +93,7 @@ export default function Authorization()  {
     //console.log(styles.box-shadow)
 
     //Запись 
-    console.log(rol)
+    //console.log(rol)
     //console.log(JSON.stringify(empty_item))
     if(validName(name1,surname1,lastname)){
       if(ValidMail(email1)){
@@ -159,13 +155,13 @@ export default function Authorization()  {
   async function logIn(){
     const email = document.getElementById("logemailIn").value;
     const password = document.getElementById("logpassIn").value;
-    const role_id = document.getElementById("select_avt").value;
+    const role_id1 = document.getElementById("select_avt").value;
     var index = -1;
     //Получение всех профилей
     const profiles = getUser();
     const data  = (await profiles).data;
 
-  
+   
     for (let i=0; i<data.length; i++){
       if(data[i]['email']==email){
         index = i;
@@ -177,19 +173,28 @@ export default function Authorization()  {
       setRed('logemailIn');
       alert("Почта введена некорректно или такой почты не существует!");
     }else{
-      if(data[index]['password']==password){
-        navigate('/Moderator_personal_account');
-        alert("Вы успешно авторизовались!");
+      if(data[index]['password']==password && data[index]["role_id"]==role_id1){
+        if(data[index]["role_id"]==1){
+          navigate('/Moderator_personal_account');
+          alert("Вы успешно авторизовались!");}
+        if(data[index]["role_id"]==2){
+          navigate('/Expert_personal_account');
+          alert("Вы успешно авторизовались!");}
       }else{
+        if (data[index]['password']!=password){
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
       }
+      else{
+        alert("Вы ввели неверную роль!");
+      }
     }  
     
-  }
-
+    }
   
+}
+ 
 
   const navigate = useNavigate();
       return (
@@ -228,7 +233,9 @@ export default function Authorization()  {
                               <Form.Item 
                                 name="logrolavt"
                                 id="logrolavt"
-                                label="Выбор роли">
+                                label={<label style={{ color: "white" }}>Выбор роли</label>}
+                                >
+                               
                                   <select id="select_avt"  >
                                     <option value={2}>Эксперт</option>
                                     <option value={1}>Модератор</option>
@@ -278,7 +285,7 @@ export default function Authorization()  {
                               <Form.Item 
                                 name="logrol"
                                 id="logrol"
-                                label="Выбор роли">
+                                label={<label style={{ color: "white" }}>Выбор роли</label>}>
                                   <select id="select_reg" onChange={e => {
                                         console.log(e.target.value)
                                       }} >
