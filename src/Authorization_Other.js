@@ -51,6 +51,7 @@ function validdiploma_id( diploma_id) {
 //Сравнение паролей
 function comparePass(password, passAffirm){
   if(password == passAffirm){
+    if(password != "")
     return true;
   }
   else {

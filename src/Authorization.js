@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {Button, Form, Input, Checkbox, Affix } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { supabase } from './supabaseClient.js';
 import { async } from "q";
+
+
+//const [active, setActive] = useState(false)
 
 //Валидация мэйла
 function ValidMail(email) {
@@ -21,6 +24,7 @@ function validName(name) {
 //Сравнение паролей
 function comparePass(password, passAffirm){
   if(password == passAffirm){
+    if(password !="")
     return true;
   }
   else {
@@ -67,15 +71,20 @@ export default function Authorization()  {
             }
           alert("Регистрация прошла успешно!");
         }else{
+          setRed('logpassUp');
+          setRed('logpassAffirm');
           alert("Ваши пароли не совпадают!");
           document.getElementById("logpassUp").value = "";
           document.getElementById("logpassAffirm").value = "";
         }
       }else{
+        setRed('logemailUp');
+        setWhite('logname')
         alert("Вы ввели некорректный email!");
         document.getElementById("logemailUp").value = "";
       }
     }else{
+      setRed('logname');
       alert("Вы ввели некорректное имя!");
       document.getElementById("logname").value = "";
     }

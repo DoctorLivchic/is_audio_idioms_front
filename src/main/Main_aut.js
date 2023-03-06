@@ -26,8 +26,6 @@ function changeLanguage(){
   const secondText = secondT.toLowerCase(); //Возвращаем текст из правого блока
   document.getElementById("textAreaEnter").value = secondT;
   document.getElementById("textAreaExit").value = firstT; 
-
-
 }
 
 async function getPhrase(){
@@ -58,11 +56,8 @@ async function translateFunction(){
     if(data[i][chosenLanguage] == firstText){ //Сравниваем, если текст выбранного языка == введенному тексту
       document.getElementById("textAreaExit").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
     }
-
+    
   }
-
-
- 
 }
 
 
@@ -113,7 +108,8 @@ const navigate = useNavigate();
                           <Form.Item>
 
                             {/* Поле ввода фразеологизма  */}
-                          <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                       
+                           
+                          <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                      
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
@@ -154,7 +150,7 @@ const navigate = useNavigate();
                           <Form.Item>
 
                             {/* Поле вывода переведенного фразеологизма  */}
-                          <TextArea showCount id='textAreaExit' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />
+                          <TextArea showCount id='textAreaExit' maxLength={100} /*onChange={onChange}*/ placeholder="Перевод" className='Text_area' />
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
