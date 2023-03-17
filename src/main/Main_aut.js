@@ -51,13 +51,18 @@ async function translateFunction(){
 
   // console.log(data[0][chosenLanguage]);
 
-  for (let i=0; i<data.length; i++){
 
-    if(data[i][chosenLanguage] == firstText){ //Сравниваем, если текст выбранного языка == введенному тексту
-      document.getElementById("textAreaExit").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  
+    for (let i=0; i<data.length; i++){
+
+      if(data[i][chosenLanguage] == firstText){ //Сравниваем, если текст выбранного языка == введенному тексту
+        document.getElementById("textAreaExit").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+      }     
     }
-    
+  if (firstText==""){
+    alert("Ошибка фразеологизм не введен")
   }
+
 }
 
 
