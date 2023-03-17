@@ -55,8 +55,7 @@ export default function Authorization()  {
   //Получаем роль авторизованного пользователя
   async function getRole(){
     let email = document.getElementById("logemailIn").value;
-    const userRole = await supabase.from('user').select('role_id').eq('email', email);
-    console.log(userRole);
+    const userRole = await supabase.from('user').select('role').eq('email', email);
     return userRole;    
   }
 
@@ -75,8 +74,8 @@ export default function Authorization()  {
         if(comparePass(password1, passAffirm)){
           try{
             const { error } = await supabase
-            .from('user')
-            .insert({ name: name1, email: email1, password: password1, role_id: 3, login: email1 })
+            .from('profiles')
+            .insert({ name: name1, email: email1, password: password1 })
           }catch (error) {
               alert(error.error_description || error.message)
             }
@@ -116,7 +115,7 @@ export default function Authorization()  {
     const password = document.getElementById("logpassIn").value;
     var index = -1;
     //Получение всех профилей
-    const user = getUser();
+    const profiles = getUser();
     const data  = (await user).data;
     for (let i=0; i<data.length; i++){
       if(data[i]['email']==email){
@@ -130,29 +129,14 @@ export default function Authorization()  {
       alert("Почта введена некорректно или такой почты не существует!");
     }else{
       if(data[index]['password']==password){
-        if(data[index]["role_id"]==1){
-          navigate('/Moderator_personal_account');
-          alert("Вы успешно авторизовались!");}
-        if(data[index]["role_id"]==2){
-          navigate('/Expert_personal_account');
-          alert("Вы успешно авторизовались!");}
-        if(data[index]["role_id"]==3){
-          navigate('/main_page/Main_page_aut');
-          alert("Вы успешно авторизовались!");}
-
+        navigate('/main_page/Main_page_aut');
+        alert("Вы успешно авторизовались!");
       }else{
-        if (data[index]['password']!=password){
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
-      }else{
-          navigate('/main_page/Main_page_aut');
-          alert("Вы успешно авторизовались!");
       }
-      
     }  
-    
-    }
     
   }
 

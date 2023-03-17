@@ -91,6 +91,7 @@ export default function Authorization_Other()  {
     const phone_number = document.getElementById("logphone_number").value;
     const diploma_id1 = document.getElementById("logdiploma_id").value;
     const rol = document.getElementById("select_reg").value;
+    let role;
     //console.log(styles.box-shadow)
 
     //Запись 
@@ -106,10 +107,15 @@ export default function Authorization_Other()  {
                   
           try{
             
-            
+            if(rol == 'эксперт'){
+              role = 2;
+            }
+            else if(rol == 'модератор'){
+              role = 1;
+            }else(role=3);
             const { error } = await supabase
             .from('user')
-            .insert( {login: email1, role_id : rol, name: name1,surname: surname1,patronymic : lastname,passport_series : passport_series1,passport_id : passport_id1,date_of_birth : data1,contact_number : phone_number, diploma_id : diploma_id1 , email: email1, password: password1} )
+            .insert( {login: email1, role_id : role, name: name1,surname: surname1,patronymic : lastname,passport_series : passport_series1,passport_id : passport_id1,date_of_birth : data1,contact_number : phone_number, diploma_id : diploma_id1 , email: email1, password: password1} )
           }catch (error) {
               alert(error.error_description || error.message)
             }
@@ -159,8 +165,14 @@ export default function Authorization_Other()  {
   async function logIn(){
     const email = document.getElementById("logemailIn").value;
     const password = document.getElementById("logpassIn").value;
-    const role_id = document.getElementById("select_reg").value;
-    
+    const rol = document.getElementById("select_reg").value;
+    let role;
+    if(rol == 'эксперт'){
+      role = 2;
+    }
+    else if(rol == 'модератор'){
+      role = 1;
+    }else(role=3);
     var index = -1;
     //Получение всех профилей
     const profiles = getUser();
@@ -190,8 +202,6 @@ export default function Authorization_Other()  {
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
-      }else{
-        alert("Вы выбрали некорректную роль!")
       }
       
     }  

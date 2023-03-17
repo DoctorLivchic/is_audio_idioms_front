@@ -55,8 +55,7 @@ export default function Authorization()  {
   //Получаем роль авторизованного пользователя
   async function getRole(){
     let email = document.getElementById("logemailIn").value;
-    const userRole = await supabase.from('user').select('role_id').eq('email', email);
-    console.log(userRole);
+    const userRole = await supabase.from('user').select('role').eq('email', email);
     return userRole;    
   }
 
@@ -76,7 +75,7 @@ export default function Authorization()  {
           try{
             const { error } = await supabase
             .from('user')
-            .insert({ name: name1, email: email1, password: password1, role_id: 3, login: email1 })
+            .insert({ name: name1, email: email1, password: password1, role: 3 })
           }catch (error) {
               alert(error.error_description || error.message)
             }
@@ -136,18 +135,13 @@ export default function Authorization()  {
         if(data[index]["role_id"]==2){
           navigate('/Expert_personal_account');
           alert("Вы успешно авторизовались!");}
-        if(data[index]["role_id"]==3){
-          navigate('/main_page/Main_page_aut');
-          alert("Вы успешно авторизовались!");}
-
       }else{
         if (data[index]['password']!=password){
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
       }else{
-          navigate('/main_page/Main_page_aut');
-          alert("Вы успешно авторизовались!");
+        alert("Вы выбрали некорректную роль!")
       }
       
     }  

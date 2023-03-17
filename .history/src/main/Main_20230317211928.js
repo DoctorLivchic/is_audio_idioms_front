@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
 import { supabase } from '../supabaseClient.js';
 import { async } from "q";
-import role from '../App.js';
+
 const { TextArea } = Input;
 
 const onChange = (e) => {

@@ -133,19 +133,16 @@ export default function Authorization()  {
         if(data[index]["role_id"]==1){
           navigate('/Moderator_personal_account');
           alert("Вы успешно авторизовались!");}
-        if(data[index]["role_id"]==2){
+        else{
           navigate('/Expert_personal_account');
           alert("Вы успешно авторизовались!");}
-        if(data[index]["role_id"]==3){
-          navigate('/main_page/Main_page_aut');
-          alert("Вы успешно авторизовались!");}
-
-      }else{
-        if (data[index]['password']!=password){
+      }else if
+        (data[index]['password']!=password){
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
-      }else{
+        }
+      else{
           navigate('/main_page/Main_page_aut');
           alert("Вы успешно авторизовались!");
       }

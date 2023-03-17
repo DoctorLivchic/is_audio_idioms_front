@@ -15,6 +15,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
 
+const role = ''; 
 
 export default function App() {
   

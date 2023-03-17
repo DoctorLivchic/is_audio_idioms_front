@@ -103,13 +103,10 @@ export default function Authorization_Other()  {
             if(validPasport_id(passport_id1)){
               if(validPhone(phone_number)){
                 if(validdiploma_id(diploma_id1)){
-                  
           try{
-            
-            
             const { error } = await supabase
             .from('user')
-            .insert( {login: email1, role_id : rol, name: name1,surname: surname1,patronymic : lastname,passport_series : passport_series1,passport_id : passport_id1,date_of_birth : data1,contact_number : phone_number, diploma_id : diploma_id1 , email: email1, password: password1} )
+            .insert( {role_id : rol, name: name1,surname: surname1,patronymic : lastname,passport_series : passport_series1,passport_id : passport_id1,date_of_birth : data1,contact_number : phone_number, diploma_id : diploma_id1 , email: email1, password: password1} )
           }catch (error) {
               alert(error.error_description || error.message)
             }
@@ -159,8 +156,7 @@ export default function Authorization_Other()  {
   async function logIn(){
     const email = document.getElementById("logemailIn").value;
     const password = document.getElementById("logpassIn").value;
-    const role_id = document.getElementById("select_reg").value;
-    
+    const role_id1 = document.getElementById("select_avt").value;
     var index = -1;
     //Получение всех профилей
     const profiles = getUser();
@@ -178,7 +174,7 @@ export default function Authorization_Other()  {
       setRed('logemailIn');
       alert("Почта введена некорректно или такой почты не существует!");
     }else{
-      if(data[index]['password']==password){
+      if(data[index]['password']==password && data[index]["role_id"]==role_id1){
         if(data[index]["role_id"]==1){
           navigate('/Moderator_personal_account');
           alert("Вы успешно авторизовались!");}
@@ -190,10 +186,10 @@ export default function Authorization_Other()  {
         setRed('logpassIn');
         setWhite('logemailIn')
         alert("Вы ввели некорректный пароль!");
-      }else{
-        alert("Вы выбрали некорректную роль!")
       }
-      
+      else{
+        alert("Вы ввели неверную роль!");
+      }
     }  
     
     }
