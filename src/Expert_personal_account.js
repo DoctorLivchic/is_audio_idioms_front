@@ -15,7 +15,7 @@ export default function Expert_page() {
         <ul className="navig_ex_acc">
         <Form.Item>
             <Button onClick={() => {navigate('-')}} className='btn-7'>Заявки модератора</Button>
-            <Button onClick={() => {navigate('/Authorization_Other')}} className='btn-7'>Выйти</Button>     
+            <Button onClick={() => {navigate('/')}} className='btn-7'>Выйти</Button>     
         </Form.Item>
         </ul>
           </nav>				

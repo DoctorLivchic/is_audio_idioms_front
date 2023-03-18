@@ -212,79 +212,18 @@ export default function Authorization_Other()  {
                   className="section pb-5 pt-5 pt-sm-2 text-center"
                   align="center"
                 >
-                  <h6 className="mb-0 pb-3">
-                    <span >Авторизоваться </span>
-                    <span>Зарегистрироваться</span>
-                   
-                  </h6>
+                
 
 
-                  <input
-                    className="checkbox"
-                    type="checkbox"
-                    id="reg-log"
-                    name="reg-log"
-                  />
+                
                   <label for="reg-log"></label>
                   <div className="card-3d-wrap mx-auto">
                     <div className="card-3d-wrapper">
                       <div className="card-front_Other">
                         <div className="center-wrap">
                           <div className="section text-center">
-                            <h4 className="mb">Авторизоваться</h4>
+                            <h4 className="mb">Регистрация</h4>
 
-                            <div className="form-group">
-                            <Form>
-                              <Form.Item 
-                                name="logrolavt"
-                                id="logrolavt"
-                                label={<label style={{ color: "white" }}>Выбор роли</label>}
-                                >
-                               
-                                  <select id="select_avt"  >
-                                    <option value={2}>Эксперт</option>
-                                    <option value={1}>Модератор</option>
-                                  </select>
-                              </Form.Item >
-                            </Form>
-                              <i className="input-icon uil uil-user"></i>
-                            </div>
-
-                            <div className="form-group">
-                              <Input
-                                type="email"
-                                name="logemail"
-                                className="form-style"
-                                placeholder="Адрес электронной почты"
-                                id="logemailIn"
-                                autoComplete="off"
-                              />
-                              <i className="input-icon uil uil-at"></i>
-                            </div>
-                            
-                            <div className="form-group mt-2">
-                              <Input
-                                type="password"
-                                name="logpass"
-                                className="form-style"
-                                placeholder="Пароль"
-                                id="logpassIn"
-                                autoComplete="off"
-                              />
-                              <i className="input-icon uil uil-lock-alt"></i>
-                            </div>
-                            <Form.Item>
-                                <Button onClick={() => {logIn()}} className='btn'>Авторизоваться</Button>
-                                <Button onClick={() => {navigate("/")}} className='btn'>Назад</Button>
-                              </Form.Item>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="card-back_Other">
-                        <div className="center-wrap">
-                          <div className="section text-center">
-                            <h4 className="mb-4 pb-3">Зарегистрироваться</h4>
-                            
                             <div className="form-group">
                             <Form>
                               <Form.Item 
@@ -301,7 +240,7 @@ export default function Authorization_Other()  {
                             </Form>
                               <i className="input-icon uil uil-user"></i>
                             </div>
-
+                           
                             <div className="form-group">
                               <Input
                                 /*onChange={value=>empty_item.name=value}*/
@@ -446,15 +385,16 @@ export default function Authorization_Other()  {
                               />
                               <i className="input-icon uil uil-lock-alt"></i>
                             </div>
-                            <div className="button">
-                              <Form.Item>
+                          
+                         
+                            <Form.Item>
                                 <Button onClick={addUser} className='btn'>Регистрация</Button>
                                 <Button onClick={() => {navigate("/")}} className='btn'>Назад</Button>
                               </Form.Item>
-                            </div>
                           </div>
                         </div>
                       </div>
+                    
                     </div>
                   </div>
                 </div>

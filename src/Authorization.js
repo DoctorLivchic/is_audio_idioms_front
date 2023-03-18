@@ -215,7 +215,7 @@ export default function Authorization()  {
                             <Form.Item>
                                 <Button onClick={() => {logIn()}} className='btn'>Авторизоваться</Button>
                                 <Button onClick={() => {navigate("/")}} className='btn'>Назад</Button>
-                                <Button onClick={() => {getRole()}} className='btn'>Получить роль</Button>
+                                {/*<Button onClick={() => {getRole()}} className='btn'>Получить роль</Button>*/}
                               </Form.Item>
                           </div>
                         </div>

@@ -35,7 +35,7 @@ export default function App() {
      <BrowserRouter>  
          <Routes>             
              <Route  path='/main/Main' element={<Main />}/>
-             <Route  path='/avtorizacia/Authorization' element={<Authorization />}/>
+             <Route  path='/Authorization' element={<Authorization />}/>
              <Route  path='/' element={<Main_page />}/>
              <Route  path='/Users_personal_account' element={<Users_personal_account />}/>
              <Route  path='/Expert_personal_account' element={<Expert_personal_account />}/>
