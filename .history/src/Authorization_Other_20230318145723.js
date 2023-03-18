@@ -114,7 +114,6 @@ export default function Authorization_Other()  {
               alert(error.error_description || error.message)
             }
           alert("Регистрация прошла успешно!");
-          navigate('../Authorization');
 
         }else{
           alert("Вы ввели некорректный номер диплома!");
@@ -153,8 +152,18 @@ export default function Authorization_Other()  {
     
     const data  = (await profiles).data;
 
-    
-
+    document.getElementById("logemailUp").value = "";
+    document.getElementById("logpassUp").value= "";
+    document.getElementById("logname").value= "";
+    document.getElementById("logpassAffirm").value= "";
+    document.getElementById("logsurname").value= "";
+    document.getElementById("loglastname").value= "";
+    document.getElementById("logpassport_series").value= "";
+    document.getElementById("logpassport_id").value= "";
+    document.getElementById("logdata").value= "";
+    document.getElementById("logphone_number").value= "";
+    document.getElementById("logdiploma_id").value= "";
+    document.getElementById("select_reg").value= "";
 
     // const usr = data[data.length-1]; //получаем последнюю запись
   }

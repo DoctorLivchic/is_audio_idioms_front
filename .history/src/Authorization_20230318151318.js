@@ -83,8 +83,6 @@ export default function Authorization() {
           }
           alert("Регистрация прошла успешно!");
           window.location.reload();
-          
-          
         } else {
           setRed("logpassUp");
           setRed("logpassAffirm");

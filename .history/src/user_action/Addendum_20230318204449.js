@@ -98,7 +98,7 @@ const navigate = useNavigate();
                         <div className="section text-center">
                           <h4 className="mb">Введите информацию о фразеологизме</h4>             
                           <div className="form-group">
-                            <Input
+                            <input
                               type="text"
                               name="log_rus"
                               className="form-style"
@@ -110,7 +110,7 @@ const navigate = useNavigate();
                           </div>
                           
                           <div className="form-group mt-2">
-                            <Input
+                            <input
                               type="text"
                               name="log_fre"
                               className="form-style"

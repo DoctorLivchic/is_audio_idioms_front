@@ -37,8 +37,8 @@ async function addrequest(){
   const rus = document.getElementById("log_rus").value;
   const fre = document.getElementById("log_fre").value;
   const kor = document.getElementById("log_kor").value;
-  const request_status1 = 1;
-  const Request_type1 = 1;
+  const request_status1 = "Новое"
+  const Request_type1 = "Добавление"
 
   //Запись 
   if(validrus(rus)){

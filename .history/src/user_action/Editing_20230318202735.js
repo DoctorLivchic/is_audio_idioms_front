@@ -71,8 +71,8 @@ export default function Editing() {
           data[i][translationLanguage_rus];
       }
       if (data[i][chosenLanguage] == firstText) {
-        document.getElementById("log_fre").value = 
-          data[i][translationLanguage_fre];
+        document.getElementById("log_fre").value = 'fre';
+          // data[i][translationLanguage_fre];
       }
     }
   }
@@ -82,8 +82,8 @@ export default function Editing() {
     const rus = document.getElementById("log_rus").value;
     const fre = document.getElementById("log_fre").value;
     const kor = document.getElementById("log_kor").value;
-    const request_status1 = 1;
-    const Request_type1 = 0;
+    const request_status1 = "Новое";
+    const Request_type1 = "Редактирование";
 
     //Запись
     if (validrus(rus)) {

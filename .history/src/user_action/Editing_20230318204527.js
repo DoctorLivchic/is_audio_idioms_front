@@ -184,7 +184,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group">
-                      <Input
+                      <input
                         type="text"
                         placeholder="Введите фразеологизм "
                         className="form-style"
@@ -195,7 +195,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group">
-                      <Input
+                      <input
                         type="text"
                         name="log_rus"
                         className="form-style"

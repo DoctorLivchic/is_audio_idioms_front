@@ -83,7 +83,7 @@ export default function Editing() {
     const fre = document.getElementById("log_fre").value;
     const kor = document.getElementById("log_kor").value;
     const request_status1 = 1;
-    const Request_type1 = 0;
+    const Request_type1 = "редактирование";
 
     //Запись
     if (validrus(rus)) {

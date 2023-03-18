@@ -156,7 +156,7 @@ const navigate = useNavigate();
 
                             {/* Поле вывода переведенного фразеологизма  */}
                           <TextArea showCount id='textAreaExit' maxLength={100} /*onChange={onChange}*/ placeholder="Перевод" className='Text_area' />
-                          <Button onClick={() => {}} className='buttom-audio' >Прослушать</Button>
+                          <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
                         </div>
                     </div>            

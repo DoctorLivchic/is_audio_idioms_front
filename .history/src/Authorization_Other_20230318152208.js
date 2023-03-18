@@ -114,7 +114,7 @@ export default function Authorization_Other()  {
               alert(error.error_description || error.message)
             }
           alert("Регистрация прошла успешно!");
-          navigate('../Authorization');
+          navigate('../Authorization.js');
 
         }else{
           alert("Вы ввели некорректный номер диплома!");

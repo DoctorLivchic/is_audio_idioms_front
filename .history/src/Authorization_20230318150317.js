@@ -82,9 +82,6 @@ export default function Authorization() {
             alert(error.error_description || error.message);
           }
           alert("Регистрация прошла успешно!");
-          window.location.reload();
-          
-          
         } else {
           setRed("logpassUp");
           setRed("logpassAffirm");
@@ -109,7 +106,11 @@ export default function Authorization() {
     const user = getUser();
 
     const data = (await user).data;
-    
+
+    document.getElementById("logemailUp").value = "";
+    document.getElementById("logpassUp").value = "";
+    document.getElementById("logname").value = "";
+    document.getElementById("logpassAffirm").value = "";
 
     // const usr = data[data.length-1]; //получаем последнюю запись
   }

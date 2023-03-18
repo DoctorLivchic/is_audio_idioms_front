@@ -83,7 +83,7 @@ export default function Authorization() {
           }
           alert("Регистрация прошла успешно!");
           window.location.reload();
-          
+          document.getElementById("logpassUp").value = email1;
           
         } else {
           setRed("logpassUp");

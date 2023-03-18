@@ -82,8 +82,8 @@ export default function Editing() {
     const rus = document.getElementById("log_rus").value;
     const fre = document.getElementById("log_fre").value;
     const kor = document.getElementById("log_kor").value;
-    const request_status1 = 1;
-    const Request_type1 = 0;
+    const request_status1 = "Новое";
+    const Request_type1 = "Редактирование";
 
     //Запись
     if (validrus(rus)) {
@@ -190,6 +190,7 @@ export default function Editing() {
                         className="form-style"
                         name="textIn"
                         autoComplete="off"
+                        autoFocus = "autoFocus"
                         id="textIn"
                       />
                     </div>
@@ -201,6 +202,7 @@ export default function Editing() {
                         className="form-style"
                         placeholder="Русский перевод"
                         id="log_rus"
+                        autoFocus = "autoFocus"
                         autoComplete="off"
                       />
                       <i className="input-icon uil uil-at"></i>
