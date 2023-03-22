@@ -1,0 +1,15 @@
+
+Jjavascript:S1128")Remove this unused import of 'useEffect'.(Á¦ĞÕüÿÿÿÿ
+Ijavascript:S1128"(Remove this unused import of 'Checkbox'.(Òå­¡ÿÿÿÿÿ
+Gjavascript:S1128"&Remove this unused import of 'Select'.(Òå­¡ÿÿÿÿÿ
+Hjavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼8ıİÔ™ï0
+Ljavascript:S1128"$Remove this unused import of 'role'.(ÎÃŞóùÿÿÿÿ8ıİÔ™ï0
+bjavascript:S1481":Remove the declaration of the unused 'firstText' variable.(ÄÜÆ·ıÿÿÿÿ8ıİÔ™ï0
+_javascript:S1854"7Remove this useless assignment to variable "firstText".(ÄÜÆ·ıÿÿÿÿ8ıİÔ™ï0
+^javascript:S1481";Remove the declaration of the unused 'secondText' variable.(±û‘Á8ıİÔ™ï0
+[javascript:S1854"8Remove this useless assignment to variable "secondText".(±û‘Á8ıİÔ™ï0
+†javascript:S1488 "^Immediately return this expression instead of assigning it to the temporary variable "phrase".(ÙË´¶şÿÿÿÿ8şİÔ™ï0
+Fjavascript:S1254"Remove this commented out code.(¤İ„ëøÿÿÿÿ8şİÔ™ï0
+njavascript:S41388"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ÖĞ>8şİÔ™ï0
+Bjavascript:S1186v" Unexpected empty arrow function.(øÃ‰8ÙÍ×¬ï0
+Cjavascript:S1186Ÿ" Unexpected empty arrow function.(øÃ‰8ÙÍ×¬ï0

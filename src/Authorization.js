@@ -63,7 +63,7 @@ export default function Authorization() {
     const name1 = document.getElementById("logname").value;
     const passAffirm = document.getElementById("logpassAffirm").value;
     //console.log(styles.box-shadow)
-
+    
     //Запись
     if (validName(name1)) {
       if (ValidMail(email1)) {
@@ -121,7 +121,9 @@ export default function Authorization() {
     var index = -1;
     //Получение всех профилей
     const user = getUser();
+    console.log(user)
     const data = (await user).data;
+    console.log(data)
     for (let i = 0; i < data.length; i++) {
       if (data[i]["email"] == email) {
         index = i;

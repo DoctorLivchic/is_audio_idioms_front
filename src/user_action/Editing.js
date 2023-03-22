@@ -91,13 +91,13 @@ export default function Editing() {
         if (validkor(kor)) {
           try {
             const { error } = await supabase
-              .from("request_")
+              .from("request")
               .insert({
                 rus_request: rus,
                 fre_request: fre,
                 kor_request: kor,
                 request_status: request_status1,
-                Request_type: Request_type1,
+                request_type: Request_type1,
               });
           } catch (error) {
             alert(error.error_description || error.message);

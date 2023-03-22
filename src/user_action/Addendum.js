@@ -39,15 +39,15 @@ async function addrequest(){
   const kor = document.getElementById("log_kor").value;
   const request_status1 = 1;
   const Request_type1 = 1;
-
+  
   //Запись 
   if(validrus(rus)){
     if(validfre(fre)){
       if(validkor(kor)){
         try{
           const { error } = await supabase
-          .from('request_')
-          .insert({ rus_request: rus, fre_request: fre, kor_request: kor , request_status : request_status1, Request_type : Request_type1 })
+          .from('request')
+          .insert({ rus_request: rus, fre_request: fre, kor_request: kor , request_status : request_status1, request_type : Request_type1 })
         }catch (error) {
             alert(error.error_description || error.message)
           }

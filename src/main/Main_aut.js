@@ -31,6 +31,7 @@ function changeLanguage(){
 async function getPhrase(){
   const phrase = await supabase.from('phraseological').select();
   return phrase;
+
 }
 
 async function translateFunction(){
@@ -46,9 +47,9 @@ async function translateFunction(){
   console.log(firstText);
 
   const phrase = getPhrase();
-    
+  
   const data  = (await phrase).data;
-
+  console.log((await phrase).data)  
   // console.log(data[0][chosenLanguage]);
 
 
