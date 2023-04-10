@@ -79,22 +79,17 @@ const rowSelection = {
   }, []);
 
   async function getrequest() {
+    // const request = await supabase.from("request").select();
+    // const data = (await request).data;
     const request = await supabase.from("request").select();
-    const data = (await request).data;
+    const req = (await request).data;
+      const data = await supabase
+      .from('request')
+      .select()
+      .eq('status_id', `${1}`)
 
-
-    setrequest(data)
+    setrequest(data.data)
     
-  }
-  
-  async function fe(reqId){
-    reqId=23
-    const data = await supabase
-    .from('request')
-    .select('request_id, status_id')
-    .eq('request_id', `${reqId}`)
-    const reqStatus = data.data;
-    console.log('request_status '+ reqStatus[0]['status_id'])
   }
  
   async function delete_row(){
@@ -124,7 +119,6 @@ const rowSelection = {
     <Button onClick={update} className='btn-7'>Обновить</Button>
     <Button onClick={"-"} className='btn-7'>Добавить</Button>
     <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
-    <Button onClick={fe} className='btn-7'>12</Button>
     </div>
     <Table
    
