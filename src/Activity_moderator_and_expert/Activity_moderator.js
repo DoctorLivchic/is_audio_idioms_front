@@ -1,9 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from "react";
-import { Layout, Space } from 'antd';
+import { Layout, Space, message, notification } from 'antd';
 import {useNavigate} from "react-router-dom";
 import {Button, Form, Input, Checkbox, Select, Table } from 'antd';
 import { supabase } from '../supabaseClient.js';
+import Item from 'antd/es/list/Item.js';
 
 
 const columns = [
@@ -34,13 +35,13 @@ const columns = [
 },
 {
   title:'Статус запроса',
-  dataIndex:'request_status',
-  key:'request_status'
+  dataIndex:'status_id',
+  key:'status_id'
 },
 {
   title:'Вид операции',
-  dataIndex:'request_type',
-  key:'request_type'
+  dataIndex:'type_id',
+  key:'type_id'
 }
 ]
 
@@ -54,9 +55,8 @@ const GridDataOption = {
 function update(){
 window.location.reload();
 }
-function delete_row(){
 
-}
+
 
 
 export default function Activity_moderator() {
@@ -66,6 +66,7 @@ export default function Activity_moderator() {
   const onSelectChange = (newSelectedRowKeys) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
     setSelectedRowKeys(newSelectedRowKeys);
+   
 };
 
 const rowSelection = {
@@ -75,27 +76,58 @@ const rowSelection = {
 
   useEffect(() => {
     getrequest();
-   
   }, []);
 
   async function getrequest() {
     const request = await supabase.from("request").select();
     const data = (await request).data;
-    console.log(data)
+
+
     setrequest(data)
     
   }
+  
+  async function fe(reqId){
+    reqId=23
+    const data = await supabase
+    .from('request')
+    .select('request_id, status_id')
+    .eq('request_id', `${reqId}`)
+    const reqStatus = data.data;
+    console.log('request_status '+ reqStatus[0]['status_id'])
+  }
+ 
+  async function delete_row(){
+    const request = await supabase.from("request").select().filter('type_id','not.gt',1);
+    const data1 = (await request).data;
+    for (let i = 0; i < selectedRowKeys.length; i++){  
+        try {
+          const { error } = await supabase
+          .from('request')
+          .delete()
+          .eq('request_id',selectedRowKeys.at(i));
+          console.log("Запись удалена")
+    }
+    catch (error) {
+      notification.open({message:'Ошибка',description:'Ошибка,некоректно введены данные'});
+    }
+    }
+    }
 
+ 
+
+  const navigate = useNavigate();
   return (
     <div className='Activ_moder'>
-    <div style={{position: 'relative', left:'73%' }}>
+    <div style={{position: 'relative', left:'55%' }}>
     <Button onClick={delete_row} className='btn-7'>Удалить</Button>
     <Button onClick={update} className='btn-7'>Обновить</Button>
     <Button onClick={"-"} className='btn-7'>Добавить</Button>
+    <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
+    <Button onClick={fe} className='btn-7'>12</Button>
     </div>
-
-
     <Table
+   
     dataSource={request}
     columns={columns}
     rowSelection={rowSelection}
@@ -108,19 +140,4 @@ const rowSelection = {
     />
   </div>
   );
-}
-
-       
-
-
-
-
-
-
-
-
-        
-
-         
-    
-        
+}  

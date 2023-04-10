@@ -37,7 +37,7 @@ export default function Authorization() {
   function setWhite(formId) {
     document.getElementById(formId).setAttribute("class", "form-style");
   }
-  //Получение таблицы profiles
+  //Получение таблицы user
   async function getUser() {
     const profiles = await supabase.from("user").select();
     return profiles;

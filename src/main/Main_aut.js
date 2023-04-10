@@ -117,6 +117,7 @@ const navigate = useNavigate();
                            
                           <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                      
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
+                          <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
                           </Form.Item>
                         </div>
                     </div>
