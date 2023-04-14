@@ -51,9 +51,7 @@ const GridDataOption = {
   from: "request",
 };
 
-function update() {
-  window.location.reload();
-}
+
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
@@ -83,6 +81,10 @@ export default function Activity_moderator() {
       .select()
       .eq("status_id", `${4}`);
     setrequest(data.data);
+  }
+
+  function update() {
+    getrequest()
   }
 
   async function delete_row() {
@@ -129,12 +131,16 @@ export default function Activity_moderator() {
           .from('phraseological')
           .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  Subject_id: 1})
 //------------------------------------------------------------------------------------------------------------
+        notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")
+        update()
+        
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
+        update()
       }
     }
-    update()
+    
   }
 
   const navigate = useNavigate();
