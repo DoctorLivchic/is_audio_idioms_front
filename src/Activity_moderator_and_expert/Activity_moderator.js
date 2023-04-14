@@ -114,19 +114,22 @@ const rowSelection = {
   async function push_request(){
     for (let i = 0; i < selectedRowKeys.length; i++){  
         try {
+          var update1 = ((new Date()).toISOString()).toLocaleString();
           const { error } = await supabase
           .from('request')
-          .update({status_id:'4'})
+          .update({status_id:'4',update_at:(update1)})
           .eq('request_id',selectedRowKeys.at(i));
           console.log("Запись обновлена")
+          console.log((update1))
+          // console.log((update1.toISOString()))
          
     }
     catch (error) {
-      notification.open({message:'Ошибка',description:'Ошибка,некоректно введены данные'});
+      notification.open({message:'Ошибка',description:error.message});
     }
     }
     getrequest()
-    update()
+    // update()
   }
  
 
