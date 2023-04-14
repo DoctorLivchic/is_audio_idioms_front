@@ -58,7 +58,6 @@ window.location.reload();
 
 
 
-
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -101,23 +100,43 @@ const rowSelection = {
           .from('request')
           .delete()
           .eq('request_id',selectedRowKeys.at(i));
-          console.log("Запись удалена")
+          console.log("Запись удалена",selectedRowKeys.at(i))
+          
     }
     catch (error) {
       notification.open({message:'Ошибка',description:'Ошибка,некоректно введены данные'});
     }
     }
+    getrequest()
+    update()
     }
 
+  async function push_request(){
+    for (let i = 0; i < selectedRowKeys.length; i++){  
+        try {
+          const { error } = await supabase
+          .from('request')
+          .update({status_id:'4'})
+          .eq('request_id',selectedRowKeys.at(i));
+          console.log("Запись обновлена")
+         
+    }
+    catch (error) {
+      notification.open({message:'Ошибка',description:'Ошибка,некоректно введены данные'});
+    }
+    }
+    getrequest()
+    update()
+  }
  
 
   const navigate = useNavigate();
   return (
     <div className='Activ_moder'>
-    <div style={{position: 'relative', left:'55%' }}>
+    <div style={{position: 'relative', left:'59%' }}>
     <Button onClick={delete_row} className='btn-7'>Удалить</Button>
     <Button onClick={update} className='btn-7'>Обновить</Button>
-    <Button onClick={"-"} className='btn-7'>Добавить</Button>
+    <Button onClick={push_request} className='btn-7'>Добавить в проверенные</Button>
     <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
     </div>
     <Table

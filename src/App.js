@@ -11,6 +11,7 @@ import Moderator_personal_account from './Moderator_personal_account';
 import Addendum from './user_action/Addendum';
 import Editing from './user_action/Editing';
 import Activity_moderator from './Activity_moderator_and_expert/Activity_moderator';
+import Activity_exp from './Activity_moderator_and_expert/Activity_exp';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
@@ -46,6 +47,7 @@ export default function App() {
              <Route  path='/user_action/Addendum' element={<Addendum />}/>
              <Route  path='/user_action/Editing' element={< Editing  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_moderator' element={< Activity_moderator  />}/>
+             <Route  path='/Activity_moderator_and_expert/Activity_exp' element={< Activity_exp  />}/>
            </Routes>
          </BrowserRouter>
      </div>  
