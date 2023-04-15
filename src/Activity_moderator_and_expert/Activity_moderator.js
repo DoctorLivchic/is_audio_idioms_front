@@ -52,15 +52,13 @@ const GridDataOption = {
   from:'request'
 }
 
-function update(){
-window.location.reload();
-}
 
 
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const onSelectChange = (newSelectedRowKeys) => {
     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
@@ -74,8 +72,14 @@ const rowSelection = {
 };
 
   useEffect(() => {
-    getrequest();
-  }, []);
+    getrequest().then(()=>setLoading(false));
+  }, [loading]);
+
+function update(){
+setLoading(true);
+}
+
+
 
   async function getrequest() {
     // const request = await supabase.from("request").select();
@@ -129,7 +133,7 @@ const rowSelection = {
     }
     }
     getrequest()
-    // update()
+    update()
   }
  
 
@@ -143,7 +147,7 @@ const rowSelection = {
     <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
     </div>
     <Table
-   
+    loading={loading}
     dataSource={request}
     columns={columns}
     rowSelection={rowSelection}

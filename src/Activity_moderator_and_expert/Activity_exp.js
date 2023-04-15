@@ -56,6 +56,7 @@ const GridDataOption = {
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const onSelectChange = (newSelectedRowKeys) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -68,8 +69,8 @@ export default function Activity_moderator() {
   };
 
   useEffect(() => {
-    getrequest();
-  }, []);
+    getrequest().then(()=>setLoading(false));
+  }, [loading]);
 
   async function getrequest() {
     // const request = await supabase.from("request").select();
@@ -140,7 +141,6 @@ export default function Activity_moderator() {
         update()
       }
     }
-    
   }
 
   const navigate = useNavigate();
@@ -166,6 +166,7 @@ export default function Activity_moderator() {
         </Button>
       </div>
       <Table
+        loading={loading}
         dataSource={request}
         columns={columns}
         rowSelection={rowSelection}
