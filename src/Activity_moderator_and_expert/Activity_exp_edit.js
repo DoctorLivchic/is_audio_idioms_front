@@ -42,7 +42,17 @@ const columns = [
     dataIndex: "type_id",
     key: "type_id",
   },
-];
+  {
+  title:'Категория',
+  dataIndex:'tag_id',
+  key:'tag_id'
+  },
+  {
+    title:'фразеологизм',
+    dataIndex:'phrase_id',
+    key:'phrase_id'
+    }
+  ];
 
 const GridDataOption = {
   rowCount: 10,
@@ -51,13 +61,12 @@ const GridDataOption = {
   from: "request",
 };
 
-function update() {
-  window.location.reload();
-}
+
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const onSelectChange = (newSelectedRowKeys) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -70,8 +79,8 @@ export default function Activity_moderator() {
   };
 
   useEffect(() => {
-    getrequest();
-  }, []);
+    getrequest().then(()=>setLoading(false));
+  }, [loading]);
 
   async function getrequest() {
     // const request = await supabase.from("request").select();
@@ -81,8 +90,12 @@ export default function Activity_moderator() {
     const data = await supabase
       .from("request")
       .select()
-      .eq("status_id", `${4}`);
+      .eq("type_id", `${1}`);
     setrequest(data.data);
+  }
+
+  function update() {
+    getrequest()
   }
 
   async function delete_row() {
@@ -93,18 +106,16 @@ export default function Activity_moderator() {
           .delete()
           .eq("request_id", selectedRowKeys.at(i));
         console.log("Запись удалена", selectedRowKeys.at(i));
+        notification.open({ message: "Успешно",description:'Запись успешно удаленна'});
       } catch (error) {
-        notification.open({
-          message: "Ошибка",
-          description: "Ошибка,некоректно введены данные",
-        });
+        notification.open({ message: "Ошибка",description: error.message});
       }
     }
     getrequest();
     update();
   }
 
-  async function add_request() {
+  async function edit_request() {
     const request = await supabase.from("request").select();
     const adde = (await request).data;
 
@@ -124,17 +135,21 @@ export default function Activity_moderator() {
           .update({status_id:'3',update_at:(update1)})
           .eq('request_id',selectedRowKeys.at(i));
 //------------------------------------------------------------------------------------------------------------
-        //Добавляем одобренный запрос в таблицу с фразеологизмами
+        //Обновляем одобренный запрос в таблицу с фразеологизмами
         const { error } = await supabase
           .from('phraseological')
-          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  tag_id: 1})
+          .update({ rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request']})
+          .eq('phrase_id',selectedRowKeys.at(i));
 //------------------------------------------------------------------------------------------------------------
+        notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")
+        update()
+        
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
+        update()
       }
     }
-    update()
   }
 
   const navigate = useNavigate();
@@ -147,12 +162,12 @@ export default function Activity_moderator() {
         <Button onClick={update} className="btn-7">
           Обновить
         </Button>
-        <Button onClick={add_request} className="btn-7">
+        <Button onClick={edit_request} className="btn-7">
           Добавить запись
         </Button>
         <Button
           onClick={() => {
-            navigate("/Moderator_personal_account");
+            navigate("/Expert_personal_account");
           }}
           className="btn-7"
         >
@@ -160,6 +175,7 @@ export default function Activity_moderator() {
         </Button>
       </div>
       <Table
+        loading={loading}
         dataSource={request}
         columns={columns}
         rowSelection={rowSelection}

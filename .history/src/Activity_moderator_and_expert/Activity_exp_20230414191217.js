@@ -118,7 +118,7 @@ export default function Activity_moderator() {
         
         const { error } = await supabase
           .from('phraseological')
-          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  Subject_id: 1})
+          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  tag_id: 1})
         console.log("Запись добавленна")
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });

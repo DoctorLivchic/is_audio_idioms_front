@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Space } from 'antd';
 import {useNavigate} from "react-router-dom";
-import {Button, Form, Input, Checkbox, Select } from 'antd';
+import {Button, Form, Input, Checkbox, Select,notification } from 'antd';
 import { supabase } from '../supabaseClient.js';
 
 export default function Addendum()  {
@@ -39,32 +39,33 @@ async function addrequest(){
   const kor = document.getElementById("log_kor").value;
   const request_status1 = 1;
   const Request_type1 = 1;
-  
+  console.log(rus)
   //Запись 
   if(validrus(rus)){
     if(validfre(fre)){
-      if(validkor(kor)){
+      if(validkor(kor)){ 
         try{
           const { error } = await supabase
           .from('request')
-          .insert({ rus_request: rus, fre_request: fre, kor_request: kor , request_status : request_status1, request_type : Request_type1 })
+          .insert({ rus_request: rus, fre_request: fre, kor_request: kor , status_id : request_status1, type_id : Request_type1 })
         }catch (error) {
-            alert(error.error_description || error.message)
+          notification.open({message:'Ошибка',description:error.message})
           }
-        alert("Вы успешно добавили запрос!");
+        notification.open({message:'Успешно',description:'Вы успешно добавили запрос!'})
+        window.location.reload();
       }else{
         setRed('log_kor');
-        alert("Вы ввели некорректный корейский перевод!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный корейский перевод!'})
         document.getElementById("log_kor").value = "";
       }
     }else{
       setRed('log_fre');
-      alert("Вы ввели некорректный французский перевод перевод!");
+      notification.open({message:'Ошибка',description:'Вы ввели некорректный французский перевод перевод!'})
       document.getElementById("log_fre").value = "";
     }
   }else{
     setRed('log_rus');
-    alert("Вы ввели некорректный русский перевод!");
+    notification.open({message:'Ошибка',description:'Вы ввели некорректный русский перевод!'})
     document.getElementById("log_rus").value = "";
   }
 }
@@ -84,8 +85,7 @@ const navigate = useNavigate();
         </header> 
 
         <div className="section">
-        <div className="container">
-         
+        <div className="container">     
               <div
                 className="section pb-5 pt-5 pt-sm-2 text-center"
                 align="center"
@@ -98,7 +98,7 @@ const navigate = useNavigate();
                         <div className="section text-center">
                           <h4 className="mb">Введите информацию о фразеологизме</h4>             
                           <div className="form-group">
-                            <Input
+                            <input
                               type="text"
                               name="log_rus"
                               className="form-style"
@@ -110,7 +110,7 @@ const navigate = useNavigate();
                           </div>
                           
                           <div className="form-group mt-2">
-                            <Input
+                            <input
                               type="text"
                               name="log_fre"
                               className="form-style"
@@ -122,7 +122,7 @@ const navigate = useNavigate();
                           </div>
 
                           <div className="form-group mt-2">
-                            <Input
+                            <input
                               type="text"
                               name="log_kor"
                               className="form-style"

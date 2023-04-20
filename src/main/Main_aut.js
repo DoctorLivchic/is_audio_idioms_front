@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Form, Input, Checkbox, Select } from 'antd';
+import {Button, Form, Input, Checkbox, Select,notification } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
 import { supabase } from '../supabaseClient.js';
@@ -55,14 +55,16 @@ async function translateFunction(){
 
   
     for (let i=0; i<data.length; i++){
-
+      try{
       if(data[i][chosenLanguage] == firstText){ //Сравниваем, если текст выбранного языка == введенному тексту
         document.getElementById("textAreaExit").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
       }     
     }
-  if (firstText==""){
-    alert("Ошибка фразеологизм не введен")
-  }
+    catch(error){
+      notification.open({message:'Ошибка',description:error.message});
+ }
+ }
+ 
 
 }
 

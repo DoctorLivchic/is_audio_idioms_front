@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Input, Checkbox, Affix } from "antd";
+import { Button, Form, Input, Checkbox, Affix,notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient.js";
 import { async } from "q";
@@ -79,35 +79,34 @@ export default function Authorization() {
                 login: email1,
               });
           } catch (error) {
-            alert(error.error_description || error.message);
+            notification.open({message:'Ошибка',description:error.message});
           }
-          alert("Регистрация прошла успешно!");
+          notification.open({message:'Успешно',description:'Регистрация прошла успешно'});
           window.location.reload();
           
           
         } else {
           setRed("logpassUp");
           setRed("logpassAffirm");
-          alert("Ваши пароли не совпадают!");
+          notification.open({message:'Ошибка',description:'Ваши пароли не совпадают!'});
           document.getElementById("logpassUp").value = "";
           document.getElementById("logpassAffirm").value = "";
         }
       } else {
         setRed("logemailUp");
         setWhite("logname");
-        alert("Вы ввели некорректный email!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный email!'});
         document.getElementById("logemailUp").value = "";
       }
     } else {
       setRed("logname");
-      alert("Вы ввели некорректное имя!");
+      notification.open({message:'Ошибка',description:'Вы ввели некорректное имя!'});
       document.getElementById("logname").value = "";
     }
 
     //попытка получить последнего добавленного юзера
 
     const user = getUser();
-
     const data = (await user).data;
     
 
@@ -133,29 +132,29 @@ export default function Authorization() {
 
     if (index == -1) {
       setRed("logemailIn");
-      alert("Почта введена некорректно или такой почты не существует!");
+      notification.open({message:'Ошибка',description:'Почта введена некорректно или такой почты не существует!'});
     } else {
       if (data[index]["password"] == password) {
         if (data[index]["role_id"] == 1) {
           navigate("/Moderator_personal_account");
-          alert("Вы успешно авторизовались!");
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
         }
         if (data[index]["role_id"] == 2) {
           navigate("/Expert_personal_account");
-          alert("Вы успешно авторизовались!");
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
         }
         if (data[index]["role_id"] == 3) {
           navigate("/main_page/Main_page_aut");
-          alert("Вы успешно авторизовались!");
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
         }
       } else {
         if (data[index]["password"] != password) {
           setRed("logpassIn");
           setWhite("logemailIn");
-          alert("Вы ввели некорректный пароль!");
+          notification.open({message:'Успешно',description:'Вы ввели некорректный пароль!'});
         } else {
           navigate("/main_page/Main_page_aut");
-          alert("Вы успешно авторизовались!");
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
         }
       }
     }
@@ -172,10 +171,10 @@ export default function Authorization() {
                 className="section pb-5 pt-5 pt-sm-2 text-center"
                 align="center"
               >
-                <h6 className="mb-0 pb-3">
+                <h5 className="mb-0 pb-3">
                   <span>Авторизоваться </span>
                   <span>Зарегистрироваться</span>
-                </h6>
+                </h5>
 
                 <input
                   className="checkbox"

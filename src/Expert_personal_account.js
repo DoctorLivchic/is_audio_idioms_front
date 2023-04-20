@@ -12,9 +12,10 @@ export default function Expert_page() {
         <header>
           <h2>Личный кабинет эксперта</h2>					
         <nav>
-        <ul className="navig_ex_acc">
+        <ul style={{position: 'relative', left:'61%' }}>
         <Form.Item>
-            <Button onClick={() => {navigate('/Activity_moderator_and_expert/Activity_exp')}} className='btn-7'>Заявки модератора</Button>
+            <Button onClick={() => {navigate('/Activity_moderator_and_expert/Activity_exp')}} className='btn-7'>Заявки на добавление</Button>
+            <Button onClick={() => {navigate('/Activity_moderator_and_expert/Activity_exp_edit')}} className='btn-7'>Заявки на редактирование</Button>
             <Button onClick={() => {navigate('/')}} className='btn-7'>Выйти</Button>     
         </Form.Item>
         </ul>

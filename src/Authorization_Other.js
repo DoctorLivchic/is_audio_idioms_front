@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, Input, Checkbox, Affix,Select, Empty } from 'antd';
+import {Button, Form, Input, Checkbox, Affix,Select, Empty,notification } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { supabase } from './supabaseClient.js';
 import { async } from "q";
@@ -113,15 +113,16 @@ export default function Authorization_Other()  {
           }catch (error) {
               alert(error.error_description || error.message)
             }
-          alert("Регистрация прошла успешно!");
+            notification.open({message:'Успешно',description:'Регистрация прошла успешно!'})
           navigate('../Authorization');
 
         }else{
+          notification.open({message:'Ошибка',description:''})
           alert("Вы ввели некорректный номер диплома!");
           document.getElementById("logdiploma_id").value = "";
         }
         }else{
-          alert("Вы ввели некорректный номер телефона!");
+          notification.open({message:'Ошибка',description:'Вы ввели некорректный номер телефона!'})
           document.getElementById("logphone_number").value = "";
         }
         }else{
@@ -133,29 +134,24 @@ export default function Authorization_Other()  {
           document.getElementById("logpassport_series").value = "";
         }
         }else{
-          alert("Ваши пароли не совпадают!");
+          notification.open({message:'Ошибка',description:'Ваши пароли не совпадают!'})
           document.getElementById("logpassUp").value = "";
           document.getElementById("logpassAffirm").value = "";
         }
       }else{
-        alert("Вы ввели некорректный email!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный email!'})
         document.getElementById("logemailUp").value = "";
       }
     }else{
-      alert("Вы ввели некорректное ФИО!");
+      notification.open({message:'Ошибка',description:'Вы ввели некорректное ФИО!'})
       document.getElementById("logname").value = "";
     }
 
     
     //попытка получить последнего добавленного юзера
 
-    const profiles = getUser();
-    
+    const profiles = getUser(); 
     const data  = (await profiles).data;
-
-    
-
-
     // const usr = data[data.length-1]; //получаем последнюю запись
   }
 
@@ -185,23 +181,23 @@ export default function Authorization_Other()  {
       if(data[index]['password']==password){
         if(data[index]["role_id"]==1){
           navigate('/Moderator_personal_account');
-          alert("Вы успешно авторизовались!");}
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'})
+          }
         if(data[index]["role_id"]==2){
           navigate('/Expert_personal_account');
-          alert("Вы успешно авторизовались!");}
+          notification.open({message:'Успешно',description:'Вы успешно авторизовались!'})
+          }
       }else{
         if (data[index]['password']!=password){
         setRed('logpassIn');
         setWhite('logemailIn')
-        alert("Вы ввели некорректный пароль!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный пароль!'})
+        ;
       }else{
-        alert("Вы выбрали некорректную роль!")
-      }
-      
-    }  
-    
+        notification.open({message:'Ошибка',description:'Вы выбрали некорректную роль!'})
+      }     
+    }    
     }
-  
 }
  
 
@@ -216,10 +212,7 @@ export default function Authorization_Other()  {
                   className="section pb-5 pt-5 pt-sm-2 text-center"
                   align="center"
                 >
-                
-
-
-                
+     
                   <label for="reg-log"></label>
                   <div className="card-3d-wrap mx-auto">
                     <div className="card-3d-wrapper">

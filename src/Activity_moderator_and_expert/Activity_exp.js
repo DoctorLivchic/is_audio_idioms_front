@@ -42,7 +42,12 @@ const columns = [
     dataIndex: "type_id",
     key: "type_id",
   },
-];
+  {
+  title:'Категория',
+  dataIndex:'tag_id',
+  key:'tag_id'
+  }
+  ];
 
 const GridDataOption = {
   rowCount: 10,
@@ -96,11 +101,9 @@ export default function Activity_moderator() {
           .delete()
           .eq("request_id", selectedRowKeys.at(i));
         console.log("Запись удалена", selectedRowKeys.at(i));
+        notification.open({ message: "Успешно",description:'Запись успешно удаленна'});
       } catch (error) {
-        notification.open({
-          message: "Ошибка",
-          description: "Ошибка,некоректно введены данные",
-        });
+        notification.open({ message: "Ошибка",description: error.message});
       }
     }
     getrequest();
@@ -130,7 +133,7 @@ export default function Activity_moderator() {
         //Добавляем одобренный запрос в таблицу с фразеологизмами
         const { error } = await supabase
           .from('phraseological')
-          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  Subject_id: 1})
+          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  tag_id: 1})
 //------------------------------------------------------------------------------------------------------------
         notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")
@@ -158,7 +161,7 @@ export default function Activity_moderator() {
         </Button>
         <Button
           onClick={() => {
-            navigate("/Moderator_personal_account");
+            navigate("/Expert_personal_account");
           }}
           className="btn-7"
         >

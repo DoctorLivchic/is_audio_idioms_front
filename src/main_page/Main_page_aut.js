@@ -22,7 +22,6 @@ export default function Main_page() {
                          <Button onClick={() => {navigate('/user_action/Editing')}} className='btn-7'>Редактирование</Button>
 						 	<Button onClick={() => {navigate('/user_action/Addendum')}} className='btn-7'>Добавление</Button>
 						 	<Button onClick={() => {navigate('-')}} className='btn-7'>Фразеологизм дня</Button>
-							<Button onClick={() => {navigate('-')}} className='btn-7'>Чат</Button>
 							<Button onClick={() => {navigate('-')}} className='btn-7'>Избранное</Button>
 							<Button onClick={() => {navigate('/Users_personal_account')}} className='btn-7'>Личный кабинет</Button>
 							<Button onClick={() => {navigate('/main/Main_aut')}} className='btn-7'>Перевод фразеологизмов</Button>

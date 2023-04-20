@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Space } from "antd";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, Checkbox, Select } from "antd";
+import { Button, Form, Input, Checkbox, Select,notification } from "antd";
 import { supabase } from "../supabaseClient.js";
 const { Search } = Input;
 
@@ -96,26 +96,26 @@ export default function Editing() {
                 rus_request: rus,
                 fre_request: fre,
                 kor_request: kor,
-                request_status: request_status1,
-                request_type: Request_type1,
+                status_id: request_status1,
+                type_id: Request_type1,
               });
           } catch (error) {
             alert(error.error_description || error.message);
           }
-          alert("Вы успешно добавили запрос!");
+          notification.open({message:'Успешно',description:'Вы успешно добавили запрос!'})
         } else {
           setRed("log_kor");
-          alert("Вы ввели некорректный корейский перевод!");
+          notification.open({message:'Ошибка',description:'Вы ввели некорректный корейский перевод!'})
           document.getElementById("log_kor").value = "";
         }
       } else {
         setRed("log_fre");
-        alert("Вы ввели некорректный французский перевод!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный французский перевод перевод!'})
         document.getElementById("log_fre").value = "";
       }
     } else {
       setRed("log_rus");
-      alert("Вы ввели некорректный русский перевод!");
+      notification.open({message:'Ошибка',description:'Вы ввели некорректный русский перевод!'})
       document.getElementById("log_rus").value = "";
     }
   }
@@ -184,7 +184,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group">
-                      <Input
+                      <input
                         type="text"
                         placeholder="Введите фразеологизм "
                         className="form-style"
@@ -195,7 +195,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group">
-                      <Input
+                      <input
                         type="text"
                         name="log_rus"
                         className="form-style"
@@ -207,7 +207,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group mt-2">
-                      <Input
+                      <input
                         type="text"
                         name="log_fre"
                         className="form-style"
@@ -219,7 +219,7 @@ export default function Editing() {
                     </div>
 
                     <div className="form-group mt-2">
-                      <Input
+                      <input
                         type="text"
                         name="log_kor"
                         className="form-style"

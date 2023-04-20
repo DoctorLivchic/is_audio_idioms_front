@@ -12,6 +12,10 @@ import Addendum from './user_action/Addendum';
 import Editing from './user_action/Editing';
 import Activity_moderator from './Activity_moderator_and_expert/Activity_moderator';
 import Activity_exp from './Activity_moderator_and_expert/Activity_exp';
+import Activity_exp_edit from './Activity_moderator_and_expert/Activity_exp_edit';
+import Management_of_phrase from './Activity_moderator_and_expert/Manag_of_phrase';
+import Manag_of_tag from './Activity_moderator_and_expert/Manag_of_tag';
+import Manag_of_stat from './Activity_moderator_and_expert/Manag_of_stat';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
@@ -48,6 +52,10 @@ export default function App() {
              <Route  path='/user_action/Editing' element={< Editing  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_moderator' element={< Activity_moderator  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_exp' element={< Activity_exp  />}/>
+             <Route  path='/Activity_moderator_and_expert/Manag_of_phrase' element={< Management_of_phrase  />}/>
+             <Route  path='/Activity_moderator_and_expert/Manag_of_tag' element={< Manag_of_tag  />}/>
+             <Route  path='/Activity_moderator_and_expert/Manag_of_stat' element={< Manag_of_stat  />}/>
+             <Route  path='/Activity_moderator_and_expert/Activity_exp_edit' element={< Activity_exp_edit  />}/>
            </Routes>
          </BrowserRouter>
      </div>  
