@@ -132,26 +132,16 @@ export default function Activity_moderator() {
 //------------------------------------------------------------------------------------------------------------
         //Добавляем одобренный запрос в таблицу с фразеологизмами
         
-      
-
-      //Добавляем новую запись в таблицу phraseological
-      var update1 = ((new Date()).toISOString()).toLocaleString();
-
-      const { error } = await supabase
-      .from('phraseological')
-      .insert({updated_at:(update1)})
-
-
-        //Получаем последний phrase_id 
+      //Получаем последний phrase_id 
       const id = await supabase
       .from("phraseological")
       .select('phrase_id')
       let max = -10;
       for(let i =0; i<id.data.length; i++){
         console.log(id.data[i]["phrase_id"])
-        if(id.data[i]["phrase_id"]>max){max = id.data[i]["phrase_id"]}
+        if(id.data[i]["phrase_id"]>max){max = id.data[i]}
       }
-
+      max++;
       for (let i = 1; i<4;i++){
         let lang = ''
         if (i==1){ lang = 'rus_request'}

@@ -149,7 +149,7 @@ export default function Activity_moderator() {
       let max = -10;
       for(let i =0; i<id.data.length; i++){
         console.log(id.data[i]["phrase_id"])
-        if(id.data[i]["phrase_id"]>max){max = id.data[i]["phrase_id"]}
+        if(id.data[i]["phrase_id"]>max){max = id.data[i]}
       }
 
       for (let i = 1; i<4;i++){

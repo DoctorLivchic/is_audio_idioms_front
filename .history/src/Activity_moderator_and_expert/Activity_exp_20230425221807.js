@@ -132,24 +132,14 @@ export default function Activity_moderator() {
 //------------------------------------------------------------------------------------------------------------
         //Добавляем одобренный запрос в таблицу с фразеологизмами
         
-      
-
-      //Добавляем новую запись в таблицу phraseological
-      var update1 = ((new Date()).toISOString()).toLocaleString();
-
-      const { error } = await supabase
-      .from('phraseological')
-      .insert({updated_at:(update1)})
-
-
-        //Получаем последний phrase_id 
+      //Получаем последний phrase_id 
       const id = await supabase
       .from("phraseological")
       .select('phrase_id')
       let max = -10;
       for(let i =0; i<id.data.length; i++){
-        console.log(id.data[i]["phrase_id"])
-        if(id.data[i]["phrase_id"]>max){max = id.data[i]["phrase_id"]}
+        console.log(id.data[i])
+        if(id.data[i]["phrase_id"]>max){max = id.data[i]}
       }
 
       for (let i = 1; i<4;i++){
@@ -160,7 +150,7 @@ export default function Activity_moderator() {
         // console.log(phrase.data[0][lang])
          const { error } = await supabase
           .from('phrase_text')
-          .insert({phrase_id: max,language_id:i,phrase_text_text: phrase.data[0][lang]})
+          .insert({phrase_id: max, phrase_id: selectedRowKeys.at(i),language_id:i,phrase_text_text: phrase.data[0][lang]})
       }   
 //------------------------------------------------------------------------------------------------------------
         notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });

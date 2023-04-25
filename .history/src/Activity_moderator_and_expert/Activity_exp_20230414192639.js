@@ -42,12 +42,7 @@ const columns = [
     dataIndex: "type_id",
     key: "type_id",
   },
-  {
-  title:'Категория',
-  dataIndex:'tag_id',
-  key:'tag_id'
-  }
-  ];
+];
 
 const GridDataOption = {
   rowCount: 10,
@@ -56,12 +51,13 @@ const GridDataOption = {
   from: "request",
 };
 
-
+function update() {
+  window.location.reload();
+}
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const onSelectChange = (newSelectedRowKeys) => {
     console.log("selectedRowKeys changed: ", newSelectedRowKeys);
@@ -74,8 +70,8 @@ export default function Activity_moderator() {
   };
 
   useEffect(() => {
-    getrequest().then(()=>setLoading(false));
-  }, [loading]);
+    getrequest();
+  }, []);
 
   async function getrequest() {
     // const request = await supabase.from("request").select();
@@ -89,10 +85,6 @@ export default function Activity_moderator() {
     setrequest(data.data);
   }
 
-  function update() {
-    getrequest()
-  }
-
   async function delete_row() {
     for (let i = 0; i < selectedRowKeys.length; i++) {
       try {
@@ -101,9 +93,11 @@ export default function Activity_moderator() {
           .delete()
           .eq("request_id", selectedRowKeys.at(i));
         console.log("Запись удалена", selectedRowKeys.at(i));
-        notification.open({ message: "Успешно",description:'Запись успешно удаленна'});
       } catch (error) {
-        notification.open({ message: "Ошибка",description: error.message});
+        notification.open({
+          message: "Ошибка",
+          description: "Ошибка,некоректно введены данные",
+        });
       }
     }
     getrequest();
@@ -123,55 +117,25 @@ export default function Activity_moderator() {
           .eq("request_id", selectedRowKeys.at(i));
         console.log(phrase.data[0]['request_id']) //обращение к полю возвращаемого объекта из таблицы
 //------------------------------------------------------------------------------------------------------------
-        // //Обновляем поле update_at
-        // var update1 = ((new Date()).toISOString()).toLocaleString();
-        // const { error1 } = await supabase
-        //   .from('request')
-        //   .update({status_id:'3',update_at:(update1)})
-        //   .eq('request_id',selectedRowKeys.at(i));
+        //Обновляем поле update_at
+        var update1 = ((new Date()).toISOString()).toLocaleString();
+        const { error1 } = await supabase
+          .from('request')
+          .update({status_id:'3',update_at:(update1)})
+          .eq('request_id',selectedRowKeys.at(i));
 //------------------------------------------------------------------------------------------------------------
         //Добавляем одобренный запрос в таблицу с фразеологизмами
-        
-      
-
-      //Добавляем новую запись в таблицу phraseological
-      var update1 = ((new Date()).toISOString()).toLocaleString();
-
-      const { error } = await supabase
-      .from('phraseological')
-      .insert({updated_at:(update1)})
-
-
-        //Получаем последний phrase_id 
-      const id = await supabase
-      .from("phraseological")
-      .select('phrase_id')
-      let max = -10;
-      for(let i =0; i<id.data.length; i++){
-        console.log(id.data[i]["phrase_id"])
-        if(id.data[i]["phrase_id"]>max){max = id.data[i]["phrase_id"]}
-      }
-
-      for (let i = 1; i<4;i++){
-        let lang = ''
-        if (i==1){ lang = 'rus_request'}
-        else if (i==2){ lang = 'kor_request'}
-        else { lang = 'fre_request'}
-        // console.log(phrase.data[0][lang])
-         const { error } = await supabase
-          .from('phrase_text')
-          .insert({phrase_id: max,language_id:i,phrase_text_text: phrase.data[0][lang]})
-      }   
+        const { error } = await supabase
+          .from('phraseological')
+          .insert({ phrase_id: selectedRowKeys.at(i), rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request'],  Subject_id: 1})
 //------------------------------------------------------------------------------------------------------------
-        notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")
-        update()
-        
+        notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
-        update()
       }
     }
+    update()
   }
 
   const navigate = useNavigate();
@@ -189,7 +153,7 @@ export default function Activity_moderator() {
         </Button>
         <Button
           onClick={() => {
-            navigate("/Expert_personal_account");
+            navigate("/Moderator_personal_account");
           }}
           className="btn-7"
         >
@@ -197,7 +161,6 @@ export default function Activity_moderator() {
         </Button>
       </div>
       <Table
-        loading={loading}
         dataSource={request}
         columns={columns}
         rowSelection={rowSelection}
