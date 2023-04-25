@@ -1,6 +1,22 @@
 /*===========================
   Меню перевода
 ============================*/
+.Button_top{
+  margin: 3%;
+}
+.h4_{
+  left: 0%;
+}
+
+.lef{
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #eeeeee;
+  position: relative;
+  left: 0%; 
+  background-color: #7b8cc3;
+}
+
 .headerleft{
   display: table-cell;
   vertical-align: middle;
@@ -14,7 +30,8 @@
   display: table-cell;
   vertical-align:middle;
   position: relative;
-  left: 63%;
+  left: 50%;
+
 }
 .headerRight{
   display: table-cell;
@@ -31,17 +48,18 @@
   position: relative;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  margin: 20%;
+  margin: 15%;
   display: table;
   left: 10%;
   width: 50%;
 }
 
-.buttom-block-left {
+.buttom-block {
+  position: relative;
+  margin: 10%;
   display: table;
-  margin-left: 25%;
-  margin-right: 7vw;
-  margin-top: 35%;
+  left: 21%;
+  width: 50%;
 }
 .buttom-block-right {
   display: table;
@@ -63,8 +81,14 @@
 }
 .buttom-audio{
   position: relative;
-  left: 68%;
-  
+  left: 0%;
+  margin-top: 5%;
+}
+.buttom-block-center{
+  margin-top: 225%;
+}
+.footer section{
+  top:10%
 }
 
 body {
@@ -811,7 +835,7 @@ header {
 ============================*/
 .footer {
   position: absolute;
-  top: 280%;
+  top: 110%;
   padding: 0;
 }
 .footer .footer-top {

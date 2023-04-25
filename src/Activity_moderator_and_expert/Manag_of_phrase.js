@@ -76,7 +76,7 @@ const columns = [
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
     const [form] = useForm()
-    const [id, setId] = useState();
+    
     
   
     const onSelectChange = (newSelectedRowKeys) => {
@@ -121,7 +121,7 @@ const columns = [
           try {
             const { error } = await supabase
             .from('phraseological')
-            .delete()
+            .update({status_id:'6'})
             .eq('phrase_id',selectedRowKeys.at(i));
             notification.open({message:'Успешно',description:'запись поставленна на удаление'})
             console.log("Запись удалена",selectedRowKeys.at(i))           
@@ -157,34 +157,33 @@ const columns = [
       update()
     }
 
-    async function add_phrase(){
-      form.validateFields().then((values) => {
-      values.phrase_id = id;
-      const rus1 = document.getElementById("logrus").value;
-      const fre1 = document.getElementById("logfre").value;
-      const kor1 = document.getElementById("logkor").value;
+    async function add_phrase(){ 
+      const rus1 = form.getFieldValue("rus");
+      const fre1 = form.getFieldValue("fre");
+      const kor1 = form.getFieldValue("kor");
+      const link = form.getFieldValue("link_phraseologikal")
+      const tag  = form.getFieldValue("tag_id")
       console.log(rus1)
-      for (let i = 0; i < selectedRowKeys.length; i++){  
+      // for (let i = 0; i < selectedRowKeys.length; i++){  
           try {    
-            const { error } = supabase
+            const { error }  = await supabase
             .from('phraseological')
-            .insert({rus:rus1,fre:fre1,fre:fre1})
-            console.log('Точка')
-            
+            .insert({rus:rus1,fre:fre1,kor:kor1,link_phraseologikal:link,tag_id:tag})
+            console.log('Точка--')           
       
       }
       
       catch (error) {
         notification.open({message:'Ошибка',description:error.message});
-        console.log('Точка1')
+        console.log('Точка1--')
       }
-      }
+      // }
       setShow(false)
       getphrase()
-      console.log('Точка2')
+      console.log('Точка2--')
       update()
       
-    })
+    
   }
   
     const navigate = useNavigate();
@@ -193,7 +192,7 @@ const columns = [
       <div style={{position: 'relative', left:'59%' }}>
       <Button onClick={delete_row} className='btn-7'>Удалить</Button>
       <Button onClick={update} className='btn-7'>Обновить</Button>
-      <Button onClick={add_phrase} className='btn-7'>Добавить</Button>
+      <Button onClick={change_phrase} className='btn-7'>Добавить</Button>
       <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
       </div>
       <Modal open = {show}
@@ -222,7 +221,7 @@ const columns = [
                                     message: "фразеологизм не может быть пустым"
                                 }
                             ]}>
-                            <input name="rus"
+                            <Input name="rus"
                             id="logrus"
                             placeholder="Русский фразеологизм"/>
                         </Form.Item>
@@ -235,7 +234,7 @@ const columns = [
                                     message: "фразеологизм не может быть пустым"
                                 }
                             ]}>
-                            <input name="fre"
+                            <Input name="fre"
                             placeholder="Французский фразеологизм"
                             id="logfre" />
                         </Form.Item>
@@ -248,7 +247,7 @@ const columns = [
                                     message: "Корейский не может быть пустым"
                                 }
                             ]}>
-                            <input name="kor"
+                            <Input name="kor"
                             placeholder="Корейский фразеологизм"
                             id="logkor"
                              />
@@ -262,7 +261,7 @@ const columns = [
                                     message: "Укажите источник фразеологизма"
                                 }
                             ]}>
-                            <input name="link_phraseologikal"
+                            <Input name="link_phraseologikal"
                             placeholder="Ссылка на фразеологизм" />
                         </Form.Item>
                         <Form.Item
@@ -274,7 +273,7 @@ const columns = [
                                     message: "Укажите категорию фразеологизма"
                                 }
                             ]}>
-                            <input name="tag_id"
+                            <Input name="tag_id"
                             placeholder="Тематика фразеологизма" />
                         </Form.Item>
                 </Form>
@@ -287,7 +286,7 @@ const columns = [
       rowKey={(record) => record.phrase_id}
       onRow={(record) => ({
         onClick: () => {
-          change_phrase(record.phrase_id)
+          
         },
     })}
       />

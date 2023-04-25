@@ -151,7 +151,7 @@ export default function Authorization() {
         if (data[index]["password"] != password) {
           setRed("logpassIn");
           setWhite("logemailIn");
-          notification.open({message:'Успешно',description:'Вы ввели некорректный пароль!'});
+          notification.open({message:'Ошибка',description:'Вы ввели некорректный пароль!'});
         } else {
           navigate("/main_page/Main_page_aut");
           notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});

@@ -79,6 +79,30 @@ const columns = [
       setrequest(data.data)     
     }
    
+    async function change_tag(){
+      setShow(true)
+      for (let i = 0; i < selectedRowKeys.length; i++){  
+          try {    
+            const data = await supabase.from("tagc").select()
+            form.setFields(Object.keys(data).map((key) => ({
+              name: key,
+              value: data[key],
+          })))
+            console.log('Точка')
+            // console.log((update1.toISOString()))
+           
+      }
+      catch (error) {
+        notification.open({message:'Ошибка',description:error.message});
+        console.log('Точка1')
+      }
+      }
+      getphrase()
+      console.log('Точка2')
+      update()
+    }
+
+
     async function delete_row(){
       const tagc = await supabase.from("tagc").select()
       const data1 = (await tagc).data;
@@ -99,27 +123,30 @@ const columns = [
       update()
       }
   
-    async function push_phrase(){
-      for (let i = 0; i < selectedRowKeys.length; i++){  
-          try {
-            const data = await supabase.from("tagc").select()
-            form.setFields(Object.keys(data).map((key) => ({
-              name: key,
-              value: data[key],
-          })))
-            console.log('Точка')
-            // console.log((update1.toISOString()))
-           
+    async function add_tag(){
+      const tag_name1 = form.getFieldValue("tag_name");
+      console.log(tag_name1)
+      // for (let i = 0; i < selectedRowKeys.length; i++){  
+          try {    
+            const { error }  = await supabase
+            .from('tagc')
+            .insert({tag_name:tag_name1})
+            console.log('Точка--')           
+      
       }
+      
       catch (error) {
         notification.open({message:'Ошибка',description:error.message});
-        console.log('Точка1')
+        console.log('Точка1--')
       }
-      }
+      // }
+      setShow(false)
       getphrase()
-      console.log('Точка2')
+      console.log('Точка2--')
       update()
-    }
+      
+    
+  }
    
   
     const navigate = useNavigate();
@@ -128,10 +155,41 @@ const columns = [
       <div style={{position: 'relative', left:'65%' }}>
       <Button onClick={delete_row} className='btn-7'>Удалить</Button>
       <Button onClick={update} className='btn-7'>Обновить</Button>
-      <Button onClick={push_phrase} className='btn-7'>Добавить</Button>
+      <Button onClick={change_tag} className='btn-7'>Добавить</Button>
       <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
       </div>
-     
+      <Modal open = {show}
+            title="Изменение категории" 
+            onCancel={cancel}
+            footer={[
+                <Button onClick={add_tag}>
+                    Добавить
+                </Button>,
+                <Button onClick={cancel}>
+                    Назад
+                </Button>
+            ]}>
+                <Form
+                    form={form}
+                    layout={"vertical"}
+                    centered={true}
+                    name="formRegistry"
+                    style={{padding: 20}}>
+                        <Form.Item
+                            name="tag_name"
+                            label="категория"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "категория не может быть пустым"
+                                }
+                            ]}>
+                            <Input name="tag_name"
+                            id="tag_name"
+                            placeholder="категория"/>
+                        </Form.Item>
+                </Form>
+            </Modal>
       <Table
       loading={loading}
       dataSource={tagc}

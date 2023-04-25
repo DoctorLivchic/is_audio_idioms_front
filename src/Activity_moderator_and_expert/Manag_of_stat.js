@@ -10,8 +10,8 @@ import Item from "antd/es/list/Item.js";
 const columns = [
     {
         title:'Номер категории',
-        dataIndex:'tag_id',
-        key:'tag_id'
+        dataIndex:'status_id',
+        key:'status_id'
     },
     {
         title:'Дата добавления',
@@ -20,16 +20,16 @@ const columns = [
     },
     {
         title:'Название темы',
-        dataIndex:'tag_name',
-        key:'tag_name'
+        dataIndex:'status_name',
+        key:'status_name'
     }
   ]
   
   const GridDataOption = {
     rowCount:10,
     page:1,
-    orderBy:'tag_id',
-    from:'tagc'
+    orderBy:'status_id',
+    from:'request_status'
   }
   
   
@@ -37,7 +37,7 @@ const columns = [
   
   export default function Activity_moderator() {
 
-    const [tagc, setrequest] = useState([]);
+    const [request_status, setrequest] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -99,10 +99,36 @@ const columns = [
       update()
       }
   
-    async function push_phrase(){
+    async function add_stat(){
+      const stat_name1 = form.getFieldValue("stat_name");
+      console.log(stat_name1)
+      // for (let i = 0; i < selectedRowKeys.length; i++){  
+          try {    
+            const { error }  = await supabase
+            .from('request_status')
+            .insert({status_name:stat_name1})
+            console.log('Точка--')           
+      
+      }
+      
+      catch (error) {
+        notification.open({message:'Ошибка',description:error.message});
+        console.log('Точка1--')
+      }
+      // }
+      setShow(false)
+      getphrase()
+      console.log('Точка2--')
+      update()
+      
+    
+  }
+
+    async function change_stat(){
+      setShow(true)
       for (let i = 0; i < selectedRowKeys.length; i++){  
-          try {
-            const data = await supabase.from("tagc").select()
+          try {    
+            const data = await supabase.from("request_status").select()
             form.setFields(Object.keys(data).map((key) => ({
               name: key,
               value: data[key],
@@ -120,7 +146,6 @@ const columns = [
       console.log('Точка2')
       update()
     }
-   
   
     const navigate = useNavigate();
     return (
@@ -128,16 +153,47 @@ const columns = [
       <div style={{position: 'relative', left:'65%' }}>
       <Button onClick={delete_row} className='btn-7'>Удалить</Button>
       <Button onClick={update} className='btn-7'>Обновить</Button>
-      <Button onClick={push_phrase} className='btn-7'>Добавить</Button>
+      <Button onClick={change_stat} className='btn-7'>Добавить</Button>
       <Button onClick={() => {navigate("/Moderator_personal_account")}} className='btn-7'>Назад</Button>
       </div>
-     
+      <Modal open = {show}
+            title="Изменение статуса" 
+            onCancel={cancel}
+            footer={[
+                <Button onClick={add_stat}>
+                    Добавить
+                </Button>,
+                <Button onClick={cancel}>
+                    Назад
+                </Button>
+            ]}>
+                <Form
+                    form={form}
+                    layout={"vertical"}
+                    centered={true}
+                    name="formRegistry"
+                    style={{padding: 20}}>
+                        <Form.Item
+                            name="stat_name"
+                            label="категория"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "категория не может быть пустым"
+                                }
+                            ]}>
+                            <Input name="stat_name"
+                            id="stat_name"
+                            placeholder="категория"/>
+                        </Form.Item>
+                </Form>
+            </Modal>
       <Table
       loading={loading}
-      dataSource={tagc}
+      dataSource={request_status}
       columns={columns}
       rowSelection={rowSelection}
-      rowKey={(record) => record.tag_id}
+      rowKey={(record) => record.status_id}
       onRow={(record) => ({
         onClick: () => {
              

@@ -57,7 +57,7 @@ const columns = [
 const GridDataOption = {
   rowCount: 10,
   page: 1,
-  orderBy: "request_id",
+  orderBy: "phrase_id",
   from: "request",
 };
 
@@ -90,7 +90,8 @@ export default function Activity_moderator() {
     const data = await supabase
       .from("request")
       .select()
-      .eq("type_id", `${1}`);
+      .eq("type_id", `${0}`)
+      .eq("status_id", `${4}`)
     setrequest(data.data);
   }
 
@@ -125,15 +126,15 @@ export default function Activity_moderator() {
         const phrase = await supabase
           .from("request")
           .select()
-          .eq("request_id", selectedRowKeys.at(i));
-        console.log(phrase.data[0]['request_id']) //обращение к полю возвращаемого объекта из таблицы
+          .eq("phrase_id", selectedRowKeys.at(i));
+        console.log(phrase.data[0]['phrase_id']) //обращение к полю возвращаемого объекта из таблицы
 //------------------------------------------------------------------------------------------------------------
         //Обновляем поле update_at
         var update1 = ((new Date()).toISOString()).toLocaleString();
         const { error1 } = await supabase
           .from('request')
           .update({status_id:'3',update_at:(update1)})
-          .eq('request_id',selectedRowKeys.at(i));
+          .eq('phrase_id',selectedRowKeys.at(i));
 //------------------------------------------------------------------------------------------------------------
         //Обновляем одобренный запрос в таблицу с фразеологизмами
         const { error } = await supabase
@@ -163,7 +164,7 @@ export default function Activity_moderator() {
           Обновить
         </Button>
         <Button onClick={edit_request} className="btn-7">
-          Добавить запись
+          Обновить запись
         </Button>
         <Button
           onClick={() => {
@@ -179,7 +180,7 @@ export default function Activity_moderator() {
         dataSource={request}
         columns={columns}
         rowSelection={rowSelection}
-        rowKey={(record) => record.request_id}
+        rowKey={(record) => record.phrase_id}
         onRow={(record) => ({
           onClick: () => {},
         })}

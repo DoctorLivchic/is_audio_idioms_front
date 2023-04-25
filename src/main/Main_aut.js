@@ -4,8 +4,22 @@ import {useNavigate} from "react-router-dom";
 import { input1 } from '../CONST';
 import { supabase } from '../supabaseClient.js';
 import { async } from "q";
+import { Layout} from 'antd';
 
+const {  Sider,Content } = Layout;
 const { TextArea } = Input;
+
+
+
+const contentStyle = {
+  textAlign: 'center',
+  minHeight: 120,
+  lineHeight: '120px',
+  color: '#fff',
+  backgroundColor: '#108ee9',
+};
+
+
 
 const onChange = (e) => {
  console.log('Change:', e.target.value);
@@ -64,8 +78,6 @@ async function translateFunction(){
       notification.open({message:'Ошибка',description:error.message});
  }
  }
- 
-
 }
 
 
@@ -84,24 +96,24 @@ const navigate = useNavigate();
       </nav>
         </header>  
 
+
         <div className='input'>
           <div className='text' align="center">
           <h1>{input1}</h1>
           </div>
         </div>
 
-        <div className="slidermain" id="slidermain">
-          <div className="container">           
-                <div className="text">
-                 
-                     <div className='headerleft'>
-                        <div className='languagelabel'>
-                        <Form
+    <Layout>
+      <Content style={contentStyle}>Content
+      
+         <div className='languagelabel'>
+      <Form
                         layout={"vertical"}>
+                        <h4 className='h4_'>"Выбор языка"</h4> 
                         <Form.Item 
                         name="language_left"
                         id="language_left"
-                        label="Выбор языка">
+                       >
                           <select id="select_lang_enter" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
@@ -110,40 +122,43 @@ const navigate = useNavigate();
                             <option id='kor' value="kor">Korean</option>
                           </select>
                         </Form.Item >
-                        </Form>
-                        </div>
-                          <div className='buttom-block-left'>
+                        </Form> 
+                        </div>                        
+                          <div className='buttom-block'>
                           <Form.Item>
-
-                            {/* Поле ввода фразеологизма  */}
-                           
+                            {/* Поле ввода фразеологизма  */}                         
                           <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                      
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
-                          <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
+                         
                           </Form.Item>
-                        </div>
-                    </div>
+                           <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
+      </div>
+      </Content>
 
 
-
-                    <div className='headercenter'>
+        <Sider className='lef' >       
+        <div className='headercenter'>
                           <div className='buttom-block-center'>
                           <Form.Item>
-                          <Button onClick={changeLanguage} className='-' >Заменить</Button>
+                          <Button onClick={changeLanguage} className='Button_top' >Заменить</Button>
                           <br></br>
-                          <Button onClick={translateFunction} className='-' id='translateButton' >Перевести</Button>  
+                          <Button onClick={translateFunction} className='' id='translateButton' >Перевести</Button>  
                           </Form.Item>
                         </div>
-                    </div>
+        </div>              
+        </Sider>
 
-                    <div className='headerRight'>
+
+
+      <Content style={contentStyle}>Content      
                         <div className='languagelabel'>
                         <Form
                         layout='vertical'>
+                         <h4 className='h4_'>"Выбор языка"</h4> 
                         <Form.Item 
                         name="language_right"
                         id="language_right"
-                        label="Выбор языка">
+                       >
                           <select id="select_lang_exit" onChange={e => {
                                         console.log(e.target.value)
                                       }}>
@@ -155,18 +170,21 @@ const navigate = useNavigate();
                         </Form.Item >
                          </Form>
                         </div>
-                          <div className='buttom-block-right'>
+                          <div className='buttom-block'>
                           <Form.Item>
 
                             {/* Поле вывода переведенного фразеологизма  */}
                           <TextArea showCount id='textAreaExit' maxLength={100} /*onChange={onChange}*/ placeholder="Перевод" className='Text_area' />
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                           </Form.Item>
-                        </div>
-                    </div>            
-          </div>
-        </div>
-                  <footer id="footer" className="footer section">
+                        </div>                   
+      </Content>
+    </Layout>
+
+
+        
+        
+                  <footer id="footer" className="footer section" >
                     <div className="footer-top">
                       <div className="container">
                         <div className="row">
@@ -197,6 +215,6 @@ const navigate = useNavigate();
                     </div>
                   </footer>
         </div> 
-    </div>      
+        
     )
 }
