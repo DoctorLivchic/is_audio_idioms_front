@@ -132,6 +132,16 @@ const navigate = useNavigate();
                             />
                             <i className="input-icon uil uil-lock-alt"></i>
                           </div>
+
+                          <div className="form-group mt-2">
+                          <Select  id="select_lang_enter" onChange={e => {
+                                        console.log(e.target.value)
+                                      }}>
+                            <option id='rus' value="rus">Русский</option>
+                            <option id='fre' value="fre">French</option>
+                            <option id='kor' value="kor">Korean</option>
+                          </Select>
+                          </div>
                           <Form.Item>
                               <Button onClick={() => {addrequest()}} className='btn'>Отправить</Button>
                           </Form.Item>

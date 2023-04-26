@@ -1,9 +1,9 @@
 
 Kjavascript:S1128"(Remove this unused import of 'useState'.(ó•äœ8şÜÔ™ï0
 Ljavascript:S1128")Remove this unused import of 'useEffect'.(ó•äœ8şÜÔ™ï0
-Hjavascript:S1128"%Remove this unused import of 'Input'.(æ†«¶8ªÍ×¬ï0
-Kjavascript:S1128"(Remove this unused import of 'Checkbox'.(æ†«¶8ªÍ×¬ï0
-Hjavascript:S1128"%Remove this unused import of 'Affix'.(æ†«¶8ªÍ×¬ï0
+Mjavascript:S1128"%Remove this unused import of 'Input'.(æµ¦÷şÿÿÿÿ8ªÍ×¬ï0
+Pjavascript:S1128"(Remove this unused import of 'Checkbox'.(æµ¦÷şÿÿÿÿ8ªÍ×¬ï0
+Mjavascript:S1128"%Remove this unused import of 'Affix'.(æµ¦÷şÿÿÿÿ8ªÍ×¬ï0
 Hjavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼8«Í×¬ï0
 Ljavascript:S1128"$Remove this unused import of 'func'.(¾È†±ÿÿÿÿÿ8«Í×¬ï0
 Ajavascript:S125"Remove this commented out code.(°²ê8«Í×¬ï0
@@ -18,8 +18,8 @@ Ajavascript:S125-"Remove this commented out code.(Ùâòï8¬Í×¬ï0
 Cjavascript:S14811"!Remove unused function 'getRole'.(èşÑ"8¬Í×¬ï0
 ^javascript:S1481H"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8ÏÙ«Ìï0
 [javascript:S1854H"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8ÏÙ«Ìï0
-]javascript:S1481o"5Remove the declaration of the unused 'data' variable.(–İ’ıÿÿÿÿ8ÏÙ«Ìï0
-Zjavascript:S1854o"2Remove this useless assignment to variable "data".(–İ’ıÿÿÿÿ8ÏÙ«Ìï0
-Ajavascript:S125r"Remove this commented out code.(Òû‹ê8ĞÙ«Ìï0
-wjavascript:S3776v"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ò¸8ĞÙ«Ìï0
-Qjavascript:S3504y")Unexpected var, use let or const instead.(ÖâŠüÿÿÿÿ8ĞÙ«Ìï0
+]javascript:S1481n"5Remove the declaration of the unused 'data' variable.(–İ’ıÿÿÿÿ8ÏÙ«Ìï0
+Zjavascript:S1854n"2Remove this useless assignment to variable "data".(–İ’ıÿÿÿÿ8ÏÙ«Ìï0
+Ajavascript:S125q"Remove this commented out code.(Òû‹ê8ĞÙ«Ìï0
+wjavascript:S3776u"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ò¸8ĞÙ«Ìï0
+Qjavascript:S3504x")Unexpected var, use let or const instead.(ÖâŠüÿÿÿÿ8ĞÙ«Ìï0

@@ -48,10 +48,15 @@ const columns = [
   key:'tag_id'
   },
   {
-    title:'фразеологизм',
-    dataIndex:'phrase_id',
-    key:'phrase_id'
-    }
+  title:'Ссылка на источник',
+  dataIndex:'link_phraseological',
+  key:'link_phraseological'
+  },
+  {
+  title:'Фразеологизм',
+  dataIndex:'phrase_id',
+  key:'phrase_id'
+  }
   ];
 
 const GridDataOption = {
@@ -128,6 +133,31 @@ export default function Activity_moderator() {
           .select()
           .eq("phrase_id", selectedRowKeys.at(i));
         console.log(phrase.data[0]['phrase_id']) //обращение к полю возвращаемого объекта из таблицы
+
+//------------------------------------------------------------------------------------------------------------
+        //Обновляем одобренный запрос в таблицу с фразеологизмами
+        // var update1 = ((new Date()).toISOString()).toLocaleString();
+        const id = await supabase
+        .from("phraseological")
+        .select('phrase_id')
+        
+        
+          console.log(id.data[i]["phrase_id"])
+        
+        
+        for (let i = 1; i<4;i++){
+          let lang = ''
+          if (i==1){ lang = 'rus_request'}
+          else if (i==2){ lang = 'kor_request'}
+          else { lang = 'fre_request'}
+           console.log(phrase.data[0][lang],"точка")
+           const { error } = await supabase
+            .from('phrase_text')
+            .update({phrase_text_text: phrase.data[0][lang]})
+            .eq('phrase_id',selectedRowKeys.at(i));
+            console.log('phrase_id',selectedRowKeys.at(i))
+        }
+
 //------------------------------------------------------------------------------------------------------------
         //Обновляем поле update_at
         var update1 = ((new Date()).toISOString()).toLocaleString();
@@ -135,12 +165,7 @@ export default function Activity_moderator() {
           .from('request')
           .update({status_id:'3',update_at:(update1)})
           .eq('phrase_id',selectedRowKeys.at(i));
-//------------------------------------------------------------------------------------------------------------
-        //Обновляем одобренный запрос в таблицу с фразеологизмами
-        const { error } = await supabase
-          .from('phraseological')
-          .update({ rus: phrase.data[0]['rus_request'], fre: phrase.data[0]['fre_request'], kor: phrase.data[0]['kor_request']})
-          .eq('phrase_id',selectedRowKeys.at(i));
+
 //------------------------------------------------------------------------------------------------------------
         notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")

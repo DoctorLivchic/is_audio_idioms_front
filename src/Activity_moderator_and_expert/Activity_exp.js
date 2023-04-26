@@ -46,6 +46,11 @@ const columns = [
   title:'Категория',
   dataIndex:'tag_id',
   key:'tag_id'
+  },
+  {
+  title:'Ссылка на источник',
+  dataIndex:'link_phraseological',
+  key:'link_phraseological'
   }
   ];
 
@@ -85,6 +90,7 @@ export default function Activity_moderator() {
     const data = await supabase
       .from("request")
       .select()
+      .eq("type_id", `${1}`)
       .eq("status_id", `${4}`);
     setrequest(data.data);
   }
@@ -123,12 +129,7 @@ export default function Activity_moderator() {
           .eq("request_id", selectedRowKeys.at(i));
         console.log(phrase.data[0]['request_id']) //обращение к полю возвращаемого объекта из таблицы
 //------------------------------------------------------------------------------------------------------------
-        // //Обновляем поле update_at
-        // var update1 = ((new Date()).toISOString()).toLocaleString();
-        // const { error1 } = await supabase
-        //   .from('request')
-        //   .update({status_id:'3',update_at:(update1)})
-        //   .eq('request_id',selectedRowKeys.at(i));
+       
 //------------------------------------------------------------------------------------------------------------
         //Добавляем одобренный запрос в таблицу с фразеологизмами
         
@@ -136,10 +137,10 @@ export default function Activity_moderator() {
 
       //Добавляем новую запись в таблицу phraseological
       var update1 = ((new Date()).toISOString()).toLocaleString();
-
+      
       const { error } = await supabase
       .from('phraseological')
-      .insert({updated_at:(update1)})
+      .insert({updated_at:(update1),tag_id:phrase.data[0]['tag_id'],link_phraseological:phrase.data[0]['link_phraseological']})
 
 
         //Получаем последний phrase_id 
@@ -160,8 +161,15 @@ export default function Activity_moderator() {
         // console.log(phrase.data[0][lang])
          const { error } = await supabase
           .from('phrase_text')
-          .insert({phrase_id: max,language_id:i,phrase_text_text: phrase.data[0][lang]})
-      }   
+          .insert({phrase_id: max,language_id:i,phrase_text_text: phrase.data[0][lang],created_at:update1})
+      }
+//------------------------------------------------------------------------------------------------------------
+  //Обновляем поле update_at
+         var update1 = ((new Date()).toISOString()).toLocaleString();
+         const { error1 } = await supabase
+           .from('request')
+           .update({status_id:'3',update_at:(update1)})
+           .eq('request_id',selectedRowKeys.at(i));         
 //------------------------------------------------------------------------------------------------------------
         notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
         console.log("Запись добавленна")

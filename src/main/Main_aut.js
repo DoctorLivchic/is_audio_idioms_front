@@ -5,6 +5,7 @@ import { input1 } from '../CONST';
 import { supabase } from '../supabaseClient.js';
 import { async } from "q";
 import { Layout} from 'antd';
+import {HeartTwoTone,DislikeTwoTone,LikeTwoTone } from '@ant-design/icons'
 
 const {  Sider,Content } = Layout;
 const { TextArea } = Input;
@@ -14,9 +15,9 @@ const { TextArea } = Input;
 const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
-  lineHeight: '120px',
+  lineHeight: '220px',
   color: '#fff',
-  backgroundColor: '#108ee9',
+  backgroundColor: '#b7cbf7',
 };
 
 
@@ -127,7 +128,11 @@ const navigate = useNavigate();
                           <div className='buttom-block'>
                           <Form.Item>
                             {/* Поле ввода фразеологизма  */}                         
-                          <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />                      
+                          <TextArea showCount id='textAreaEnter' maxLength={100} /*onChange={onChange}*/ placeholder="Введите текст" className='Text_area' />   
+                          <Button icon={<HeartTwoTone />}>2</Button> 
+                          <Button icon={<LikeTwoTone />}>25</Button> 
+                          <Button icon={<DislikeTwoTone />}>2</Button> 
+                           
                           <Button onClick={() => {navigate('')}} className='buttom-audio' >Прослушать</Button>
                          
                           </Form.Item>
@@ -184,36 +189,7 @@ const navigate = useNavigate();
 
         
         
-                  <footer id="footer" className="footer section" >
-                    <div className="footer-top">
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <div className="logo">                              
-                            </div>
-                            
-                            <ul className="social">
-                              <li><a href="#"><span className="fa fa-facebook"></span></a></li>
-                              <li><a href="#"><span className="fa fa-twitter"></span></a></li>
-                              <li><a href="#"><span className="fa fa-dribbble"></span></a></li>
-                              <li><a href="#"><span className="fa fa-instagram"></span></a></li>
-                              <li><a href="#"><span className="fa fa-pinterest-p"></span></a></li>
-                            </ul>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="copyright">
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-md-12">
-                            <p>2023 © Словарь аудио-фразеологизмов</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </footer>
+                  
         </div> 
         
     )
