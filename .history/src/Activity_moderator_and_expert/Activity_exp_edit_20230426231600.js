@@ -123,52 +123,90 @@ export default function Activity_moderator() {
   }
 
   async function edit_request() {
-    try {
-      for (let i = 0; i < selectedRowKeys.length; i++) {
-        //Получаем выбранный запрос
-        const phrase = await supabase
-          .from("request")
-          .select()
-          .eq("phrase_id", selectedRowKeys.at(i));
-
-        console.log(phrase.data[0]);
-
-        for (let i = 1; i < 4; i++) {
-          let lang = "";
-          if (i == 1) {
-            lang = "rus_request";
-          } else if (i == 2) {
-            lang = "kor_request";
-          } else {
-            lang = "fre_request";
-          }
-          console.log("Выбранный язык: " + lang);
-          console.log("Фрэйз айди: " + phrase.data[0]["phrase_id"]);
-          console.log("Передаваемый текст: " + phrase.data[0][lang]);
-          const { error } = await supabase
-            .from("phrase_text")
-            .update({ phrase_text_text: phrase.data[0][lang] })
-            .eq("phrase_id", phrase.data[0]["phrase_id"])
-            .eq("language_id", i);
+    for (let i = 0; i < selectedRowKeys.length; i++) {
+      const phrase = await supabase
+      .from("request")
+      .select()
+      .eq("phrase_id", selectedRowKeys.at(i));
+    
+    
+    
+      for (let i = 1; i < 4; i++) {
+        let lang = "";
+        if (i == 1) {
+          lang = "rus_request";
+        } else if (i == 2) {
+          lang = "kor_request";
+        } else {
+          lang = "fre_request";
         }
-        //Обновляем поле update_at
-        var update1 = new Date().toISOString().toLocaleString();
-        const { error1 } = await supabase
-          .from("request")
-          .update({ status_id: "3", update_at: update1 })
-          .eq("phrase_id", selectedRowKeys.at(i));
+        console.log("Выбранный язык: "+phrase.data[0][lang]);
+        console.log("выбранный фраз " + selectedRowKeys.at(i));
+        // const { error } = await supabase
+        //   .from("phrase_text")
+        //   .update({ phrase_text_text: phrase.data[0][lang] })
+        //   .eq("phrase_id", phrase.data[0]["phrase_id"]);
+        // console.log("phrase_id", selectedRowKeys.at(i));
       }
-
-      notification.open({
-        message: "УСПЕШНО",
-        description: "Запрос был успешно добавлен в систему!",
-      });
-      console.log("Запись добавленна");
-      update();
-    } catch (error) {
-      notification.open({ message: "Ошибка", description: error.message });
-      update();
     }
+    
+
+    // const request = await supabase.from("request").select();
+    // const adde = (await request).data;
+
+    // for (let i = 0; i < selectedRowKeys.length; i++) {
+    //   try {
+    //     //получаем выбранную фразу(ы)
+    //     const phrase = await supabase
+    //       .from("request")
+    //       .select()
+    //       .eq("phrase_id", selectedRowKeys.at(i));
+    //     console.log("выбранная фраза: "+phrase.data[0]["phrase_id"]); //обращение к полю возвращаемого объекта из таблицы
+
+    //     //------------------------------------------------------------------------------------------------------------
+    //     //Обновляем одобренный запрос в таблицу с фразеологизмами
+    //     // var update1 = ((new Date()).toISOString()).toLocaleString();
+    //     const id = await supabase.from("phraseological").select("phrase_id");
+
+
+    //     for (let i = 1; i < 4; i++) {
+    //       let lang = "";
+    //       if (i == 1) {
+    //         lang = "rus_request";
+    //       } else if (i == 2) {
+    //         lang = "kor_request";
+    //       } else {
+    //         lang = "fre_request";
+    //       }
+    //       console.log("Выбранный язык: "+phrase.data[0][lang]);
+    //       console.log("выбранный фраз " + selectedRowKeys.at(i));
+    //       const { error } = await supabase
+    //         .from("phrase_text")
+    //         .update({ phrase_text_text: phrase.data[0][lang] })
+    //         .eq("phrase_id", phrase.data[0]["phrase_id"]);
+    //       console.log("phrase_id", selectedRowKeys.at(i));
+    //     }
+
+    //     //------------------------------------------------------------------------------------------------------------
+    //     //Обновляем поле update_at
+    //     var update1 = new Date().toISOString().toLocaleString();
+    //     const { error1 } = await supabase
+    //       .from("request")
+    //       .update({ status_id: "4", update_at: update1 })
+    //       .eq("phrase_id", selectedRowKeys.at(i));
+
+    //     //------------------------------------------------------------------------------------------------------------
+    //     notification.open({
+    //       message: "УСПЕШНО",
+    //       description: "Запрос был успешно добавлен в систему!",
+    //     });
+    //     console.log("Запись добавленна");
+    //     update();
+    //   } catch (error) {
+    //     notification.open({ message: "Ошибка", description: error.message });
+    //     update();
+    //   }
+    // }
   }
 
   const navigate = useNavigate();

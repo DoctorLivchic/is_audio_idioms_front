@@ -43,21 +43,21 @@ const columns = [
     key: "type_id",
   },
   {
-    title: "Категория",
-    dataIndex: "tag_id",
-    key: "tag_id",
+  title:'Категория',
+  dataIndex:'tag_id',
+  key:'tag_id'
   },
   {
-    title: "Ссылка на источник",
-    dataIndex: "link_phraseological",
-    key: "link_phraseological",
+  title:'Ссылка на источник',
+  dataIndex:'link_phraseological',
+  key:'link_phraseological'
   },
   {
-    title: "Фразеологизм",
-    dataIndex: "phrase_id",
-    key: "phrase_id",
-  },
-];
+  title:'Фразеологизм',
+  dataIndex:'phrase_id',
+  key:'phrase_id'
+  }
+  ];
 
 const GridDataOption = {
   rowCount: 10,
@@ -65,6 +65,8 @@ const GridDataOption = {
   orderBy: "phrase_id",
   from: "request",
 };
+
+
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
@@ -82,7 +84,7 @@ export default function Activity_moderator() {
   };
 
   useEffect(() => {
-    getrequest().then(() => setLoading(false));
+    getrequest().then(()=>setLoading(false));
   }, [loading]);
 
   async function getrequest() {
@@ -94,12 +96,12 @@ export default function Activity_moderator() {
       .from("request")
       .select()
       .eq("type_id", `${0}`)
-      .eq("status_id", `${4}`);
+      .eq("status_id", `${4}`)
     setrequest(data.data);
   }
 
   function update() {
-    getrequest();
+    getrequest()
   }
 
   async function delete_row() {
@@ -110,12 +112,9 @@ export default function Activity_moderator() {
           .delete()
           .eq("request_id", selectedRowKeys.at(i));
         console.log("Запись удалена", selectedRowKeys.at(i));
-        notification.open({
-          message: "Успешно",
-          description: "Запись успешно удаленна",
-        });
+        notification.open({ message: "Успешно",description:'Запись успешно удаленна'});
       } catch (error) {
-        notification.open({ message: "Ошибка", description: error.message });
+        notification.open({ message: "Ошибка",description: error.message});
       }
     }
     getrequest();
@@ -123,51 +122,59 @@ export default function Activity_moderator() {
   }
 
   async function edit_request() {
-    try {
-      for (let i = 0; i < selectedRowKeys.length; i++) {
-        //Получаем выбранный запрос
+    const request = await supabase.from("request").select();
+    const adde = (await request).data;
+
+    for (let i = 0; i < selectedRowKeys.length; i++) {
+      try {
+        //получаем выбранную фразу(ы)
         const phrase = await supabase
           .from("request")
           .select()
           .eq("phrase_id", selectedRowKeys.at(i));
+        console.log(phrase.data[0]['phrase_id']) //обращение к полю возвращаемого объекта из таблицы
 
-        console.log(phrase.data[0]);
-
-        for (let i = 1; i < 4; i++) {
-          let lang = "";
-          if (i == 1) {
-            lang = "rus_request";
-          } else if (i == 2) {
-            lang = "kor_request";
-          } else {
-            lang = "fre_request";
-          }
-          console.log("Выбранный язык: " + lang);
-          console.log("Фрэйз айди: " + phrase.data[0]["phrase_id"]);
-          console.log("Передаваемый текст: " + phrase.data[0][lang]);
-          const { error } = await supabase
-            .from("phrase_text")
-            .update({ phrase_text_text: phrase.data[0][lang] })
-            .eq("phrase_id", phrase.data[0]["phrase_id"])
-            .eq("language_id", i);
+//------------------------------------------------------------------------------------------------------------
+        //Обновляем одобренный запрос в таблицу с фразеологизмами
+        // var update1 = ((new Date()).toISOString()).toLocaleString();
+        const id = await supabase
+        .from("phraseological")
+        .select('phrase_id')
+        
+        
+          console.log(id.data[i]["phrase_id"])
+        
+        
+        for (let i = 1; i<4;i++){
+          let lang = ''
+          if (i==1){ lang = 'rus_request'}
+          else if (i==2){ lang = 'kor_request'}
+          else { lang = 'fre_request'}
+           console.log(phrase.data[0][lang],"точка")
+           const { error } = await supabase
+            .from('phrase_text')
+            .update({phrase_text_text: phrase.data[0][lang]})
+            .eq('phrase_id',selectedRowKeys.at(i));
+            console.log('phrase_id',selectedRowKeys.at(i))
         }
-        //Обновляем поле update_at
-        var update1 = new Date().toISOString().toLocaleString();
-        const { error1 } = await supabase
-          .from("request")
-          .update({ status_id: "3", update_at: update1 })
-          .eq("phrase_id", selectedRowKeys.at(i));
-      }
 
-      notification.open({
-        message: "УСПЕШНО",
-        description: "Запрос был успешно добавлен в систему!",
-      });
-      console.log("Запись добавленна");
-      update();
-    } catch (error) {
-      notification.open({ message: "Ошибка", description: error.message });
-      update();
+//------------------------------------------------------------------------------------------------------------
+        //Обновляем поле update_at
+        var update1 = ((new Date()).toISOString()).toLocaleString();
+        const { error1 } = await supabase
+          .from('request')
+          .update({status_id:'3',update_at:(update1)})
+          .eq('phrase_id',selectedRowKeys.at(i));
+
+//------------------------------------------------------------------------------------------------------------
+        notification.open({ message: "УСПЕШНО", description: "Запрос был успешно добавлен в систему!" });
+        console.log("Запись добавленна")
+        update()
+        
+      } catch (error) {
+        notification.open({ message: "Ошибка", description: error.message });
+        update()
+      }
     }
   }
 
