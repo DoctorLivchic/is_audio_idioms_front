@@ -14,7 +14,7 @@ const { TextArea } = Input;
 
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 120,
+  minHeight: 110,
   lineHeight: '220px',
   color: '#fff',
   backgroundColor: '#b7cbf7',
