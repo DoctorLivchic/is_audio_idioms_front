@@ -38,12 +38,24 @@ function changeLanguage() {
   document.getElementById("textAreaExit").value = firstT;
 }
 
+// async function getPhrase() {
+//   const firstT = document.getElementById("textAreaEnter").value;
+//   const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+//   const phrase = await supabase
+//     .from("phrase_text")
+//     .select()
+//     .eq("phrase_text_text", firstText);
+//   console.log(phrase);
+//   return phrase;
+// }
+
 async function translateFunction() {
+  // const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
+  // console.log(chosenLanguage);
 
   const translationLanguage = document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
   // console.log(translationLanguage);
 
-  //Получаем язык на который переводим
   let lang = 0;
   if (translationLanguage == "rus") {
     lang = 1;
@@ -53,19 +65,19 @@ async function translateFunction() {
     lang = 3;
   }
 
+  // const firstT = document.getElementById("textAreaEnter").value;
+  // const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
 
   const firstT = document.getElementById("textAreaEnter").value;
   const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
-
-  //Получаем айди фразеологизма с которого переводим
   const phrase = await supabase
     .from("phrase_text")
     .select()
     .eq("phrase_text_text", firstText);
+  console.log(phrase);
 
-  
+  console.log("Выбранный фразеологизм: "+ phrase.data[0]['phrase_id']);
   try {
-    //Получаем фразеологизм на языке, который выбран к переводу
     const translate = await supabase
       .from("phrase_text")
       .select("phrase_text_text")

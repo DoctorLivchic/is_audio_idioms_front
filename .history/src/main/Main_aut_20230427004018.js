@@ -38,12 +38,34 @@ function changeLanguage() {
   document.getElementById("textAreaExit").value = firstT;
 }
 
+async function getPhrase() {
+  const chosenLanguage = document.getElementById("select_lang_enter").value;
+
+  const firstT = document.getElementById("textAreaEnter").value;
+  const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+
+  let lang = 0;
+  if (chosenLanguage == "rus") {
+    lang = 1;
+  } else if (chosenLanguage == "kor") {
+    lang = 2;
+  } else {
+    lang = 3;
+  }
+  const phrase = await supabase
+    .from("phrase_text")
+    .select("phrase_id")
+    .eq("phrase_text_text", firstText);
+  return phrase;
+}
+
 async function translateFunction() {
+  // const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
+  // console.log(chosenLanguage);
 
   const translationLanguage = document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
   // console.log(translationLanguage);
 
-  //Получаем язык на который переводим
   let lang = 0;
   if (translationLanguage == "rus") {
     lang = 1;
@@ -53,25 +75,17 @@ async function translateFunction() {
     lang = 3;
   }
 
-
   const firstT = document.getElementById("textAreaEnter").value;
   const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
 
-  //Получаем айди фразеологизма с которого переводим
-  const phrase = await supabase
-    .from("phrase_text")
-    .select()
-    .eq("phrase_text_text", firstText);
-
-  
+  const phrase = getPhrase();
+  console.log("Выбранный фразеологизм: "+ phrase.data[0]["phrase_id"])
   try {
-    //Получаем фразеологизм на языке, который выбран к переводу
     const translate = await supabase
       .from("phrase_text")
       .select("phrase_text_text")
-      .eq('phrase_id',phrase.data[0]["phrase_id"])
-      .eq('language_id', lang)
-    document.getElementById("textAreaExit").value = translate.data[0]['phrase_text_text']; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+      .eq(phrase.data[0]["phrase_id"]);
+    document.getElementById("textAreaExit").value = translate[0][lang]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
   } catch (error) {
     notification.open({ message: "Ошибка", description: error.message });
   }
