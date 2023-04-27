@@ -14,8 +14,7 @@ import {useState} from 'react';
 
 export default function Main() {
   
-  const [buttonTextLike, setButtonTextLike] = useState(0);
-  const [buttonTextDislike, setButtonTextDislike] = useState(0);
+  const [buttonText, setButtonText] = useState(0);
 
 
   const { Sider, Content } = Layout;
@@ -53,7 +52,7 @@ export default function Main() {
     const li = document.getElementById("like").value;
   }
   
-  //Функция получения лайков и дизлайков
+  //Функция получения лайков
   async function GetLike() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст
@@ -68,14 +67,13 @@ export default function Main() {
       .select()
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
   
-      setButtonTextLike(likes.data[0]['rating_like']);
-      setButtonTextDislike(likes.data[0]['rating_dislike'])
+      setButtonText(likes.data[0]['rating_like']);
   }
   
   //Функция перевода
   async function translateFunction() {
     
-    GetLike();
+  
     const translationLanguage = document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
     // console.log(translationLanguage);
   
@@ -138,47 +136,9 @@ export default function Main() {
       .from("phraseological")
       .update({ rating_like: like + 1 })
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    const phrase3 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-      setButtonTextLike(phrase3.data[0]['rating_like']);
-
-    
   }
   //Функция дизлайка
-  async function dislikePhrase() {
-    const firstT = document.getElementById("textAreaEnter").value;
-    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
-  
-    //Получаем айди фразеологизма
-    const phrase = await supabase
-      .from("phrase_text")
-      .select("phrase_id")
-      .eq("phrase_text_text", firstText);
-  
-    const phrase2 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-  
-    let like = phrase2.data[0]["rating_dislike"];
-    console.log("like: " + like);
-    const { error } = await supabase
-      .from("phraseological")
-      .update({ rating_dislike: like + 1 })
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    const phrase3 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    setButtonTextDislike(phrase3.data[0]['rating_dislike'])
-    
-  }
+  function dislikePhrase() {}
   //Функция добавления в избранное
   async function addToFavourite() {
     const firstT = document.getElementById("textAreaEnter").value;
@@ -260,12 +220,12 @@ export default function Main() {
                 onClick={likePhrase}
                 id="like"
                 icon={<LikeTwoTone />}
-              >{buttonTextLike}</Button>
+              >{}</Button>
               <Button
                 onClick={dislikePhrase}
                 id="dislike"
                 icon={<DislikeTwoTone />}
-              >{buttonTextDislike}</Button>
+              >{}</Button>
 
               <Button
                 onClick={() => {

@@ -138,15 +138,6 @@ export default function Main() {
       .from("phraseological")
       .update({ rating_like: like + 1 })
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    const phrase3 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-      setButtonTextLike(phrase3.data[0]['rating_like']);
-
-    
   }
   //Функция дизлайка
   async function dislikePhrase() {

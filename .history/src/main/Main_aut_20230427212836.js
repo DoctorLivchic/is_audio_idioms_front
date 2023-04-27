@@ -138,15 +138,6 @@ export default function Main() {
       .from("phraseological")
       .update({ rating_like: like + 1 })
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    const phrase3 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-      setButtonTextLike(phrase3.data[0]['rating_like']);
-
-    
   }
   //Функция дизлайка
   async function dislikePhrase() {
@@ -164,20 +155,12 @@ export default function Main() {
       .select()
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
   
-    let like = phrase2.data[0]["rating_dislike"];
+    let like = phrase2.data[0]["rating_like"];
     console.log("like: " + like);
     const { error } = await supabase
       .from("phraseological")
       .update({ rating_dislike: like + 1 })
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    const phrase3 = await supabase
-      .from("phraseological")
-      .select()
-      .eq("phrase_id", phrase.data[0]["phrase_id"]);
-
-    setButtonTextDislike(phrase3.data[0]['rating_dislike'])
-    
   }
   //Функция добавления в избранное
   async function addToFavourite() {
