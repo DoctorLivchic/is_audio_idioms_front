@@ -71,7 +71,7 @@ export default function Main_page() {
 							<p>В нашем словаре фразеологизмов вы узнаете много нового!</p>
 							<div className="button">
 								
-								<Button onClick={() => {navigate('/main/Main')}} className='btn'>Перевести фразеологизм</Button>
+								<Button onClick={() => {navigate('/main/Main_aut')}} className='btn'>Перевести фразеологизм</Button>
 							</div>
 						</div>
 					</div>

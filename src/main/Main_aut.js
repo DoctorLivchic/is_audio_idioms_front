@@ -6,16 +6,21 @@ import { supabase } from "../supabaseClient.js";
 import { async } from "q";
 import { Layout } from "antd";
 import { HeartTwoTone, DislikeTwoTone, LikeTwoTone } from "@ant-design/icons";
+import Pagefooter from "../component/Pagefooter";
 
 const { Sider, Content } = Layout;
 const { TextArea } = Input;
+
+
 
 const contentStyle = {
   textAlign: "center",
   lineHeight: "220px",
   color: "#fff",
-  backgroundColor: "#b7cbf7",
+  backgroundColor: "#95aacc",
 };
+
+
 
 const onChange = (e) => {
   console.log("Change:", e.target.value);
@@ -36,6 +41,7 @@ function changeLanguage() {
   const secondText = secondT.toLowerCase(); //Возвращаем текст из правого блока
   document.getElementById("textAreaEnter").value = secondT;
   document.getElementById("textAreaExit").value = firstT;
+  const li= document.getElementById("like").value ;
 }
 
 async function translateFunction() {
@@ -56,12 +62,14 @@ async function translateFunction() {
 
   const firstT = document.getElementById("textAreaEnter").value;
   const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+  console.log(firstText);
 
   //Получаем айди фразеологизма с которого переводим
   const phrase = await supabase
     .from("phrase_text")
     .select()
     .eq("phrase_text_text", firstText);
+
 
   
   try {
@@ -75,7 +83,15 @@ async function translateFunction() {
   } catch (error) {
     notification.open({ message: "Ошибка", description: error.message });
   }
+
+//-------------------------------------------------------------------------------
+// Вывод лайков
+  
+
+
 }
+
+
 
 export default function Main() {
   const navigate = useNavigate();
@@ -140,8 +156,8 @@ export default function Main() {
                 /*onChange={onChange}*/ placeholder="Введите текст"
                 className="Text_area"
               />
-              <Button icon={<HeartTwoTone />}>2</Button>
-              <Button icon={<LikeTwoTone />}>25</Button>
+              <Button icon={<HeartTwoTone />}></Button>
+              <Button id="dislike" icon={<LikeTwoTone />}></Button>
               <Button icon={<DislikeTwoTone />}>2</Button>
 
               <Button
@@ -224,6 +240,7 @@ export default function Main() {
           </div>
         </Content>
       </Layout>
+      <Pagefooter></Pagefooter>
     </div>
   );
 }
