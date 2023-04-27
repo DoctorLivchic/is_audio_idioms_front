@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Input, Checkbox, Affix } from "antd";
+import { Button, Form, Input, Checkbox, Affix,notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient.js";
 import { async } from "q";
@@ -37,7 +37,7 @@ export default function Authorization() {
   function setWhite(formId) {
     document.getElementById(formId).setAttribute("class", "form-style");
   }
-  //Получение таблицы profiles
+  //Получение таблицы user
   async function getUser() {
     const profiles = await supabase.from("user").select();
     return profiles;
@@ -63,7 +63,7 @@ export default function Authorization() {
     const name1 = document.getElementById("logname").value;
     const passAffirm = document.getElementById("logpassAffirm").value;
     //console.log(styles.box-shadow)
-
+    
     //Запись
     if (validName(name1)) {
       if (ValidMail(email1)) {
@@ -79,35 +79,34 @@ export default function Authorization() {
                 login: email1,
               });
           } catch (error) {
-            alert(error.error_description || error.message);
+            notification.open({message:'Ошибка',description:error.message});
           }
-          alert("Регистрация прошла успешно!");
+          notification.open({message:'Успешно',description:'Регистрация прошла успешно'});
           window.location.reload();
-          document.getElementById("logpassUp").value = email1;
+          
           
         } else {
           setRed("logpassUp");
           setRed("logpassAffirm");
-          alert("Ваши пароли не совпадают!");
+          notification.open({message:'Ошибка',description:'Ваши пароли не совпадают!'});
           document.getElementById("logpassUp").value = "";
           document.getElementById("logpassAffirm").value = "";
         }
       } else {
         setRed("logemailUp");
         setWhite("logname");
-        alert("Вы ввели некорректный email!");
+        notification.open({message:'Ошибка',description:'Вы ввели некорректный email!'});
         document.getElementById("logemailUp").value = "";
       }
     } else {
       setRed("logname");
-      alert("Вы ввели некорректное имя!");
+      notification.open({message:'Ошибка',description:'Вы ввели некорректное имя!'});
       document.getElementById("logname").value = "";
     }
 
     //попытка получить последнего добавленного юзера
 
     const user = getUser();
-
     const data = (await user).data;
     
 
@@ -118,45 +117,67 @@ export default function Authorization() {
   async function logIn() {
     const email = document.getElementById("logemailIn").value;
     const password = document.getElementById("logpassIn").value;
-    var index = -1;
-    //Получение всех профилей
-    const user = getUser();
-    const data = (await user).data;
-    for (let i = 0; i < data.length; i++) {
-      if (data[i]["email"] == email) {
-        index = i;
-        break;
+
+    //Ищем пользователя в таблице - если нет - выдаем ошибку
+    try{
+
+      const user = await supabase
+      .from('user')
+      .select('login', 'password')
+      .eq('login', email)
+      .eq('password', password)
+
+      if(user.data.length==0){
+        console.log('Юзера нет')
       }
+
+    }catch(error){
+          setRed("logpassIn");
+          setRed("logemailIn");
+          notification.open({message:'Ошибка',description:'Вы ввели некорректные данные!'});
     }
 
-    if (index == -1) {
-      setRed("logemailIn");
-      alert("Почта введена некорректно или такой почты не существует!");
-    } else {
-      if (data[index]["password"] == password) {
-        if (data[index]["role_id"] == 1) {
-          navigate("/Moderator_personal_account");
-          alert("Вы успешно авторизовались!");
-        }
-        if (data[index]["role_id"] == 2) {
-          navigate("/Expert_personal_account");
-          alert("Вы успешно авторизовались!");
-        }
-        if (data[index]["role_id"] == 3) {
-          navigate("/main_page/Main_page_aut");
-          alert("Вы успешно авторизовались!");
-        }
-      } else {
-        if (data[index]["password"] != password) {
-          setRed("logpassIn");
-          setWhite("logemailIn");
-          alert("Вы ввели некорректный пароль!");
-        } else {
-          navigate("/main_page/Main_page_aut");
-          alert("Вы успешно авторизовались!");
-        }
-      }
-    }
+    // var index = -1;
+    // //Получение всех профилей
+    // const user = getUser();
+    // console.log(user)
+    // const data = (await user).data;
+    // console.log(data)
+    // for (let i = 0; i < data.length; i++) {
+    //   if (data[i]["email"] == email) {
+    //     index = i;
+    //     break;
+    //   }
+    // }
+
+    // if (index == -1) {
+    //   setRed("logemailIn");
+    //   notification.open({message:'Ошибка',description:'Почта введена некорректно или такой почты не существует!'});
+    // } else {
+    //   if (data[index]["password"] == password) {
+    //     if (data[index]["role_id"] == 1) {
+    //       navigate("/Moderator_personal_account");
+    //       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+    //     }
+    //     if (data[index]["role_id"] == 2) {
+    //       navigate("/Expert_personal_account");
+    //       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+    //     }
+    //     if (data[index]["role_id"] == 3) {
+    //       navigate("/main_page/Main_page_aut");
+    //       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+    //     }
+    //   } else {
+    //     if (data[index]["password"] != password) {
+    //       setRed("logpassIn");
+    //       setWhite("logemailIn");
+    //       notification.open({message:'Ошибка',description:'Вы ввели некорректный пароль!'});
+    //     } else {
+    //       navigate("/main_page/Main_page_aut");
+    //       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+    //     }
+    //   }
+    // }
   }
 
   const navigate = useNavigate();
@@ -170,10 +191,10 @@ export default function Authorization() {
                 className="section pb-5 pt-5 pt-sm-2 text-center"
                 align="center"
               >
-                <h6 className="mb-0 pb-3">
+                <h5 className="mb-0 pb-3">
                   <span>Авторизоваться </span>
                   <span>Зарегистрироваться</span>
-                </h6>
+                </h5>
 
                 <input
                   className="checkbox"

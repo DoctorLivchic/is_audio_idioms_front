@@ -93,14 +93,6 @@ async function translateFunction() {
 
 }
 
-//Функция лайка
-function likePhrase(){
-
-}
-//Функция дизлайка
-function dislikePhrase(){
-  
-}
 //Функция добавления в избранное
 async function addToFavourite(){
 
@@ -114,7 +106,7 @@ async function addToFavourite(){
     .eq("phrase_text_text", firstText);
 
   //Получаем айди пользователя
-
+  
 
 }
 
