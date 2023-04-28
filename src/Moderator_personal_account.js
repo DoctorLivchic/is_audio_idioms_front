@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox,Select,Menu } from 'antd';
 import {useNavigate} from "react-router-dom";
-
+import Pagefooter from "./component/Pagefooter";
 
 
 export default function Moderator_page() {

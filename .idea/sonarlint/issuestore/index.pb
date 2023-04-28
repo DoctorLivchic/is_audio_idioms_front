@@ -14,15 +14,15 @@ M
 :
 
 src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
-D
-src/Authorization.js,f\9\f9f4de363cae5e9e3d968413fa07f7d7842516ee
-N
-src/main_page/Main_page_aut.js,9\3\93c69938c76d63b33d27373daabdeebaa4f3706f
 J
 src/main_page/Main_page.js,6\e\6eaf4f1e71961b14db492dad197f3a5510edddb7
 <
-src/Main.css,5\5\55a59e9790dbd6cca04d16d7c4ae2f8421b765fa
-<
 src/Other.Js,e\e\ee5f3c3d2679a0adc1781f60c9f043deb1880472
+N
+src/main_page/Main_page_aut.js,9\3\93c69938c76d63b33d27373daabdeebaa4f3706f
 @
 src/main/Main.js,9\f\9f06e36cdb0553547525428f15aba1743b9be562
+<
+src/Main.css,5\5\55a59e9790dbd6cca04d16d7c4ae2f8421b765fa
+D
+src/Authorization.js,f\9\f9f4de363cae5e9e3d968413fa07f7d7842516ee

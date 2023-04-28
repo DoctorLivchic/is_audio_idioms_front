@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {Button, Form, Input, Checkbox,Select,Menu } from 'antd';
 import {useNavigate} from "react-router-dom";
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import Pagefooter from "../component/Pagefooter";
 const handleChange = (value) => {
 	console.log(`selected ${value}`);
   };

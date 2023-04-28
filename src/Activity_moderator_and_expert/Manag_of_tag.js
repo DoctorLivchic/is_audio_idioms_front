@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Checkbox, Select, Table } from "antd";
 import { supabase } from "../supabaseClient.js";
 import Item from "antd/es/list/Item.js";
-
+import Pagefooter from "../component/Pagefooter";
 const columns = [
     {
         title:'Номер категории',
@@ -202,6 +202,7 @@ const columns = [
         },
     })}
       />
+      <Pagefooter></Pagefooter>
     </div>
     );
   }  

@@ -9,8 +9,7 @@ import { HeartTwoTone, DislikeTwoTone, LikeTwoTone } from "@ant-design/icons";
 import Pagefooter from "../component/Pagefooter";
 import { Authorization } from "../Authorization";
 import {useState} from 'react';
-
-
+  
 
 export default function Main() {
   
@@ -220,12 +219,13 @@ export default function Main() {
       </div>
 
       <Layout>
-        <Content style={contentStyle}>
-          Content
+        <Content className="contentStyle">
+          
           <div className="languagelabel">
             <Form layout={"vertical"}>
               <h4 className="h4_">"Выбор языка"</h4>
               <Form.Item name="language_left" id="language_left">
+                 <div  className="buttom-audio2">
                 <select
                   id="select_lang_enter"
                   onChange={(e) => {
@@ -242,6 +242,7 @@ export default function Main() {
                     Korean
                   </option>
                 </select>
+                </div>
               </Form.Item>
             </Form>
           </div>
@@ -255,13 +256,15 @@ export default function Main() {
                 /*onChange={onChange}*/ placeholder="Введите текст"
                 className="Text_area"
               />
-              <Button onClick={addToFavourite} icon={<HeartTwoTone />}></Button>
+              <Button className="buttom-audio" onClick={addToFavourite} icon={<HeartTwoTone />}></Button>
               <Button
+              className="buttom-audio"
                 onClick={likePhrase}
                 id="like"
                 icon={<LikeTwoTone />}
               >{buttonTextLike}</Button>
               <Button
+              className="buttom-audio"
                 onClick={dislikePhrase}
                 id="dislike"
                 icon={<DislikeTwoTone />}
@@ -276,7 +279,9 @@ export default function Main() {
                 Прослушать
               </Button>
             </Form.Item>
+            <div  className="buttom-audio3">
             <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
+            </div>
           </div>
         </Content>
 
@@ -300,12 +305,13 @@ export default function Main() {
           </div>
         </Sider>
 
-        <Content style={contentStyle}>
-          Content
+        <Content className="contentStyle">
+         
           <div className="languagelabel">
             <Form layout="vertical">
               <h4 className="h4_">"Выбор языка"</h4>
               <Form.Item name="language_right" id="language_right">
+                <div className="buttom-audio2">
                 <select
                   id="select_lang_exit"
                   onChange={(e) => {
@@ -322,6 +328,7 @@ export default function Main() {
                     Korean
                   </option>
                 </select>
+               </div> 
               </Form.Item>
             </Form>
           </div>
@@ -339,7 +346,7 @@ export default function Main() {
                 onClick={() => {
                   navigate("");
                 }}
-                className="buttom-audio"
+                className="buttom-audio1"
               >
                 Прослушать
               </Button>

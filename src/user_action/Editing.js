@@ -3,6 +3,7 @@ import { Layout, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, Input, Checkbox, Select,notification } from "antd";
 import { supabase } from "../supabaseClient.js";
+import Pagefooter from "../component/Pagefooter";
 const { Search } = Input;
 
 export default function Editing() {

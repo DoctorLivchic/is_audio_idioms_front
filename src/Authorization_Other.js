@@ -3,7 +3,7 @@ import {Button, Form, Input, Checkbox, Affix,Select, Empty,notification } from '
 import {useNavigate} from "react-router-dom";
 import { supabase } from './supabaseClient.js';
 import { async } from "q";
-
+import Pagefooter from "./component/Pagefooter";
 //const empty_item={role_id:0,name:"name",email:"email",password:"123",surname:"surname",patronymic:"patronymic",passport_series:123,passport_id:123,date_of_birth:"10.10.2020",contact_number:8952,diploma_id:134}
 
 //Валидация мэйла

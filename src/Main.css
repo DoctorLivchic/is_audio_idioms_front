@@ -1,6 +1,12 @@
 /*===========================
   Меню перевода
 ============================*/
+.contentStyle {
+  text-align: "center";
+  color: "#fff";
+  background-color: #95aacc;
+};
+
 .like{
   background: url("/src/img/free.png");
 }
@@ -8,8 +14,9 @@
   margin: 3%;
 }
 .h4_{
-  left: 0%;
+  left: 39%;
 }
+
 
 .lef{
   display: table-cell;
@@ -53,7 +60,7 @@
   border-radius: 15px;
   margin: 15%;
   display: table;
-  left: 10%;
+  left: 11%;
   width: 50%;
 }
 
@@ -75,7 +82,7 @@
   width: 0em;
   margin-top: 50px;
 }
-.search-block-right {
+.search-block {
   display: block;
   margin-left: 13vw;
   margin-right: 5vw;
@@ -84,15 +91,36 @@
 }
 .buttom-audio{
   position: relative;
-  left: 0%;
+  left: 13%;
   margin-top: 5%;
 }
+.buttom-audio2{
+  position: relative;
+  left: 42%;
+  margin-top: 5%;
+}
+
+.buttom-audio3{
+  position: relative;
+  left: 28%;
+  margin-top: 5%;
+}
+.buttom-audio1{
+  position: relative;
+  left: 32%;
+  margin-top: 5%;
+}
+.select_{
+  left: 100%;
+}
+.Chek{
+  left: 100%;
+}
+
 .buttom-block-center{
   margin-top: 225%;
 }
-.footer section{
-  top:10%
-}
+
 
 body {
   font-family: "Poppins", sans-serif;
@@ -560,8 +588,7 @@ h2{
   right: 30px;
   display: block;
   z-index: 100;
-  transition: all 250ms linear;
-  background-image: url("./img/Logo.png");
+  background: url("./img/Logo.png") ;
 }
 /*===========================
 	Авторизация конец
@@ -838,7 +865,6 @@ header {
 ============================*/
 .footer {
   position: absolute;
-  top: 110%;
   padding: 0;
 }
 .footer .footer-top {
