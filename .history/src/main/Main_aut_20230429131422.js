@@ -298,7 +298,7 @@ export default function Main() {
           <div className="headercenter">
             <div className="buttom-block-center">
               <Form.Item>
-                <Button onClick={changeLanguage} className="Button_top">
+                <Button onClick={testAuth} className="Button_top">
                   Заменить
                 </Button>
                 <br></br>

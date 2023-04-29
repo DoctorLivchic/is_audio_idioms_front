@@ -18,7 +18,7 @@ export default function Main() {
   const { TextArea } = Input;
 
   async function testAuth() {
-    const temp = await supabase.from("user").select();
+    const temp = await supabase.from("role").select();
 
     console.log(temp.data[0]);
   }
@@ -279,10 +279,10 @@ export default function Main() {
               </Button>
 
               <Button
-                onClick={() => {
-                  navigate("");
-                }}
-                
+                // onClick={() => {
+                //   navigate("");
+                // }}
+                onClick={testAuth}
                 className="buttom-audio"
               >
                 Прослушать

@@ -14,7 +14,7 @@ export default function Authorization() {
   });
 
   function handleChange(event) {
-    console.log(formDataReg)
+    // console.log(formDataReg)
     setFormDataReg((prevFormDataReg) => {
       return {
         ...prevFormDataReg,
@@ -23,24 +23,16 @@ export default function Authorization() {
     });
   }
 
-  async function handleSubmit(e) {
-    
-    
-    e.preventDefault();
-    
+  async function handleSubmit() {
     try {
-      const {error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: formDataReg.logemail,
-        password: formDataReg.logpass
-      })
-      if(error) throw error 
+        password: formDataReg.password,
+      });
       notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
+    } catch (error) {
+      notification.open({ message: "Ошибка", description: error.message });
     }
-    catch(error){
-      notification.open({ message: "Успешно!", description: error.message });
-    }
-    
-    
     
   }
 
@@ -320,7 +312,7 @@ export default function Authorization() {
                           </div>
                           <div className="button">
                             <Form.Item>
-                              <Button onClick={handleSubmit} className="btn">
+                              <Button type="submit" className="btn">
                                 Регистрация
                               </Button>
                               <Button

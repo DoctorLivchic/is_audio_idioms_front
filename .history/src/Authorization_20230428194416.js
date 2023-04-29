@@ -29,18 +29,14 @@ export default function Authorization() {
     e.preventDefault();
     
     try {
-      const {error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: formDataReg.logemail,
         password: formDataReg.logpass
-      })
-      if(error) throw error 
-      notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
+      });
+      // notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
+    } catch (error) {
+      notification.open({ message: "Ошибка", description: error.message });
     }
-    catch(error){
-      notification.open({ message: "Успешно!", description: error.message });
-    }
-    
-    
     
   }
 

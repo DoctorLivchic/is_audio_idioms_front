@@ -34,7 +34,8 @@ export default function Authorization() {
         password: formDataReg.logpass
       })
       if(error) throw error 
-      notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
+      alert ("Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации.")
+      // notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
     }
     catch(error){
       notification.open({ message: "Успешно!", description: error.message });

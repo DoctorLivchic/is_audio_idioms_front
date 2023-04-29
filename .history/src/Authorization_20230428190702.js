@@ -6,42 +6,24 @@ import { async } from "q";
 import { func } from "prop-types";
 
 export default function Authorization() {
-  const [formDataReg, setFormDataReg] = useState({
-    logname: "",
-    logemail: "",
-    logpass: "",
-    logpassAffirm: "",
-  });
 
-  function handleChange(event) {
-    console.log(formDataReg)
-    setFormDataReg((prevFormDataReg) => {
-      return {
-        ...prevFormDataReg,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
+  const [formData, setFormData] = useState({
+    logname:'',
+    logemail:'',
+    logpass:'',
+    logpassAffirm:''
+  
+  })
 
-  async function handleSubmit(e) {
-    
-    
-    e.preventDefault();
-    
-    try {
-      const {error } = await supabase.auth.signUp({
-        email: formDataReg.logemail,
-        password: formDataReg.logpass
-      })
-      if(error) throw error 
-      notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
-    }
-    catch(error){
-      notification.open({ message: "Успешно!", description: error.message });
-    }
-    
-    
-    
+  console.log(formData)
+  function handleChange(event){
+    setFormData((prevFormData)=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
+      }
+      
+    })
   }
 
   //Валидация мэйла
@@ -190,6 +172,7 @@ export default function Authorization() {
     } catch (error) {
       notification.open({ message: "Ошибка", description: error.message });
     }
+
   }
 
   const navigate = useNavigate();
@@ -265,7 +248,7 @@ export default function Authorization() {
                         </div>
                       </div>
                     </div>
-                    <div onSubmit={handleSubmit} className="card-back">
+                    <div className="card-back">
                       <div className="center-wrap">
                         <div className="section text-center">
                           <h4 className="mb-4 pb-3">Зарегистрироваться</h4>
@@ -320,7 +303,7 @@ export default function Authorization() {
                           </div>
                           <div className="button">
                             <Form.Item>
-                              <Button onClick={handleSubmit} className="btn">
+                              <Button onClick={addUser} className="btn">
                                 Регистрация
                               </Button>
                               <Button

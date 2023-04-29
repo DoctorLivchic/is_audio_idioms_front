@@ -5,44 +5,57 @@ import { supabase } from "./supabaseClient.js";
 import { async } from "q";
 import { func } from "prop-types";
 
+// var index = -1;
+// //Получение всех профилей
+// const user = getUser();
+// console.log(user)
+// const data = (await user).data;
+// console.log(data)
+// for (let i = 0; i < data.length; i++) {
+//   if (data[i]["email"] == email) {
+//     index = i;
+//     break;
+//   }
+// }
+
+// if (index == -1) {
+//   setRed("logemailIn");
+//   notification.open({message:'Ошибка',description:'Почта введена некорректно или такой почты не существует!'});
+// } else {
+//   if (data[index]["password"] == password) {
+//     if (data[index]["role_id"] == 1) {
+//       navigate("/Moderator_personal_account");
+//       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+//     }
+//     if (data[index]["role_id"] == 2) {
+//       navigate("/Expert_personal_account");
+//       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+//     }
+//     if (data[index]["role_id"] == 3) {
+//       navigate("/main_page/Main_page_aut");
+//       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+//     }
+//   } else {
+//     if (data[index]["password"] != password) {
+//       setRed("logpassIn");
+//       setWhite("logemailIn");
+//       notification.open({message:'Ошибка',description:'Вы ввели некорректный пароль!'});
+//     } else {
+//       navigate("/main_page/Main_page_aut");
+//       notification.open({message:'Успешно',description:'Вы успешно авторизовались!'});
+//     }
+//   }
+// }
+
 export default function Authorization() {
-  const [formDataReg, setFormDataReg] = useState({
-    logname: "",
-    logemail: "",
-    logpass: "",
-    logpassAffirm: "",
-  });
+  const navigate = useNavigate();
 
-  function handleChange(event) {
-    console.log(formDataReg)
-    setFormDataReg((prevFormDataReg) => {
-      return {
-        ...prevFormDataReg,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
+   const [formData, setFormData] = useState({
+    
+   })
 
-  async function handleSubmit(e) {
-    
-    
-    e.preventDefault();
-    
-    try {
-      const {error } = await supabase.auth.signUp({
-        email: formDataReg.logemail,
-        password: formDataReg.logpass
-      })
-      if(error) throw error 
-      notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
-    }
-    catch(error){
-      notification.open({ message: "Успешно!", description: error.message });
-    }
-    
-    
-    
-  }
+
+  //const [active, setActive] = useState(false)
 
   //Валидация мэйла
   function ValidMail(email) {
@@ -190,10 +203,7 @@ export default function Authorization() {
     } catch (error) {
       notification.open({ message: "Ошибка", description: error.message });
     }
-  }
 
-  const navigate = useNavigate();
-  return (
     <div className="authorization">
       <div className="section">
         <div className="container">
@@ -265,7 +275,7 @@ export default function Authorization() {
                         </div>
                       </div>
                     </div>
-                    <div onSubmit={handleSubmit} className="card-back">
+                    <div className="card-back">
                       <div className="center-wrap">
                         <div className="section text-center">
                           <h4 className="mb-4 pb-3">Зарегистрироваться</h4>
@@ -277,7 +287,6 @@ export default function Authorization() {
                               placeholder="Имя"
                               id="logname"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-user"></i>
                           </div>
@@ -289,7 +298,6 @@ export default function Authorization() {
                               placeholder="Адрес электронной почты"
                               id="logemailUp"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-at"></i>
                           </div>
@@ -302,25 +310,23 @@ export default function Authorization() {
                               placeholder="Пароль"
                               id="logpassUp"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-lock-alt"></i>
                           </div>
                           <div className="form-group mt-2">
                             <input
                               type="password"
-                              name="logpassAffirm"
+                              name="logpass"
                               className="form-style"
                               placeholder="Подтвердите пароль"
                               id="logpassAffirm"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-lock-alt"></i>
                           </div>
                           <div className="button">
                             <Form.Item>
-                              <Button onClick={handleSubmit} className="btn">
+                              <Button onClick={addUser} className="btn">
                                 Регистрация
                               </Button>
                               <Button
@@ -393,6 +399,6 @@ export default function Authorization() {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
+  }
 }
