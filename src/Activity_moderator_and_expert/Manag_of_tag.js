@@ -76,6 +76,7 @@ const columns = [
         const data = await supabase
         .from('tags')
         .select()
+        .order('tag_id')
       setrequest(data.data)     
     }
    

@@ -90,7 +90,9 @@ export default function Activity_moderator() {
     const data = await supabase
       .from("request")
       .select()
-      .eq("status_id", `${4}`);
+      .eq("type_id", `${1}`)
+      .eq("status_id", `${4}`)
+      .order('request_id')
     setrequest(data.data);
   }
 

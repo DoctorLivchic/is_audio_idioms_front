@@ -95,6 +95,7 @@ export default function Activity_moderator() {
       .from('request')
       .select()
       .eq('status_id', `${1}`)
+      .order('request_id')
     setrequest(data.data)
   }
 
