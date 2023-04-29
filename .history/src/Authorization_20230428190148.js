@@ -4,46 +4,15 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient.js";
 import { async } from "q";
 import { func } from "prop-types";
-import Pagefooter from "./component/Pagefooter";
 
 export default function Authorization() {
-  const [formDataReg, setFormDataReg] = useState({
-    logname: "",
-    logemail: "",
-    logpass: "",
-    logpassAffirm: "",
-  });
 
-  function handleChange(event) {
-    console.log(formDataReg)
-    setFormDataReg((prevFormDataReg) => {
-      return {
-        ...prevFormDataReg,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
-
-  async function handleSubmit(e) {
-    
-    
-    e.preventDefault();
-    
-    try {
-      const {error } = await supabase.auth.signUp({
-        email: formDataReg.logemail,
-        password: formDataReg.logpass
-      })
-      if(error) throw error 
-      notification.open({ message: "Успешно!", description: "Для того, чтобы продолжить работу подтвердите свою почту, которую вы указали при регистрации." });
-    }
-    catch(error){
-      notification.open({ message: "Успешно!", description: error.message });
-    }
-    
-    
-    
-  }
+  const [formData, setFormData] = useState({
+    logname:'',
+    logemail:'',
+    logpass:'',
+    logpass:'',
+  })
 
   //Валидация мэйла
   function ValidMail(email) {
@@ -191,6 +160,7 @@ export default function Authorization() {
     } catch (error) {
       notification.open({ message: "Ошибка", description: error.message });
     }
+
   }
 
   const navigate = useNavigate();
@@ -201,9 +171,8 @@ export default function Authorization() {
           <div className="row full-height justify-content-center">
             <div className="col-12 text-center align-self-center py-5">
               <div
-                className="section pb-5 pt-5 pt-sm-2 "
+                className="section pb-5 pt-5 pt-sm-2 text-center"
                 align="center"
-                
               >
                 <h5 className="mb-0 pb-3">
                   <span>Авторизоваться </span>
@@ -267,7 +236,7 @@ export default function Authorization() {
                         </div>
                       </div>
                     </div>
-                    <div onSubmit={handleSubmit} className="card-back">
+                    <div className="card-back">
                       <div className="center-wrap">
                         <div className="section text-center">
                           <h4 className="mb-4 pb-3">Зарегистрироваться</h4>
@@ -279,7 +248,6 @@ export default function Authorization() {
                               placeholder="Имя"
                               id="logname"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-user"></i>
                           </div>
@@ -291,7 +259,6 @@ export default function Authorization() {
                               placeholder="Адрес электронной почты"
                               id="logemailUp"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-at"></i>
                           </div>
@@ -304,7 +271,6 @@ export default function Authorization() {
                               placeholder="Пароль"
                               id="logpassUp"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-lock-alt"></i>
                           </div>
@@ -316,13 +282,12 @@ export default function Authorization() {
                               placeholder="Подтвердите пароль"
                               id="logpassAffirm"
                               autoComplete="off"
-                              onChange={handleChange}
                             />
                             <i className="input-icon uil uil-lock-alt"></i>
                           </div>
                           <div className="button">
                             <Form.Item>
-                              <Button onClick={handleSubmit} className="btn">
+                              <Button onClick={addUser} className="btn">
                                 Регистрация
                               </Button>
                               <Button
@@ -345,9 +310,56 @@ export default function Authorization() {
           </div>
         </div>
       </div>
-     <div className="footer_main section">
-      <Pagefooter></Pagefooter>
-     </div>
+      <footer id="footer" className="footer section">
+        <div className="footer-top">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="logo">
+                  <a>Логотип</a>
+                </div>
+
+                <ul className="social">
+                  <li>
+                    <a href="#">
+                      <span className="fa fa-facebook"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span className="fa fa-twitter"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span className="fa fa-dribbble"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span className="fa fa-instagram"></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span className="fa fa-pinterest-p"></span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="copyright">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <p>2023 © Словарь аудио-фразеологизмов</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -18,9 +18,9 @@ export default function Main() {
   const { TextArea } = Input;
 
   async function testAuth() {
-    const temp = await supabase.from("user").select();
+    const temp = await supabase.from("auth.sessions").select("aal");
 
-    console.log(temp.data[0]);
+    console.log(temp);
   }
 
   const contentStyle = {

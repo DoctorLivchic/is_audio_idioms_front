@@ -279,10 +279,10 @@ export default function Main() {
               </Button>
 
               <Button
-                onClick={() => {
-                  navigate("");
-                }}
-                
+                // onClick={() => {
+                //   navigate("");
+                // }}
+                onClick={testAuth}
                 className="buttom-audio"
               >
                 Прослушать
