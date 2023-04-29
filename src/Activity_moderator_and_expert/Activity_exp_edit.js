@@ -203,7 +203,9 @@ export default function Activity_moderator() {
           onClick: () => {},
         })}
       />
+      <div className="footer_main section" >
        <Pagefooter></Pagefooter>
+       </div>
     </div>
   );
 }

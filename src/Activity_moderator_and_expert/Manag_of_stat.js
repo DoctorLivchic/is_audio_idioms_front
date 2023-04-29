@@ -200,7 +200,9 @@ const columns = [
         },
     })}
       />
+      <div className="footer_main section">
       <Pagefooter></Pagefooter>
+      </div>
     </div>
     );
   }  

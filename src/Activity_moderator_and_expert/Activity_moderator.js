@@ -160,7 +160,9 @@ export default function Activity_moderator() {
           },
         })}
       />
+      <div className='footer_main section'>
        <Pagefooter></Pagefooter>
+      </div> 
     </div>
   );
 }  

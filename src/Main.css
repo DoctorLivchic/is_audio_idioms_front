@@ -1,6 +1,15 @@
 /*===========================
   Меню перевода
 ============================*/
+
+
+
+
+
+
+
+
+
 .contentStyle {
   text-align: "center";
   color: "#fff";
@@ -806,7 +815,7 @@ button {
 }
 /*Main_page_menu*/
 .navig {
-  margin: 0;
+  margin: 10;
   padding: 0;
   border: 0;
   font-size: 100%;
@@ -917,7 +926,7 @@ header {
 ============================*/
 .footer_main {
   position: absolute;
-  top: 183%;
+  top: 153%;
   padding: 0;
 }
 .footer_main .footer-top {
