@@ -9,54 +9,54 @@ import Item from "antd/es/list/Item.js";
 import Pagefooter from "../component/Pagefooter";
 const columns = [
     {
-        title:'Номер фразеологизма',
-        dataIndex:'phrase_id',
-        key:'phrase_id'
+        title:'Номер текста фразеологизма',
+        dataIndex:'phrase_text_id',
+        key:'phrase_text_id'
     },
+    {
+      title:'Номер фразы',
+      dataIndex:'phrase_id',
+      key:'phrase_id'
+  },
     {
         title:'Дата добавления',
         dataIndex:'created_at',
         key:'created_at'
     },
     {
-        title:'Количество лайков',
-        dataIndex:'rating_like',
-        key:'rating_like'
+        title:'Язык перевода',
+        dataIndex:'language_id',
+        key:'language_id'
     },
     {
-      title:'Количество дизлайков',
-      dataIndex:'rating_dislike',
-      key:'rating_dislike'
+      title:'Текст фразеологизма',
+      dataIndex:'phrase_text_text',
+      key:'phrase_text_text'
     },
   {
-    title:'Аудио озвучание',
-    dataIndex:'audio_id',
-    key:'audio_id'
+    title:'Транскрипция',
+    dataIndex:'phrase_text_transcription',
+    key:'phrase_text_transcription'
   },
   {
-    title:'Ссылка на фразеологизм',
-    dataIndex:'link_phraseologikal',
-    key:'link_phraseologikal'
-  },
-  {
-    title:'Категория',
-    dataIndex:'tag_id',
-    key:'tag_id'
+    title:'Описание фразеологизма',
+    dataIndex:'phrase_text_desc',
+    key:'phrase_text_desc'
   }
   ]
   
   const GridDataOption = {
     rowCount:10,
     page:1,
-    orderBy:'phrase_id',
-    from:'phraseological'
+    orderBy:'phrase_text_id',
+    from:'phrase_text'
   }
   
   
   
   
   export default function Activity_moderator() {
-    const [phraseological, setrequest] = useState([]);
+    const [phrase_text, setrequest] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -91,11 +91,12 @@ const columns = [
     async function getphrase() {
       // const request = await supabase.from("request").select();
       // const data = (await request).data;
-      const phraseological = await supabase.from("phraseological").select();
+      const phraseological = await supabase.from("phrase_text").select();
       const phre = (await phraseological).data;
         const data = await supabase
-        .from('phraseological')
+        .from('phrase_text')
         .select()
+        .order('phrase_text_id')
       setrequest(data.data)     
     }
    
@@ -265,10 +266,11 @@ const columns = [
             </Modal>
       <Table
       loading={loading}
-      dataSource={phraseological}
+      dataSource={phrase_text}
       columns={columns}
       rowSelection={rowSelection}
-      rowKey={(record) => record.phrase_id}
+      
+      rowKey={(record) => record.phrase_text_id}
       onRow={(record) => ({
         onClick: () => {
           
