@@ -17,6 +17,12 @@ export default function Main() {
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
 
+  async function testAuth() {
+    const temp = await supabase.from("user").select();
+
+    console.log(temp.data[0]);
+  }
+
   const contentStyle = {
     textAlign: "center",
     lineHeight: "220px",
@@ -31,6 +37,8 @@ export default function Main() {
   function onChangeInput(value) {
     console.log(value);
   }
+
+  
 
   //Функция смены языков в выпадающих меню
   function changeLanguage() {
@@ -53,24 +61,21 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст
 
-    if (firstText == "") {
-      document.getElementById("textAreaExit").value = "";
-    } else {
-      const phrase = await supabase
-        .from("phrase_text")
-        .select()
-        .eq("phrase_text_text", firstText);
+    const phrase = await supabase
+      .from("phrase_text")
+      .select()
+      .eq("phrase_text_text", firstText);
 
-      const likes = await supabase
-        .from("phraseological")
-        .select()
-        .eq("phrase_id", phrase.data[0]["phrase_id"]);
+    const likes = await supabase
+      .from("phraseological")
+      .select()
+      .eq("phrase_id", phrase.data[0]["phrase_id"]);
 
-      setButtonTextLike(likes.data[0]["rating_like"]);
-      setButtonTextDislike(likes.data[0]["rating_dislike"]);
-    }
+    setButtonTextLike(likes.data[0]["rating_like"]);
+    setButtonTextDislike(likes.data[0]["rating_dislike"]);
   }
 
+  //Функция перевода
   async function translateFunction() {
     GetLike();
     const translationLanguage =
@@ -89,33 +94,37 @@ export default function Main() {
 
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
-
-    if (firstText == '') {
+    
+    if(firstText == null){
       document.getElementById("textAreaExit").value = "";
-    } else {
-      //Получаем айди фразеологизма с которого переводим
-      const phrase = await supabase
-        .from("phrase_text")
-        .select()
-        .eq("phrase_text_text", firstText);
-
-      try {
-        //Получаем фразеологизм на языке, который выбран к переводу
-        const translate = await supabase
-          .from("phrase_text")
-          .select("phrase_text_text")
-          .eq("phrase_id", phrase.data[0]["phrase_id"])
-          .eq("language_id", lang);
-        document.getElementById("textAreaExit").value =
-          translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
-      } catch (error) {
-        notification.open({ message: "Ошибка", description: error.message });
-      }
-
-      //-------------------------------------------------------------------------------
-      // Вывод лайков
     }
+    else{
+      //Получаем айди фразеологизма с которого переводим
+    const phrase = await supabase
+    .from("phrase_text")
+    .select()
+    .eq("phrase_text_text", firstText);
+
+  try {
+    //Получаем фразеологизм на языке, который выбран к переводу
+    const translate = await supabase
+      .from("phrase_text")
+      .select("phrase_text_text")
+      .eq("phrase_id", phrase.data[0]["phrase_id"])
+      .eq("language_id", lang);
+    document.getElementById("textAreaExit").value =
+      translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  } catch (error) {
+    notification.open({ message: "Ошибка", description: error.message });
   }
+
+  //-------------------------------------------------------------------------------
+  // Вывод лайков
+}
+    }
+
+
+    
 
   //Функция лайка
   async function likePhrase() {
@@ -200,7 +209,7 @@ export default function Main() {
             <Form.Item>
               <Button
                 onClick={() => {
-                  navigate("/");
+                  navigate("/main_page/Main_page_aut");
                 }}
                 className="btn-7"
               >
@@ -280,6 +289,7 @@ export default function Main() {
                 onClick={() => {
                   navigate("");
                 }}
+                
                 className="buttom-audio"
               >
                 Прослушать

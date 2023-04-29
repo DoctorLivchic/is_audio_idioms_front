@@ -53,22 +53,18 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст
 
-    if (firstText == "") {
-      document.getElementById("textAreaExit").value = "";
-    } else {
-      const phrase = await supabase
-        .from("phrase_text")
-        .select()
-        .eq("phrase_text_text", firstText);
+    const phrase = await supabase
+      .from("phrase_text")
+      .select()
+      .eq("phrase_text_text", firstText);
 
-      const likes = await supabase
-        .from("phraseological")
-        .select()
-        .eq("phrase_id", phrase.data[0]["phrase_id"]);
+    const likes = await supabase
+      .from("phraseological")
+      .select()
+      .eq("phrase_id", phrase.data[0]["phrase_id"]);
 
-      setButtonTextLike(likes.data[0]["rating_like"]);
-      setButtonTextDislike(likes.data[0]["rating_dislike"]);
-    }
+    setButtonTextLike(likes.data[0]["rating_like"]);
+    setButtonTextDislike(likes.data[0]["rating_dislike"]);
   }
 
   async function translateFunction() {
@@ -90,7 +86,7 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
 
-    if (firstText == '') {
+    if (firstText == null) {
       document.getElementById("textAreaExit").value = "";
     } else {
       //Получаем айди фразеологизма с которого переводим

@@ -43,16 +43,16 @@ const columns = [
     key: "type_id",
   },
   {
-  title:'Категория',
-  dataIndex:'tag_id',
-  key:'tag_id'
+    title: "Категория",
+    dataIndex: "tag_id",
+    key: "tag_id",
   },
   {
-  title:'Ссылка на источник',
-  dataIndex:'link_phraseological',
-  key:'link_phraseological'
-  }
-  ];
+    title: "Ссылка на источник",
+    dataIndex: "link_phraseological",
+    key: "link_phraseological",
+  },
+];
 
 const GridDataOption = {
   rowCount: 10,
@@ -60,8 +60,6 @@ const GridDataOption = {
   orderBy: "request_id",
   from: "request",
 };
-
-
 
 export default function Activity_moderator() {
   const [request, setrequest] = useState([]);
@@ -95,7 +93,7 @@ export default function Activity_moderator() {
   }
 
   function update() {
-    getrequest()
+    getrequest();
   }
 
   async function delete_row() {
@@ -106,9 +104,12 @@ export default function Activity_moderator() {
           .delete()
           .eq("request_id", selectedRowKeys.at(i));
         console.log("Запись удалена", selectedRowKeys.at(i));
-        notification.open({ message: "Успешно",description:'Запись успешно удаленна'});
+        notification.open({
+          message: "Успешно",
+          description: "Запись успешно удаленна",
+        });
       } catch (error) {
-        notification.open({ message: "Ошибка",description: error.message});
+        notification.open({ message: "Ошибка", description: error.message });
       }
     }
     getrequest();
@@ -126,10 +127,10 @@ export default function Activity_moderator() {
           .from("request")
           .select()
           .eq("request_id", selectedRowKeys.at(i));
-        console.log(phrase.data[0]['request_id']) //обращение к полю возвращаемого объекта из таблицы
-//------------------------------------------------------------------------------------------------------------
+        console.log(phrase.data[0]["request_id"]); //обращение к полю возвращаемого объекта из таблицы
+        //------------------------------------------------------------------------------------------------------------
 
-//------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------
         console.log(phrase.data[0]["request_id"]); //обращение к полю возвращаемого объекта из таблицы
         //------------------------------------------------------------------------------------------------------------
         // //Обновляем поле update_at
@@ -140,8 +141,6 @@ export default function Activity_moderator() {
         //   .eq('request_id',selectedRowKeys.at(i));
         //------------------------------------------------------------------------------------------------------------
         //Добавляем одобренный запрос в таблицу с фразеологизмами
-        
-      
 
         //Добавляем новую запись в таблицу phraseological
         var update1 = new Date().toISOString().toLocaleString();
@@ -170,13 +169,11 @@ export default function Activity_moderator() {
             lang = "fre_request";
           }
           // console.log(phrase.data[0][lang])
-          const { error } = await supabase
-            .from("phrase_text")
-            .insert({
-              phrase_id: max,
-              language_id: i,
-              phrase_text_text: phrase.data[0][lang],
-            });
+          const { error } = await supabase.from("phrase_text").insert({
+            phrase_id: max,
+            language_id: i,
+            phrase_text_text: phrase.data[0][lang],
+          });
         }
         update1 = new Date().toISOString().toLocaleString();
         const { error1 } = await supabase
@@ -192,7 +189,7 @@ export default function Activity_moderator() {
         update();
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
-        update()
+        update();
       }
     }
   }
@@ -229,8 +226,8 @@ export default function Activity_moderator() {
           onClick: () => {},
         })}
       />
-      <div className="footer_main section" >
-      <Pagefooter></Pagefooter>
+      <div className="footer_main section">
+        <Pagefooter></Pagefooter>
       </div>
     </div>
   );

@@ -17,6 +17,12 @@ export default function Main() {
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
 
+  async function testAuth() {
+    const temp = await supabase.from("user").select();
+
+    console.log(temp.data[0]);
+  }
+
   const contentStyle = {
     textAlign: "center",
     lineHeight: "220px",
@@ -53,24 +59,21 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст
 
-    if (firstText == "") {
-      document.getElementById("textAreaExit").value = "";
-    } else {
-      const phrase = await supabase
-        .from("phrase_text")
-        .select()
-        .eq("phrase_text_text", firstText);
+    const phrase = await supabase
+      .from("phrase_text")
+      .select()
+      .eq("phrase_text_text", firstText);
 
-      const likes = await supabase
-        .from("phraseological")
-        .select()
-        .eq("phrase_id", phrase.data[0]["phrase_id"]);
+    const likes = await supabase
+      .from("phraseological")
+      .select()
+      .eq("phrase_id", phrase.data[0]["phrase_id"]);
 
-      setButtonTextLike(likes.data[0]["rating_like"]);
-      setButtonTextDislike(likes.data[0]["rating_dislike"]);
-    }
+    setButtonTextLike(likes.data[0]["rating_like"]);
+    setButtonTextDislike(likes.data[0]["rating_dislike"]);
   }
 
+  //Функция перевода
   async function translateFunction() {
     GetLike();
     const translationLanguage =
@@ -90,7 +93,7 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
 
-    if (firstText == '') {
+    if (firstText == null) {
       document.getElementById("textAreaExit").value = "";
     } else {
       //Получаем айди фразеологизма с которого переводим
@@ -200,7 +203,7 @@ export default function Main() {
             <Form.Item>
               <Button
                 onClick={() => {
-                  navigate("/");
+                  navigate("/main_page/Main_page_aut");
                 }}
                 className="btn-7"
               >
