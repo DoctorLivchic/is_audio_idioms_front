@@ -29,7 +29,7 @@ const columns = [
     rowCount:10,
     page:1,
     orderBy:'tag_id',
-    from:'tagc'
+    from:'tags'
   }
   
   
@@ -37,7 +37,7 @@ const columns = [
   
   export default function Activity_moderator() {
 
-    const [tagc, setrequest] = useState([]);
+    const [tags, setrequest] = useState([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -71,10 +71,10 @@ const columns = [
     async function getphrase() {
       // const request = await supabase.from("request").select();
       // const data = (await request).data;
-      const tagc = await supabase.from("tagc").select();
+      const tagc = await supabase.from("tags").select();
       const t = (await tagc).data;
         const data = await supabase
-        .from('tagc')
+        .from('tags')
         .select()
       setrequest(data.data)     
     }
@@ -83,7 +83,7 @@ const columns = [
       setShow(true)
       for (let i = 0; i < selectedRowKeys.length; i++){  
           try {    
-            const data = await supabase.from("tagc").select()
+            const data = await supabase.from("tags").select()
             form.setFields(Object.keys(data).map((key) => ({
               name: key,
               value: data[key],
@@ -104,12 +104,12 @@ const columns = [
 
 
     async function delete_row(){
-      const tagc = await supabase.from("tagc").select()
+      const tagc = await supabase.from("tags").select()
       const data1 = (await tagc).data;
       for (let i = 0; i < selectedRowKeys.length; i++){  
           try {
             const { error } = await supabase
-            .from('tagc')
+            .from('tags')
             .delete()
             .eq('tag_id',selectedRowKeys.at(i));
             notification.open({message:'Успешно',description:'запись поставленна на удаление'})
@@ -129,7 +129,7 @@ const columns = [
       // for (let i = 0; i < selectedRowKeys.length; i++){  
           try {    
             const { error }  = await supabase
-            .from('tagc')
+            .from('tags')
             .insert({tag_name:tag_name1})
             console.log('Точка--')           
       
@@ -192,7 +192,7 @@ const columns = [
             </Modal>
       <Table
       loading={loading}
-      dataSource={tagc}
+      dataSource={tags}
       columns={columns}
       rowSelection={rowSelection}
       rowKey={(record) => record.tag_id}
@@ -202,7 +202,9 @@ const columns = [
         },
     })}
       />
+      <div className="footer_main section">
       <Pagefooter></Pagefooter>
+      </div>
     </div>
     );
   }  

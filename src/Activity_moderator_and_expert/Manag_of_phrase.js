@@ -28,21 +28,6 @@ const columns = [
       dataIndex:'rating_dislike',
       key:'rating_dislike'
     },
-    {
-        title:'Русский перевод',
-        dataIndex:'rus',
-        key:'rus'
-    },
-    {
-      title:'французский перевод',
-      dataIndex:'fre',
-      key:'fre'
-  },
-  {
-    title:'Корейский перевод',
-    dataIndex:'kor',
-    key:'kor'
-  },
   {
     title:'Аудио озвучание',
     dataIndex:'audio_id',
@@ -290,7 +275,9 @@ const columns = [
         },
     })}
       />
+      <div className="footer_main section">
       <Pagefooter></Pagefooter>
+      </div>
     </div>
     );
   }  
