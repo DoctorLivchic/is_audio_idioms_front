@@ -61,6 +61,8 @@ const columns = [
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(true);
     const [form] = useForm()
+    const [tag,settag]=useState([]);
+    const [sel_tag,setsel_tag]=useState([]);
     
     
   
@@ -70,13 +72,19 @@ const columns = [
      
   };
   
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+    setsel_tag(value)
+  };
+
   const rowSelection = {
       selectedRowKeys,
       onChange:onSelectChange
   };
   
     useEffect(() => {
-      getphrase().then(()=>setLoading(false));
+      getphrase().then(()=>setLoading(false))
+      gettags();
     }, [loading]);
   
   function update(){
@@ -86,7 +94,15 @@ const columns = [
     setShow(false)
 }
   
-  
+  async function gettags(){
+    const tags = await supabase.from("tags").select();
+    const tag = (await tags).data;
+    const data_tag = await supabase
+        .from('tags')
+        .select()
+    settag(data_tag.data)
+    return data_tag
+  }
   
     async function getphrase() {
       // const request = await supabase.from("request").select();
@@ -99,7 +115,7 @@ const columns = [
         .order('phrase_text_id')
       setrequest(data.data)     
     }
-   
+ //------------------------------------------------------------------   
     async function delete_row(){
       const phraseological = await supabase.from("phraseological").select()
       const data1 = (await phraseological).data;
@@ -119,7 +135,7 @@ const columns = [
       getphrase()
       update()
       }
-  
+ //------------------------------------------------------------------ 
     async function change_phrase(){
       setShow(true)
       for (let i = 0; i < selectedRowKeys.length; i++){  
@@ -143,33 +159,87 @@ const columns = [
       update()
     }
 
-    async function add_phrase(){ 
-      const rus1 = form.getFieldValue("rus");
-      const fre1 = form.getFieldValue("fre");
-      const kor1 = form.getFieldValue("kor");
-      const link = form.getFieldValue("link_phraseologikal")
-      const tag  = form.getFieldValue("tag_id")
-      console.log(rus1)
-      // for (let i = 0; i < selectedRowKeys.length; i++){  
-          try {    
-            const { error }  = await supabase
-            .from('phraseological')
-            .insert({rus:rus1,fre:fre1,kor:kor1,link_phraseologikal:link,tag_id:tag})
-            console.log('Точка--')           
-      
-      }
-      
-      catch (error) {
-        notification.open({message:'Ошибка',description:error.message});
-        console.log('Точка1--')
-      }
-      // }
-      setShow(false)
-      getphrase()
-      console.log('Точка2--')
-      update()
-      
+
+   async function add_phrase() {
+
+    // const handleChange = (value) => {
+    //   console.log(`selected ${value}`);
+    //   var val_tag=`selected ${value}`
+    //   return val_tag
+    // };
+
+    const rus1 = form.getFieldValue("rus");
+    const rus_tr1 = form.getFieldValue("rus_tr");
+    const rus_desc1 = form.getFieldValue("rus_desc");
+    const fre1 = form.getFieldValue("fre");
+    const fre_tr1 = form.getFieldValue("fre_tr");
+    const fre_desc1 = form.getFieldValue("fre_desc");
+    const kor1 = form.getFieldValue("kor");
+    const kor_tr1 = form.getFieldValue("kor_tr");
+    const kor_desc1 = form.getFieldValue("kor_desc");
+    const link = form.getFieldValue("link_phraseologikal")
     
+
+   
+      try {
+       
+        //------------------------------------------------------------------------------------------------------------
+        // //Обновляем поле update_at
+        // var update1 = ((new Date()).toISOString()).toLocaleString();
+        // const { error1 } = await supabase
+        //   .from('request')
+        //   .update({status_id:'3',update_at:(update1)})
+        //   .eq('request_id',selectedRowKeys.at(i));
+        //------------------------------------------------------------------------------------------------------------
+        //Добавляем одобренный запрос в таблицу с фразеологизмами
+
+        //Добавляем новую запись в таблицу phraseological
+        var update1 = new Date().toISOString().toLocaleString();
+
+        const { error } = await supabase
+          .from("phraseological")
+          .insert({ updated_at: update1,link_phraseological:link,tag_id:sel_tag });
+
+        //Получаем последний phrase_id
+        const id = await supabase.from("phraseological").select("phrase_id");
+        let max = -10;
+        for (let i = 0; i < id.data.length; i++) {
+          console.log(id.data[i]["phrase_id"]);
+          if (id.data[i]["phrase_id"] > max) {
+            max = id.data[i]["phrase_id"];
+          }
+        }
+
+        for (let i = 1; i < 4; i++) {
+          let lang = "";
+          if (i == 1) {
+            lang = "rus_request";
+          } else if (i == 2) {
+            lang = "kor_request";
+          } else {
+            lang = "fre_request";
+          }
+          // console.log(phrase.data[0][lang])
+          const { error } = await supabase.from("phrase_text").insert({
+            phrase_id: max,
+            language_id: i,
+            created_at:update1,
+            phrase_text_text: rus1
+          });
+        }
+       
+        //------------------------------------------------------------------------------------------------------------
+        notification.open({
+          message: "УСПЕШНО",
+          description: "Запрос был успешно добавлен в систему!",
+        });
+        console.log("Запись добавленна");
+        update();
+      } catch (error) {
+        notification.open({ message: "Ошибка", description: error.message });
+        update();
+      
+    }
   }
   
     const navigate = useNavigate();
@@ -212,18 +282,22 @@ const columns = [
                             placeholder="Русский фразеологизм"/>
                         </Form.Item>
                         <Form.Item
-                            name="fre"
-                            label="Французский фразеологизм"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "фразеологизм не может быть пустым"
-                                }
-                            ]}>
-                            <Input name="fre"
-                            placeholder="Французский фразеологизм"
-                            id="logfre" />
+                            name="rus_tr"
+                            label="Транскрипция русского фразеологизма"
+                           >
+                            <Input name="rus_tr"
+                            id="log_rus_tr"
+                            placeholder="Транскрипция русского фразеологизма"/>
                         </Form.Item>
+                        <Form.Item
+                            name="rus_desc"
+                            label="Описание русского фразеологизма"
+                           >
+                            <Input name="rus_desc"
+                            id="log_rus_desc"
+                            placeholder="Описание русского фразеологизма"/>
+                        </Form.Item>
+
                         <Form.Item
                             name="kor"
                             label="Корейский фразеологизм"
@@ -238,6 +312,55 @@ const columns = [
                             id="logkor"
                              />
                         </Form.Item>
+                        <Form.Item
+                            name="kor_tr"
+                            label="Транскрипция корейкого фразеологизма"
+                           >
+                            <Input name="kor_tr"
+                            id="log_kor_tr"
+                            placeholder="Транскрипция корейского фразеологизма"/>
+                        </Form.Item>
+
+                        <Form.Item
+                            name="fre_desc"
+                            label="Описание французского фразеологизма"
+                           >
+                            <Input name="fre_desc"
+                            id="log_fre_desc"
+                            placeholder="Описание французского фразеологизма"/>
+                        </Form.Item>
+
+                        <Form.Item
+                            name="fre"
+                            label="Французский фразеологизм"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "фразеологизм не может быть пустым"
+                                }
+                            ]}>
+                            <Input name="fre"
+                            placeholder="Французский фразеологизм"
+                            id="logfre" />
+                        </Form.Item>
+                        <Form.Item
+                            name="fre_tr"
+                            label="Транскрипция французского фразеологизма"
+                           >
+                            <Input name="fre_tr"
+                            id="log_fre_tr"
+                            placeholder="Транскрипция французского фразеологизма"/>
+                        </Form.Item>
+
+                        <Form.Item
+                            name="kor_desc"
+                            label="Описание корейского фразеологизма"
+                            >
+                            <Input name="kor_desc"
+                            id="log_kor_desc"
+                            placeholder="Описание корейского фразеологизма"/>
+                        </Form.Item>
+
                         <Form.Item
                             name="link_phraseologikal"
                             label="Ссылка на фразеологизм"
@@ -259,8 +382,19 @@ const columns = [
                                     message: "Укажите категорию фразеологизма"
                                 }
                             ]}>
-                            <Input name="tag_id"
-                            placeholder="Тематика фразеологизма" />
+                            <Select   
+                            name="tag_id"  
+                            defaultValue="Выберите значение"    
+                            onChange={handleChange}               
+                            options={tag?.map((tag) => {
+                                return {
+                                    label: tag.tag_name,
+                                    value: tag.tag_id
+                                    
+                                }
+                           
+                            })}
+                            />
                         </Form.Item>
                 </Form>
             </Modal>

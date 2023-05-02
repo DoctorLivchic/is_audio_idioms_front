@@ -16,6 +16,7 @@ import Activity_exp_edit from './Activity_moderator_and_expert/Activity_exp_edit
 import Management_of_phrase from './Activity_moderator_and_expert/Manag_of_phrase';
 import Manag_of_tag from './Activity_moderator_and_expert/Manag_of_tag';
 import Manag_of_stat from './Activity_moderator_and_expert/Manag_of_stat';
+import St from './St';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import { supabase } from './supabaseClient'
@@ -56,6 +57,7 @@ export default function App() {
              <Route  path='/Activity_moderator_and_expert/Manag_of_tag' element={< Manag_of_tag  />}/>
              <Route  path='/Activity_moderator_and_expert/Manag_of_stat' element={< Manag_of_stat  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_exp_edit' element={< Activity_exp_edit  />}/>
+             <Route  path='*' element={< St  />}/>
            </Routes>
          </BrowserRouter>
      </div>  
