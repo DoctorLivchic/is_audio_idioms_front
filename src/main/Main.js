@@ -90,7 +90,7 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
 
-    if (firstText == '') {
+    if (firstText == "") {
       document.getElementById("textAreaExit").value = "";
     } else {
       //Получаем айди фразеологизма с которого переводим
@@ -191,6 +191,46 @@ export default function Main() {
     //Получаем айди пользователя
   }
 
+  const [isplaying, setisplaying] = useState(false);
+
+  async function PlayAudio() {
+    const firstT = document.getElementById("textAreaEnter").value;
+    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    // var audio = document.getElementById("audio");
+    //Получаем айди фразеологизма
+    const audio_id = await supabase
+      .from("phrase_text")
+      .select("audio_id")
+      .eq("phrase_text_text", firstText);
+
+    //Получаем аудиодорожку
+    const audio_path = await supabase
+      .from("audio_recording")
+      .select()
+      .eq("audio_id", audio_id.data[0]["audio_id"]);
+
+    console.log("../" + audio_path.data[0]["audio_path"]);
+
+    const path = audio_path.data[0]["audio_path"];
+
+    const audio = new Audio("../src/phrase_audio/fre-phrase-1.mp3");
+    audio.play();
+
+    // audio.preload = "auto";
+    // // audio.src = "../src/phrase_audio/fre_phrase_1.mp3";
+
+    // console.log(String(audio.src));
+    // audio.play();
+    // if (isplaying) {
+    //   setisplaying(false);
+    //   audio.pause();
+    // } else {
+    //   setisplaying(true);
+    //   audio.play();
+    // }
+  }
+
   const navigate = useNavigate();
   return (
     <div className="main_page" id="main_page">
@@ -245,6 +285,11 @@ export default function Main() {
             </Form>
           </div>
           <div className="buttom-block">
+            {/* <audio
+              id="audio"
+              src="../src/phrase_audio/fre-phrase-1.mp3"
+              type="audio/mpeg"
+            ></audio> */}
             <Form.Item>
               {/* Поле ввода фразеологизма  */}
               <TextArea
@@ -277,9 +322,10 @@ export default function Main() {
               </Button>
 
               <Button
-                onClick={() => {
-                  navigate("");
-                }}
+                // onClick={() => {
+                //   navigate("");
+                // }}
+                onClick={PlayAudio}
                 className="buttom-audio"
               >
                 Прослушать
