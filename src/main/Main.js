@@ -192,6 +192,7 @@ export default function Main() {
   }
 
   const [isplaying, setisplaying] = useState(false);
+  const [isplaying2, setisplaying2] = useState(false);
 
   async function PlayAudio() {
     const firstT = document.getElementById("textAreaEnter").value;
@@ -227,6 +228,43 @@ export default function Main() {
       setisplaying(true);
       audio.play();
       setisplaying(false);
+    }
+  }
+
+  async function PlayAudio2() {
+    const firstT = document.getElementById("textAreaExit").value;
+    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    //Получаем айди фразеологизма
+    const audio_id = await supabase
+      .from("phrase_text")
+      .select("audio_id")
+      .eq("phrase_text_text", firstText);
+
+    //Получаем аудиодорожку
+    const audio_path = await supabase
+      .from("audio_recording")
+      .select("audio_path")
+      .eq("audio_id", audio_id.data[0]["audio_id"]);
+
+    var path =
+      "https://inyxfjfjxzdevxwzukie.supabase.co/storage/v1/object/public/audio/";
+
+    path = path + audio_path.data[0]["audio_path"];
+
+    var audio = document.getElementById("audio");
+
+    audio.volume = 0.1;
+
+    audio.src = path;
+
+    if (isplaying) {
+      setisplaying2(false);
+      audio.pause();
+    } else {
+      setisplaying2(true);
+      audio.play();
+      setisplaying2(false);
     }
   }
 
@@ -388,12 +426,7 @@ export default function Main() {
                 /*onChange={onChange}*/ placeholder="Перевод"
                 className="Text_area"
               />
-              <Button
-                onClick={() => {
-                  navigate("");
-                }}
-                className="buttom-audio1"
-              >
+              <Button onClick={PlayAudio2} className="buttom-audio1">
                 Прослушать
               </Button>
             </Form.Item>
