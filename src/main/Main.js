@@ -226,6 +226,7 @@ export default function Main() {
     } else {
       setisplaying(true);
       audio.play();
+      setisplaying(false);
     }
   }
 
