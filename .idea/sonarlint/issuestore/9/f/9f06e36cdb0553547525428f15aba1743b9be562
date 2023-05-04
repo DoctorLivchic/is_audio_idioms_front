@@ -1,23 +1,0 @@
-
-Ljavascript:S1128")Remove this unused import of 'useEffect'.(â—ÜÚ8ˆ“¨êü0
-Ijavascript:S1128"&Remove this unused import of 'Select'.(¾ô¿ß8ˆ“¨êü0
-Hjavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼8ˆ“¨êü0
-Djavascript:S3863"'antd' import is duplicated.(©Û†òûÿÿÿÿ8ˆ“¨êü0
-Ujavascript:S1128
-"-Remove this unused import of 'Authorization'.(âåªùÿÿÿÿ8ˆ“¨êü0
-@javascript:S3863"'react' import is duplicated.(¡Ş–®8ˆ“¨êü0
-ejavascript:S1481"=Remove the declaration of the unused 'contentStyle' variable.(¡êµ«ÿÿÿÿÿ8ô•¶ïü0
-bjavascript:S1854":Remove this useless assignment to variable "contentStyle".(¡êµ«ÿÿÿÿÿ8ô•¶ïü0
-Jjavascript:S1481"'Remove unused function 'onChangeInput'.(ŠÁåÎ8ô•¶ïü0
-bjavascript:S1481+":Remove the declaration of the unused 'firstText' variable.(ÄÜÆ·ıÿÿÿÿ8ô•¶ïü0
-_javascript:S1854+"7Remove this useless assignment to variable "firstText".(ÄÜÆ·ıÿÿÿÿ8ô•¶ïü0
-^javascript:S1481-";Remove the declaration of the unused 'secondText' variable.(±û‘Á8ô•¶ïü0
-[javascript:S1854-"8Remove this useless assignment to variable "secondText".(±û‘Á8ô•¶ïü0
-[javascript:S14810"3Remove the declaration of the unused 'li' variable.(µ‰àãÿÿÿÿÿ8ô•¶ïü0
-Xjavascript:S18540"0Remove this useless assignment to variable "li".(µ‰àãÿÿÿÿÿ8õ•¶ïü0
-_javascript:S1481Š"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8õ•¶ïü0
-\javascript:S1854Š"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8õ•¶ïü0
-_javascript:S1481¨"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8õ•¶ïü0
-\javascript:S1854¨"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8õ•¶ïü0
-[javascript:S1481º"7Remove the declaration of the unused 'phrase' variable.(ıê¨8õ•¶ïü0
-Xjavascript:S1854º"4Remove this useless assignment to variable "phrase".(ıê¨8õ•¶ïü0
