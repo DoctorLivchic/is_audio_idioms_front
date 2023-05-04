@@ -117,21 +117,26 @@ const columns = [
     }
  //------------------------------------------------------------------   
     async function delete_row(){
-      const phraseological = await supabase.from("phraseological").select()
-      const data1 = (await phraseological).data;
+      const phrase_text = await supabase.from("phrase_text").select()
+      const data1 = (await phrase_text).data;
       for (let i = 0; i < selectedRowKeys.length; i++){  
           try {
             const { error } = await supabase
-            .from('phraseological')
-            .update({status_id:'6'})
-            .eq('phrase_id',selectedRowKeys.at(i));
+            .from('phrase_text')
+            .delete()
+            .eq('phrase_text_id',selectedRowKeys.at(i));
             notification.open({message:'Успешно',description:'запись поставленна на удаление'})
-            console.log("Запись удалена",selectedRowKeys.at(i))           
+            console.log("Запись удалена",selectedRowKeys.at(i)) 
       }
       catch (error) {
         notification.open({message:'Ошибка',description:error.message});
       }
       }
+
+
+    
+
+
       getphrase()
       update()
       }
@@ -179,8 +184,6 @@ const columns = [
     const kor_desc1 = form.getFieldValue("kor_desc");
     const link = form.getFieldValue("link_phraseologikal")
     
-
-   
       try {
        
         //------------------------------------------------------------------------------------------------------------
@@ -204,7 +207,7 @@ const columns = [
         const id = await supabase.from("phraseological").select("phrase_id");
         let max = -10;
         for (let i = 0; i < id.data.length; i++) {
-          console.log(id.data[i]["phrase_id"]);
+          // console.log(id.data[i]["phrase_id"]);
           if (id.data[i]["phrase_id"] > max) {
             max = id.data[i]["phrase_id"];
           }

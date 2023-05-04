@@ -13,6 +13,9 @@ import { useState } from "react";
 export default function Main() {
   const [buttonTextLike, setButtonTextLike] = useState(0);
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
+  const [tag,settag]=useState([]);
+  const [chbox,setchbox]=useState("none");
+
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -29,20 +32,48 @@ export default function Main() {
     color: "#fff",
     backgroundColor: "#95aacc",
   };
-
-  const onChange = (e) => {
-    console.log("Change:", e.target.value);
+  
+  
+   async function onChange() {
+   var chec=document.getElementById("one")
+   if (chec.checked) {
+    setchbox("contents")
+    console.log("отобразить", chbox)
+  }
+  else {
+    setchbox("none")
+    console.log("не отобразить", chbox)
+  }
+   return chbox
   };
 
   function onChangeInput(value) {
     console.log(value);
+  }
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+    
+  };
+
+  useEffect(() => { 
+    gettags();
+  }, []);
+
+  async function gettags(){
+    const tags = await supabase.from("tags").select();
+    const tag = (await tags).data;
+    const data_tag = await supabase
+        .from('tags')
+        .select()
+    settag(data_tag.data)
+    return data_tag
   }
 
   //Функция смены языков в выпадающих меню
   function changeLanguage() {
     const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
     const translationLanguage =
-      document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
     document.getElementById("select_lang_enter").value = translationLanguage;
     document.getElementById("select_lang_exit").value = chosenLanguage;
     const firstT = document.getElementById("textAreaEnter").value;
@@ -105,7 +136,6 @@ export default function Main() {
         .from("phrase_text")
         .select()
         .eq("phrase_text_text", firstText);
-
       try {
         //Получаем фразеологизм на языке, который выбран к переводу
         const translate = await supabase
@@ -118,7 +148,6 @@ export default function Main() {
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
       }
-
       //-------------------------------------------------------------------------------
       // Вывод лайков
     }
@@ -252,6 +281,7 @@ export default function Main() {
             </Form>
           </div>
           <div className="buttom-block">
+   
             <Form.Item>
               {/* Поле ввода фразеологизма  */}
               <TextArea
@@ -284,17 +314,33 @@ export default function Main() {
               </Button>
 
               <Button
-                onClick={() => {
-                  navigate("");
-                }}
-                className="buttom-audio"
+              className="buttom-audio"
+                //  onClick={() => {
+                //    navigate("");
+                //  }}
+                //  onClick={document.getElementById('audio').play()}
+                // className="buttom-audio"
               >
                 Прослушать
               </Button>
             </Form.Item>
             <div className="buttom-audio3">
-              <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
+              <Checkbox id="one" onChange={onChange}>Поиск по категории</Checkbox>
             </div>
+            
+              <Select  
+                            name="tag_id"  
+                            style={{display:chbox}} 
+                            defaultValue="Выберите значение"    
+                            onChange={handleChange}               
+                            options={tag?.map((tag) => {
+                                return {
+                                    label: tag.tag_name,
+                                    value: tag.tag_id                                   
+                                }                         
+                            })}
+                            />   
+                          
           </div>
         </Content>
 

@@ -15,9 +15,15 @@ _javascript:S1854+"7Remove this useless assignment to variable "firstText".(Ä
 [javascript:S1854-"8Remove this useless assignment to variable "secondText".(±û‘Á8ô•¶ïü0
 [javascript:S14810"3Remove the declaration of the unused 'li' variable.(µ‰àãÿÿÿÿÿ8ô•¶ïü0
 Xjavascript:S18540"0Remove this useless assignment to variable "li".(µ‰àãÿÿÿÿÿ8õ•¶ïü0
-_javascript:S1481Š"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8õ•¶ïü0
-\javascript:S1854Š"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8õ•¶ïü0
-_javascript:S1481¨"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8õ•¶ïü0
-\javascript:S1854¨"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8õ•¶ïü0
-[javascript:S1481º"7Remove the declaration of the unused 'phrase' variable.(ıê¨8õ•¶ïü0
-Xjavascript:S1854º"4Remove this useless assignment to variable "phrase".(ıê¨8õ•¶ïü0
+_javascript:S1481Š"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8¤ìüìı0
+\javascript:S1854Š"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8¤ìüìı0
+_javascript:S1481¨"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8¤ìüìı0
+\javascript:S1854¨"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8¤ìüìı0
+[javascript:S1481º"7Remove the declaration of the unused 'phrase' variable.(ıê¨8¤ìüìı0
+Xjavascript:S1854º"4Remove this useless assignment to variable "phrase".(ıê¨8¥ìüìı0
+_javascript:S1481Ã";Remove the declaration of the unused 'isplaying2' variable.(ğˆÜ©8¼×Ğş0
+\javascript:S1854Ã"8Remove this useless assignment to variable "isplaying2".(ğˆÜ©8¼×Ğş0
+Rjavascript:S3504Ö")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8¼×Ğş0
+Rjavascript:S3504Û")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8¼×Ğş0
+Rjavascript:S3504û")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8¼×Ğş0
+Rjavascript:S3504€")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8½×Ğş0
