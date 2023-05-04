@@ -13,9 +13,8 @@ import { useState } from "react";
 export default function Main() {
   const [buttonTextLike, setButtonTextLike] = useState(0);
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
-  const [tag,settag]=useState([]);
-  const [chbox,setchbox]=useState("none");
-
+  const [tag, settag] = useState([]);
+  const [chbox, setchbox] = useState("none");
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -32,48 +31,43 @@ export default function Main() {
     color: "#fff",
     backgroundColor: "#95aacc",
   };
-  
-  
-   async function onChange() {
-   var chec=document.getElementById("one")
-   if (chec.checked) {
-    setchbox("contents")
-    console.log("отобразить", chbox)
+
+  async function onChange() {
+    var chec = document.getElementById("one");
+    if (chec.checked) {
+      setchbox("contents");
+      console.log("отобразить", chbox);
+    } else {
+      setchbox("none");
+      console.log("не отобразить", chbox);
+    }
+    return chbox;
   }
-  else {
-    setchbox("none")
-    console.log("не отобразить", chbox)
-  }
-   return chbox
-  };
 
   function onChangeInput(value) {
     console.log(value);
   }
   const handleChange = (value) => {
     console.log(`selected ${value}`);
-    
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     gettags();
   }, []);
 
-  async function gettags(){
+  async function gettags() {
     const tags = await supabase.from("tags").select();
     const tag = (await tags).data;
-    const data_tag = await supabase
-        .from('tags')
-        .select()
-    settag(data_tag.data)
-    return data_tag
+    const data_tag = await supabase.from("tags").select();
+    settag(data_tag.data);
+    return data_tag;
   }
 
   //Функция смены языков в выпадающих меню
   function changeLanguage() {
     const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
     const translationLanguage =
-    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+      document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
     document.getElementById("select_lang_enter").value = translationLanguage;
     document.getElementById("select_lang_exit").value = chosenLanguage;
     const firstT = document.getElementById("textAreaEnter").value;
@@ -108,8 +102,43 @@ export default function Main() {
     }
   }
 
+  const [color, setcolor] = useState("");
+
+  async function isAddFav() {
+    const fav = await supabase
+      .from("favourites_phraseological")
+      .select("phrase_id")
+      .eq("user_id", localStorage.getItem("userID"));
+
+    const firstT = document.getElementById("textAreaEnter").value;
+    var firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    //Получаем айди фразеологизма
+    const phrase = await supabase
+      .from("phrase_text")
+      .select("phrase_id")
+      .eq("phrase_text_text", firstText);
+
+    let ok = false;
+
+    for (let i = 0; i < fav.data.length; i++) {
+      if (phrase.data[0]["phrase_id"] == fav.data[i]["phrase_id"]) {
+        // delFromFav();
+        ok = true;
+        break;
+      }
+    }
+    if (!ok) {
+      setcolor("");
+    } else {
+      setcolor("#eb2f96");
+    }
+  }
+
   //Функция перевода
   async function translateFunction() {
+    setcolor("");
+    isAddFav();
     GetLike();
     const translationLanguage =
       document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
@@ -214,7 +243,67 @@ export default function Main() {
     setButtonTextDislike(phrase3.data[0]["rating_dislike"]);
   }
   //Функция добавления в избранное
+
+  async function addToFavButton() {
+    const fav = await supabase
+      .from("favourites_phraseological")
+      .select("phrase_id")
+      .eq("user_id", localStorage.getItem("userID"));
+
+    const firstT = document.getElementById("textAreaEnter").value;
+    var firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    //Получаем айди фразеологизма
+    const phrase = await supabase
+      .from("phrase_text")
+      .select("phrase_id")
+      .eq("phrase_text_text", firstText);
+
+    let ok = false;
+
+    for (let i = 0; i < fav.data.length; i++) {
+      if (phrase.data[0]["phrase_id"] == fav.data[i]["phrase_id"]) {
+        // delFromFav();
+        ok = true;
+        alert("попали в удаление");
+        break;
+      }
+    }
+    if (!ok) {
+      alert("попали в добавление");
+    }
+
+    // let ok = fav.data[0]["phrase_id"].includes(phrase.data[0]["phrase_id"]);
+    // console.log(ok);
+
+    // if (fav.data[0].includes(phrase.data[0]["phrase_id"])) {
+    //   delFromFav();
+    // } else {
+    //   addToFavButton();
+    // }
+  }
+
+  async function delFromFav() {
+    alert("Вызвана функция удаления из избранного");
+    if (isAddFav) {
+      const firstT = document.getElementById("textAreaEnter").value;
+      const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+      //Получаем айди фразеологизма
+      const phrase = await supabase
+        .from("phrase_text")
+        .select("phrase_id")
+        .eq("phrase_text_text", firstText);
+
+      const { error } = await supabase
+        .from("favourites_phraseological")
+        .delete()
+        .eq("phrase_id", phrase.data[0]["phrase_id"]);
+    }
+  }
+
   async function addToFavourite() {
+    alert("Вызвана функция добавления в избранное");
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
 
@@ -225,6 +314,22 @@ export default function Main() {
       .eq("phrase_text_text", firstText);
 
     //Получаем айди пользователя
+    let userID = localStorage.getItem("userID"); //получаем айди авторизованного пользователя
+    console.log(userID);
+
+    //Добавляем фразеологизм в избранные
+    try {
+      const { error2 } = await supabase
+        .from("favourites_phraseological")
+        .insert([
+          {
+            phrase_id: phrase.data[0]["phrase_id"],
+            user_id: parseInt(userID),
+          },
+        ]);
+    } catch (error2) {
+      alert(error2.message);
+    }
   }
 
   const navigate = useNavigate();
@@ -281,7 +386,6 @@ export default function Main() {
             </Form>
           </div>
           <div className="buttom-block">
-   
             <Form.Item>
               {/* Поле ввода фразеологизма  */}
               <TextArea
@@ -293,8 +397,8 @@ export default function Main() {
               />
               <Button
                 className="buttom-audio"
-                onClick={addToFavourite}
-                icon={<HeartTwoTone />}
+                onClick={addToFavButton}
+                icon={<HeartTwoTone twoToneColor={color} />}
               ></Button>
               <Button
                 className="buttom-audio"
@@ -314,7 +418,7 @@ export default function Main() {
               </Button>
 
               <Button
-              className="buttom-audio"
+                className="buttom-audio"
                 //  onClick={() => {
                 //    navigate("");
                 //  }}
@@ -325,22 +429,23 @@ export default function Main() {
               </Button>
             </Form.Item>
             <div className="buttom-audio3">
-              <Checkbox id="one" onChange={onChange}>Поиск по категории</Checkbox>
+              <Checkbox id="one" onChange={onChange}>
+                Поиск по категории
+              </Checkbox>
             </div>
-            
-              <Select  
-                            name="tag_id"  
-                            style={{display:chbox}} 
-                            defaultValue="Выберите значение"    
-                            onChange={handleChange}               
-                            options={tag?.map((tag) => {
-                                return {
-                                    label: tag.tag_name,
-                                    value: tag.tag_id                                   
-                                }                         
-                            })}
-                            />   
-                          
+
+            <Select
+              name="tag_id"
+              style={{ display: chbox }}
+              defaultValue="Выберите значение"
+              onChange={handleChange}
+              options={tag?.map((tag) => {
+                return {
+                  label: tag.tag_name,
+                  value: tag.tag_id,
+                };
+              })}
+            />
           </div>
         </Content>
 

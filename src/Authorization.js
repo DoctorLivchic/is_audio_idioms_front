@@ -170,6 +170,7 @@ export default function Authorization() {
       } else {
         if (user.data[0]["role_id"] == 1) {
           localStorage.setItem("userID", user.data[0]["user_id"]);
+
           setUser_id(user.data[0]["user_id"]);
           console.log(String(user_id));
           navigate("/Moderator_personal_account");
@@ -178,6 +179,7 @@ export default function Authorization() {
             description: "Вы успешно авторизовались!",
           });
         } else if (user.data[0]["role_id"] == 2) {
+          localStorage.setItem("userID", user.data[0]["user_id"]);
           setUser_id(user.data[0]["user_id"]);
           navigate("/Expert_personal_account");
           notification.open({
@@ -185,6 +187,7 @@ export default function Authorization() {
             description: "Вы успешно авторизовались!",
           });
         } else {
+          localStorage.setItem("userID", user.data[0]["user_id"]);
           setUser_id(user.data[0]["user_id"]);
           navigate("/main_page/Main_page_aut");
           notification.open({
