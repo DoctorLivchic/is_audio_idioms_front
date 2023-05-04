@@ -179,16 +179,11 @@ export default function Main() {
   }
   //Функция добавления в избранное
   async function addToFavourite() {
-    const firstT = document.getElementById("textAreaEnter").value;
-    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
-
-    //Получаем айди фразеологизма
-    const phrase = await supabase
-      .from("phrase_text")
-      .select("phrase_id")
-      .eq("phrase_text_text", firstText);
-
-    //Получаем айди пользователя
+    notification.open({
+      message: "Внимание!",
+      description:
+        "Для добавления фразеологизма в избранное Вам необходимо войти.",
+    });
   }
 
   const [isplaying, setisplaying] = useState(false);
@@ -258,7 +253,7 @@ export default function Main() {
 
     audio.src = path;
 
-    if (isplaying) {
+    if (isplaying2) {
       setisplaying2(false);
       audio.pause();
     } else {

@@ -265,12 +265,13 @@ export default function Main() {
       if (phrase.data[0]["phrase_id"] == fav.data[i]["phrase_id"]) {
         // delFromFav();
         ok = true;
-        alert("попали в удаление");
         break;
       }
     }
     if (!ok) {
-      alert("попали в добавление");
+      addToFavourite();
+    } else {
+      delFromFav();
     }
 
     // let ok = fav.data[0]["phrase_id"].includes(phrase.data[0]["phrase_id"]);
@@ -284,7 +285,6 @@ export default function Main() {
   }
 
   async function delFromFav() {
-    alert("Вызвана функция удаления из избранного");
     if (isAddFav) {
       const firstT = document.getElementById("textAreaEnter").value;
       const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
@@ -294,16 +294,19 @@ export default function Main() {
         .from("phrase_text")
         .select("phrase_id")
         .eq("phrase_text_text", firstText);
-
-      const { error } = await supabase
-        .from("favourites_phraseological")
-        .delete()
-        .eq("phrase_id", phrase.data[0]["phrase_id"]);
+      try {
+        const { error } = await supabase
+          .from("favourites_phraseological")
+          .delete()
+          .eq("phrase_id", phrase.data[0]["phrase_id"]);
+        isAddFav();
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   }
 
   async function addToFavourite() {
-    alert("Вызвана функция добавления в избранное");
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
 
@@ -327,6 +330,7 @@ export default function Main() {
             user_id: parseInt(userID),
           },
         ]);
+      isAddFav();
     } catch (error2) {
       alert(error2.message);
     }
