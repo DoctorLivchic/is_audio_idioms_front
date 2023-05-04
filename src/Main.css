@@ -2,9 +2,19 @@
   Меню перевода
 ============================*/
 
+.sel_tag{
+  position: relative;
+  left: 23%;
+  margin-top:  5%;
+  visibility: hidden;
+}
 
-
-
+.sel_tag1{
+  position: relative;
+  left: 23%;
+  margin-top:  5%;
+  visibility: visible;
+}
 
 
 
@@ -100,7 +110,7 @@
 }
 .buttom-audio{
   position: relative;
-  left: 13%;
+  left: 16%;
   margin-top: 5%;
 }
 .buttom-audio2{
@@ -111,12 +121,12 @@
 
 .buttom-audio3{
   position: relative;
-  left: 28%;
+  left: 26%;
   margin-top: 5%;
 }
 .buttom-audio1{
   position: relative;
-  left: 32%;
+  left: 37%;
   margin-top: 5%;
 }
 .select_{

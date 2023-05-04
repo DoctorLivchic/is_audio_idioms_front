@@ -198,13 +198,14 @@ export default function Main() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
 
+    // var audio = document.getElementById("audio");
     //Получаем айди фразеологизма
     const audio_id = await supabase
       .from("phrase_text")
       .select("audio_id")
       .eq("phrase_text_text", firstText);
 
-    //Получаем аудиодорожку
+    //----------------------------Получаем аудиодорожку
     const audio_path = await supabase
       .from("audio_recording")
       .select("audio_path")
