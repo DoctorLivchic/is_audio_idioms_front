@@ -197,7 +197,8 @@ export default function Main() {
   async function PlayAudio() {
     const firstT = document.getElementById("textAreaEnter").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
-
+    var tmp = localStorage.getItem("userID");
+    console.log(tmp);
     //Получаем айди фразеологизма
     const audio_id = await supabase
       .from("phrase_text")
