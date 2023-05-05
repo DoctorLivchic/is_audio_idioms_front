@@ -15,7 +15,6 @@ export default function Main() {
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
   const [tag, settag] = useState([]);
   const [chbox, setchbox] = useState("none");
-  const [textAreaExit, setTextAreaExit] = useState("");
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -32,7 +31,7 @@ export default function Main() {
     color: "#fff",
     backgroundColor: "#95aacc",
   };
-
+  //-----------------функция отображения панели тегов-------------------------
   async function onChange() {
     var chec = document.getElementById("one");
     if (chec.checked) {
@@ -102,8 +101,9 @@ export default function Main() {
       setButtonTextDislike(likes.data[0]["rating_dislike"]);
     }
   }
-
+  //Состояния цветов ------------------------------------------
   const [color, setcolor] = useState("");
+  const [stylBut, setstylBut] = useState([]);
 
   async function isAddFav() {
     const fav = await supabase
@@ -131,7 +131,9 @@ export default function Main() {
     }
     if (!ok) {
       setcolor("");
+      setstylBut("");
     } else {
+      setstylBut("#f5988c");
       setcolor("#eb2f96");
     }
   }
@@ -400,11 +402,14 @@ export default function Main() {
                 /*onChange={onChange}*/ placeholder="Введите текст"
                 className="Text_area"
               />
+
               <Button
                 className="buttom-audio"
                 onClick={addToFavButton}
+                style={{ backgroundColor: stylBut }}
                 icon={<HeartTwoTone twoToneColor={color} />}
               ></Button>
+
               <Button
                 className="buttom-audio"
                 onClick={likePhrase}
