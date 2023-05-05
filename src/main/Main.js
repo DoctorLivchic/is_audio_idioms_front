@@ -253,7 +253,7 @@ export default function Main() {
 
     audio.src = path;
 
-    if (isplaying2) {
+    if (isplaying) {
       setisplaying2(false);
       audio.pause();
     } else {
