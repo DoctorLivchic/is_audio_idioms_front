@@ -15,6 +15,7 @@ export default function Main() {
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
   const [tag, settag] = useState([]);
   const [chbox, setchbox] = useState("none");
+  const [textAreaExit, setTextAreaExit] = useState("");
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -172,8 +173,8 @@ export default function Main() {
           .select("phrase_text_text")
           .eq("phrase_id", phrase.data[0]["phrase_id"])
           .eq("language_id", lang);
-        document.getElementById("textAreaExit").value =
-          translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+
+        document.getElementById("textAreaExit").value = textAreaExit.value; //то выводим во второй текстБокс перевод по выбранному языку к переводу
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
       }
