@@ -277,7 +277,7 @@ export default function Main() {
     } else {
       delFromFav();
     }
-
+    translateFunction()
     // let ok = fav.data[0]["phrase_id"].includes(phrase.data[0]["phrase_id"]);
     // console.log(ok);
 
