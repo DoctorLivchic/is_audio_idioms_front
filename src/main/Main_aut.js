@@ -308,6 +308,7 @@ export default function Main() {
         console.log(error.message);
       }
     }
+    translateFunction()
   }
 
   async function addToFavourite() {
