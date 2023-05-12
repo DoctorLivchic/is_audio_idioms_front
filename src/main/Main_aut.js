@@ -277,15 +277,7 @@ export default function Main() {
     } else {
       delFromFav();
     }
-    translateFunction()
-    // let ok = fav.data[0]["phrase_id"].includes(phrase.data[0]["phrase_id"]);
-    // console.log(ok);
-
-    // if (fav.data[0].includes(phrase.data[0]["phrase_id"])) {
-    //   delFromFav();
-    // } else {
-    //   addToFavButton();
-    // }
+    translateFunction();
   }
 
   async function delFromFav() {
@@ -308,7 +300,7 @@ export default function Main() {
         console.log(error.message);
       }
     }
-    translateFunction()
+    translateFunction();
   }
 
   async function addToFavourite() {
