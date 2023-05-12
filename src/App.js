@@ -10,6 +10,7 @@ import Expert_personal_account from './Expert_personal_account';
 import Moderator_personal_account from './Moderator_personal_account';
 import Addendum from './user_action/Addendum';
 import Editing from './user_action/Editing';
+import Favorit from './user_action/Favorit';
 import Activity_moderator from './Activity_moderator_and_expert/Activity_moderator';
 import Activity_exp from './Activity_moderator_and_expert/Activity_exp';
 import Activity_exp_edit from './Activity_moderator_and_expert/Activity_exp_edit';
@@ -51,6 +52,7 @@ export default function App() {
              <Route  path='/Authorization_Other' element={<Authorization_Other />}/>
              <Route  path='/user_action/Addendum' element={<Addendum />}/>
              <Route  path='/user_action/Editing' element={< Editing  />}/>
+             <Route  path='/user_action/Favorit' element={< Favorit  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_moderator' element={< Activity_moderator  />}/>
              <Route  path='/Activity_moderator_and_expert/Activity_exp' element={< Activity_exp  />}/>
              <Route  path='/Activity_moderator_and_expert/Manag_of_phrase' element={< Management_of_phrase  />}/>

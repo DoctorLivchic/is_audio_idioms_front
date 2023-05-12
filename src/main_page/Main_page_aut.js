@@ -47,7 +47,7 @@ export default function Main_page() {
               </Button>
               <Button
                 onClick={() => {
-                  navigate("-");
+                  navigate("/user_action/Favorit");
                 }}
                 className="btn-7"
               >

@@ -1,0 +1,29 @@
+
+Hjavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼8ˆ“¨êü0
+Djavascript:S3863"'antd' import is duplicated.(©Û†òûÿÿÿÿ8ˆ“¨êü0
+Ujavascript:S1128
+"-Remove this unused import of 'Authorization'.(âåªùÿÿÿÿ8ˆ“¨êü0
+@javascript:S3863"'react' import is duplicated.(¡Ş–®8ˆ“¨êü0
+ejavascript:S1481"=Remove the declaration of the unused 'contentStyle' variable.(¡êµ«ÿÿÿÿÿ8äôŸáş0
+bjavascript:S1854":Remove this useless assignment to variable "contentStyle".(¡êµ«ÿÿÿÿÿ8äôŸáş0
+Qjavascript:S3504 ")Unexpected var, use let or const instead.(ğ×Úâşÿÿÿÿ8äôŸáş0
+Jjavascript:S1481+"'Remove unused function 'onChangeInput'.(ŠÁåÎ8äôŸáş0
+Wjavascript:S14814"4Remove the declaration of the unused 'tag' variable.(¦÷Â8åôŸáş0
+Pjavascript:S11174"-'tag' is already declared in the upper scope.(¦÷Â8åôŸáş0
+Tjavascript:S18544"1Remove this useless assignment to variable "tag".(¦÷Â8åôŸáş0
+bjavascript:S1481B":Remove the declaration of the unused 'firstText' variable.(ÄÜÆ·ıÿÿÿÿ8åôŸáş0
+_javascript:S1854B"7Remove this useless assignment to variable "firstText".(ÄÜÆ·ıÿÿÿÿ8åôŸáş0
+^javascript:S1481D";Remove the declaration of the unused 'secondText' variable.(±û‘Á8åôŸáş0
+[javascript:S1854D"8Remove this useless assignment to variable "secondText".(±û‘Á8åôŸáş0
+[javascript:S1481G"3Remove the declaration of the unused 'li' variable.(µ‰àãÿÿÿÿÿ8åôŸáş0
+Xjavascript:S1854G"0Remove this useless assignment to variable "li".(µ‰àãÿÿÿÿÿ8æôŸáş0
+_javascript:S1481¡"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8æôŸáş0
+\javascript:S1854¡"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8æôŸáş0
+_javascript:S1481¿"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8æôŸáş0
+\javascript:S1854¿"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8æôŸáş0
+_javascript:S1481Õ";Remove the declaration of the unused 'isplaying2' variable.(ğˆÜ©8æôŸáş0
+\javascript:S1854Õ"8Remove this useless assignment to variable "isplaying2".(ğˆÜ©8æôŸáş0
+Rjavascript:S3504ç")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8æôŸáş0
+Rjavascript:S3504ì")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8çôŸáş0
+Rjavascript:S3504Œ")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8çôŸáş0
+Rjavascript:S3504‘")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8çôŸáş0

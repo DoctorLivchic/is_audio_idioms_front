@@ -13,6 +13,8 @@ import { useState } from "react";
 export default function Main() {
   const [buttonTextLike, setButtonTextLike] = useState(0);
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
+  const [tag, settag] = useState([]);
+  const [chbox, setchbox] = useState("none");
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -23,13 +25,34 @@ export default function Main() {
     color: "#fff",
     backgroundColor: "#95aacc",
   };
-
-  const onChange = (e) => {
-    console.log("Change:", e.target.value);
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
   };
+  async function onChange() {
+    var chec = document.getElementById("one");
+    if (chec.checked) {
+      setchbox("contents");
+      console.log("отобразить", chbox);
+    } else {
+      setchbox("none");
+      console.log("не отобразить", chbox);
+    }
+    return chbox;
+  }
 
   function onChangeInput(value) {
     console.log(value);
+  }
+  useEffect(() => {
+    gettags();
+  }, []);
+//Получение категорий--------------------------------------------------------
+  async function gettags() {
+    const tags = await supabase.from("tags").select();
+    const tag = (await tags).data;
+    const data_tag = await supabase.from("tags").select();
+    settag(data_tag.data);
+    return data_tag;
   }
 
   //Функция смены языков в выпадающих меню
@@ -348,7 +371,6 @@ export default function Main() {
               >
                 {buttonTextDislike}
               </Button>
-
               <Button
                 // onClick={() => {
                 //   navigate("");
@@ -360,8 +382,23 @@ export default function Main() {
               </Button>
             </Form.Item>
             <div className="buttom-audio3">
-              <Checkbox onChange={onChange}>Поиск по категории</Checkbox>
+              <Checkbox id="one" onChange={onChange}>Поиск по категории</Checkbox>
             </div>
+           
+            <Select
+              name="tag_id"
+               onChange={handleChange}
+              style={{ display: chbox }}
+              defaultValue="Выберите значение"
+             
+              options={tag?.map((tag) => {
+                return {
+                  label: tag.tag_name,
+                  value: tag.tag_id,
+                };
+              })}
+            />
+          
           </div>
         </Content>
 

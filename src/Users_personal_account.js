@@ -13,11 +13,6 @@ export default function Main_page() {
           <nav>
           <ul className="navig_us_acc">
           <Form.Item>
-          <Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Редактирование</Button>
-						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Добавление</Button>
-						 	<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Фразеологизм дня</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Чат</Button>
-							<Button onClick={() => {navigate('/avtorizacia/Authorization')}} className='btn-7'>Избранное</Button>
 							<Button onClick={() => {navigate('/main/Main_aut')}} className='btn-7'>Перевод фразеологизмов</Button>
               <Button onClick={() => {navigate('/main_page/Main_page_aut')}} className='btn-7'>Главная</Button>
 							<Button onClick={() => {navigate('/')}} className='btn-7'>Выйти</Button>     
@@ -25,7 +20,7 @@ export default function Main_page() {
           </ul>
             </nav>				
           </header>
-							<h1>Личные данные</h1>
+						
            
 		
 
