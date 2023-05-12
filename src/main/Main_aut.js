@@ -47,13 +47,13 @@ export default function Main() {
   function onChangeInput(value) {
     console.log(value);
   }
-  //-----------------Функция перевода по категории
+  //-----------------Функция перевода по категории---------------
   async function handleChange  (value)  {
     const val = value
-    console.log(val)
+    console.log(val+" значение")
 
     const translationLanguage =
-    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+    document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык вывода
   // console.log(translationLanguage);
 
   //Получаем язык на который переводим
@@ -65,18 +65,29 @@ export default function Main() {
   } else {
     lang = 3;
   }
-
+  console.log(lang+" язык")
   try {
     //Получаем фразеологизм на языке, который выбран к переводу
-    const translate = await supabase
+    const translate_tag = await supabase
       .from("phraseological")
       .select("phrase_id","tag_id")
       .eq("tag_id", val)
 
-    document.getElementById("textAreaExit").value =
-      translate.data[0]["phrase_text_text"] //то выводим во второй текстБокс перевод по выбранному языку к переводу
-  } catch (error) {
-    notification.open({ message: "Фразеологизм не найден", description: "Вы можете добавить фразеологизм в соответствующей вкладке" });
+      console.log(translate_tag.data)
+
+    for(let i = 0; i <= translate_tag.data.length; i++){
+    const translate_tag_enter = await supabase
+      .from("phrase_text")
+      .select("phrase_text_text")
+      .eq("phrase_id",translate_tag.data[i]["phrase_id"])
+      .eq("language_id",lang)
+      
+      console.log(translate_tag_enter.data)
+      
+    document.getElementById("textAreaEnter").value +=
+    translate_tag_enter.data[0]["phrase_text_text"]+" ; " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  }} catch (error) {
+    notification.open({ message: "Успешно", description: "Найдены все фразеологизмы по выбранной категории" });
   }
   };
 
@@ -553,10 +564,9 @@ export default function Main() {
                 Поиск по категории
               </Checkbox>
             </div>
-
+          <Form.Item  style={{ display: chbox }}>
             <Select
               name="tag_id"
-              // style={{ display: chbox }}
               defaultValue="Выберите значение"
               onChange={handleChange}
               options={tag?.map((tag) => {
@@ -566,6 +576,7 @@ export default function Main() {
                 };
               })}
             />
+           </Form.Item> 
           </div>
         </Content>
 
