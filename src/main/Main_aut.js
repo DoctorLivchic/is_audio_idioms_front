@@ -47,8 +47,37 @@ export default function Main() {
   function onChangeInput(value) {
     console.log(value);
   }
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+  //-----------------Функция перевода по категории
+  async function handleChange  (value)  {
+    const val = value
+    console.log(val)
+
+    const translationLanguage =
+    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+  // console.log(translationLanguage);
+
+  //Получаем язык на который переводим
+  let lang = 0;
+  if (translationLanguage == "rus") {
+    lang = 1;
+  } else if (translationLanguage == "kor") {
+    lang = 2;
+  } else {
+    lang = 3;
+  }
+
+  try {
+    //Получаем фразеологизм на языке, который выбран к переводу
+    const translate = await supabase
+      .from("phraseological")
+      .select("phrase_id","tag_id")
+      .eq("tag_id", val)
+
+    document.getElementById("textAreaExit").value =
+      translate.data[0]["phrase_text_text"] //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  } catch (error) {
+    notification.open({ message: "Фразеологизм не найден", description: "Вы можете добавить фразеологизм в соответствующей вкладке" });
+  }
   };
 
   useEffect(() => {
@@ -63,11 +92,11 @@ export default function Main() {
     return data_tag;
   }
 
-  //Функция смены языков в выпадающих меню
+  //---------------------------Функция смены языков в выпадающих меню
   function changeLanguage() {
     const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
     const translationLanguage =
-      document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
     document.getElementById("select_lang_enter").value = translationLanguage;
     document.getElementById("select_lang_exit").value = chosenLanguage;
     const firstT = document.getElementById("textAreaEnter").value;
@@ -172,16 +201,17 @@ export default function Main() {
         //Получаем фразеологизм на языке, который выбран к переводу
         const translate = await supabase
           .from("phrase_text")
-          .select("phrase_text_text")
+          .select()
           .eq("phrase_id", phrase.data[0]["phrase_id"])
           .eq("language_id", lang);
 
         document.getElementById("textAreaExit").value =
-          translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+          translate.data[0]["phrase_text_text"]+" "+translate.data[0]["phrase_text_transcription"]+" "+translate.data[0]["phrase_text_desc"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
       } catch (error) {
-        notification.open({ message: "Ошибка", description: error.message });
+        notification.open({ message: "Фразеологизм не найден", description: "Вы можете добавить фразеологизм в соответствующей вкладке" });
       }
       //-------------------------------------------------------------------------------
+      
       // Вывод лайков
     }
   }
@@ -215,6 +245,7 @@ export default function Main() {
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
 
     setButtonTextLike(phrase3.data[0]["rating_like"]);
+    translateFunction()
   }
   //Функция дизлайка
   async function dislikePhrase() {
@@ -245,6 +276,7 @@ export default function Main() {
       .eq("phrase_id", phrase.data[0]["phrase_id"]);
 
     setButtonTextDislike(phrase3.data[0]["rating_dislike"]);
+    translateFunction()
   }
   //Функция добавления в избранное
 
@@ -333,6 +365,85 @@ export default function Main() {
     }
   }
 
+  const [isplaying, setisplaying] = useState(false);
+  const [isplaying2, setisplaying2] = useState(false);
+
+  async function PlayAudio() {
+    const firstT = document.getElementById("textAreaEnter").value;
+    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    //Получаем айди фразеологизма
+    const audio_id = await supabase
+      .from("phrase_text")
+      .select("audio_id")
+      .eq("phrase_text_text", firstText);
+
+    //----------------------------Получаем аудиодорожку
+    const audio_path = await supabase
+      .from("audio_recording")
+      .select("audio_path")
+      .eq("audio_id", audio_id.data[0]["audio_id"]);
+
+    var path =
+      "https://inyxfjfjxzdevxwzukie.supabase.co/storage/v1/object/public/audio/";
+
+    path = path + audio_path.data[0]["audio_path"];
+
+    var audio = document.getElementById("audio");
+
+    audio.volume = 0.1;
+
+    audio.src = path;
+
+    if (isplaying) {
+      setisplaying(false);
+      audio.pause();
+    } else {
+      setisplaying(true);
+      audio.play();
+      setisplaying(false);
+    }
+  }
+
+
+  async function PlayAudio2() {
+    const firstT = document.getElementById("textAreaExit").value;
+    const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
+
+    //Получаем айди фразеологизма
+    const audio_id = await supabase
+      .from("phrase_text")
+      .select("audio_id")
+      .eq("phrase_text_text", firstText);
+
+    //Получаем аудиодорожку
+    const audio_path = await supabase
+      .from("audio_recording")
+      .select("audio_path")
+      .eq("audio_id", audio_id.data[0]["audio_id"]);
+
+    var path =
+      "https://inyxfjfjxzdevxwzukie.supabase.co/storage/v1/object/public/audio/";
+
+    path = path + audio_path.data[0]["audio_path"];
+
+    var audio = document.getElementById("audio");
+
+    audio.volume = 0.1;
+
+    audio.src = path;
+
+    if (isplaying) {
+      setisplaying2(false);
+      audio.pause();
+    } else {
+      setisplaying2(true);
+      audio.play();
+      setisplaying2(false);
+    }
+  }
+
+
   const navigate = useNavigate();
   return (
     <div className="main_page" id="main_page">
@@ -387,6 +498,7 @@ export default function Main() {
             </Form>
           </div>
           <div className="buttom-block">
+          <audio id="audio" src=""></audio>
             <Form.Item>
               {/* Поле ввода фразеологизма  */}
               <TextArea
@@ -423,11 +535,7 @@ export default function Main() {
 
               <Button
                 className="buttom-audio"
-                //  onClick={() => {
-                //    navigate("");
-                //  }}
-                //  onClick={document.getElementById('audio').play()}
-                // className="buttom-audio"
+                onClick={PlayAudio}
               >
                 Прослушать
               </Button>
@@ -440,7 +548,7 @@ export default function Main() {
 
             <Select
               name="tag_id"
-              style={{ display: chbox }}
+              // style={{ display: chbox }}
               defaultValue="Выберите значение"
               onChange={handleChange}
               options={tag?.map((tag) => {
@@ -509,11 +617,8 @@ export default function Main() {
                 /*onChange={onChange}*/ placeholder="Перевод"
                 className="Text_area"
               />
-              <Button
-                onClick={() => {
-                  navigate("");
-                }}
-                className="buttom-audio1"
+              <Button 
+                onClick={PlayAudio2} className="buttom-audio1"     
               >
                 Прослушать
               </Button>
