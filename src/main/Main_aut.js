@@ -66,6 +66,7 @@ export default function Main() {
     lang = 3;
   }
   console.log(lang+" язык")
+  document.getElementById("textAreaEnter").value = ""
   try {
     //Получаем фразеологизм на языке, который выбран к переводу
     const translate_tag = await supabase
@@ -103,7 +104,7 @@ export default function Main() {
     return data_tag;
   }
 
-  //---------------------------Функция смены языков в выпадающих меню
+  //---------------------------Функция смены языков в выпадающих меню-----------------------------
   function changeLanguage() {
     const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
     const translationLanguage =
@@ -141,7 +142,7 @@ export default function Main() {
       setButtonTextDislike(likes.data[0]["rating_dislike"]);
     }
   }
-  //Состояния цветов ------------------------------------------
+  //--------------------------Состояния цветов ------------------------------------------
   const [color, setcolor] = useState("");
   const [stylBut, setstylBut] = useState([]);
 
@@ -389,7 +390,7 @@ export default function Main() {
       .select("audio_id")
       .eq("phrase_text_text", firstText);
 
-    //----------------------------Получаем аудиодорожку
+    //----------------------------Получаем аудиодорожку----------------------------------
     const audio_path = await supabase
       .from("audio_recording")
       .select("audio_path")
@@ -402,7 +403,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -420,7 +421,7 @@ export default function Main() {
   async function PlayAudio2() {
     const firstT = document.getElementById("textAreaExit").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
-
+    console.log(firstT.data)
     //Получаем айди фразеологизма
     const audio_id = await supabase
       .from("phrase_text")
@@ -440,7 +441,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -637,7 +638,9 @@ export default function Main() {
           </div>
         </Content>
       </Layout>
-      <Pagefooter></Pagefooter>
+      <Pagefooter>
+        
+      </Pagefooter>
     </div>
   );
 }

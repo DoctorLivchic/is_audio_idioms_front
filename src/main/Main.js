@@ -173,8 +173,13 @@ export default function Main() {
           .select()
           .eq("phrase_id", phrase.data[0]["phrase_id"])
           .eq("language_id", lang);
+        const translate1 = await supabase
+        .from("phraseological")
+        .select()
+        .eq("phrase_id", phrase.data[0]["phrase_id"])
         document.getElementById("textAreaExit").value =
-        translate.data[0]["phrase_text_text"]+" "+translate.data[0]["phrase_text_transcription"]+" "+translate.data[0]["phrase_text_desc"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+        translate.data[0]["phrase_text_text"]+" "+translate.data[0]["phrase_text_transcription"]+translate.data[0]["phrase_text_desc"]+" " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+        // document.getElementById("textAreaExit").value += translate1.data[0]["link_phraseological"];
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
       }
@@ -279,7 +284,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -316,7 +321,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 

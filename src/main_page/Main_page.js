@@ -19,7 +19,7 @@ export default function Main_page() {
                  		<Form.Item>
 							<Button onClick={() => {navigate('/main/Main')}} className='btn-7'>Перевод фразеологизмов</Button>
 							<Button onClick={() => {navigate('/Authorization')}} className='btn-7'>Вход</Button>
-							<Select
+							{/* <Select
 							defaultValue="Дополнительно"
 							style={{
 								width: 150,
@@ -44,7 +44,7 @@ export default function Main_page() {
 								label: 'Дополнение 4',
 								},
 							]}
-							/>
+							/> */}
 						</Form.Item>
 												
 						 </ul>

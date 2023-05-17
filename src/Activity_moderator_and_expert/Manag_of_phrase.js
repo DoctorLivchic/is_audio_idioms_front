@@ -132,11 +132,6 @@ const columns = [
         notification.open({message:'Ошибка',description:error.message});
       }
       }
-
-
-    
-
-
       getphrase()
       update()
       }

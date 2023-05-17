@@ -112,7 +112,7 @@
  
   position: relative;
   left: 16%;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .buttom-audio2{
   position: relative;
@@ -123,12 +123,12 @@
 .buttom-audio3{
   position: relative;
   left: 26%;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .buttom-audio1{
   position: relative;
   left: 37%;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .select_{
   left: 100%;
@@ -853,7 +853,7 @@ header {
 }
 .navig_main_page_aut{
   position: relative;
-  left: 5%;
+  left: 45%;
   width: -90%;
 }
 .navig_us_acc{
