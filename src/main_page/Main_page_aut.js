@@ -19,7 +19,7 @@ export default function Main_page() {
       <header>
         {/* Кнопки навигации */}
         <nav>
-          <ul className="navig_main_page_aut">
+          <ul style={{ position: 'relative', left: '44%' }} className="navig_main_page_aut">
             <Form.Item>
               <Button
                 onClick={() => {
@@ -37,14 +37,14 @@ export default function Main_page() {
               >
                 Добавление
               </Button>
-              <Button
+              {/* <Button
                 onClick={() => {
                   navigate("-");
                 }}
                 className="btn-7"
               >
                 Фразеологизм дня
-              </Button>
+              </Button> */}
               <Button
                 onClick={() => {
                   navigate("/user_action/Favorit");
@@ -53,14 +53,14 @@ export default function Main_page() {
               >
                 Избранное
               </Button>
-              <Button
+              {/* <Button
                 onClick={() => {
                   navigate("/Users_personal_account");
                 }}
                 className="btn-7"
               >
                 Личный кабинет
-              </Button>
+              </Button> */}
               <Button
                 onClick={() => {
                   navigate("/main/Main_aut");
@@ -77,7 +77,7 @@ export default function Main_page() {
               >
                 Выход
               </Button>
-              <Select
+              {/* <Select
                 defaultValue="Дополнительно"
                 style={{
                   width: 150,
@@ -102,7 +102,7 @@ export default function Main_page() {
                     label: "Дополнение 4",
                   },
                 ]}
-              />
+              /> */}
             </Form.Item>
           </ul>
         </nav>

@@ -25,9 +25,7 @@ export default function Main() {
     color: "#fff",
     backgroundColor: "#95aacc",
   };
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+
   async function onChange() {
     var chec = document.getElementById("one");
     if (chec.checked) {
@@ -43,6 +41,52 @@ export default function Main() {
   function onChangeInput(value) {
     console.log(value);
   }
+//-----------------Функция перевода по категории---------------
+  async function handleChange  (value)  {
+    const val = value
+    console.log(val+" значение")
+
+    const translationLanguage =
+    document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык вывода
+  // console.log(translationLanguage);
+
+  //Получаем язык на который переводим
+  let lang = 0;
+  if (translationLanguage == "rus") {
+    lang = 1;
+  } else if (translationLanguage == "kor") {
+    lang = 2;
+  } else {
+    lang = 3;
+  }
+  console.log(lang+" язык")
+
+  document.getElementById("textAreaEnter").value =""
+  try {
+    //Получаем фразеологизм на языке, который выбран к переводу
+    const translate_tag = await supabase
+      .from("phraseological")
+      .select("phrase_id","tag_id")
+      .eq("tag_id", val)
+
+      console.log(translate_tag.data)
+
+    for(let i = 0; i <= translate_tag.data.length; i++){
+    const translate_tag_enter = await supabase
+      .from("phrase_text")
+      .select("phrase_text_text")
+      .eq("phrase_id",translate_tag.data[i]["phrase_id"])
+      .eq("language_id",lang)
+      
+      console.log(translate_tag_enter.data)
+      
+    document.getElementById("textAreaEnter").value +=
+    translate_tag_enter.data[0]["phrase_text_text"]+" ; " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  }} catch (error) {
+    notification.open({ message: "Успешно", description: "Найдены все фразеологизмы по выбранной категории" });
+  }
+  };
+
   useEffect(() => {
     gettags();
   }, []);
@@ -126,11 +170,16 @@ export default function Main() {
         //Получаем фразеологизм на языке, который выбран к переводу
         const translate = await supabase
           .from("phrase_text")
-          .select("phrase_text_text")
+          .select()
           .eq("phrase_id", phrase.data[0]["phrase_id"])
           .eq("language_id", lang);
+        const translate1 = await supabase
+        .from("phraseological")
+        .select()
+        .eq("phrase_id", phrase.data[0]["phrase_id"])
         document.getElementById("textAreaExit").value =
-          translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+        translate.data[0]["phrase_text_text"]+" "+translate.data[0]["phrase_text_transcription"]+translate.data[0]["phrase_text_desc"]+" " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+        // document.getElementById("textAreaExit").value += translate1.data[0]["link_phraseological"];
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
       }
@@ -235,7 +284,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -272,7 +321,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -384,13 +433,11 @@ export default function Main() {
             <div className="buttom-audio3">
               <Checkbox id="one" onChange={onChange}>Поиск по категории</Checkbox>
             </div>
-           
+            <Form.Item  style={{ display: chbox }}>
             <Select
               name="tag_id"
-               onChange={handleChange}
-              style={{ display: chbox }}
-              defaultValue="Выберите значение"
-             
+               onChange={handleChange}            
+              defaultValue="Выберите значение"           
               options={tag?.map((tag) => {
                 return {
                   label: tag.tag_name,
@@ -398,7 +445,7 @@ export default function Main() {
                 };
               })}
             />
-          
+           </Form.Item>
           </div>
         </Content>
 

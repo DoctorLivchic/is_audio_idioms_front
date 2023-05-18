@@ -48,40 +48,35 @@ export default function Main() {
     console.log(value);
   }
   //-----------------Функция перевода по категории
-  async function handleChange(value) {
-    const val = value;
-    console.log(val);
+  async function handleChange  (value)  {
+    const val = value
+    console.log(val)
 
     const translationLanguage =
-      document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
-    // console.log(translationLanguage);
+    document.getElementById("select_lang_exit").value; //Возвращаем выбранный язык вывода
+  // console.log(translationLanguage);
 
-    //Получаем язык на который переводим
-    let lang = 0;
-    if (translationLanguage == "rus") {
-      lang = 1;
-    } else if (translationLanguage == "kor") {
-      lang = 2;
-    } else {
-      lang = 3;
-    }
+  //Получаем язык на который переводим
+  let lang = 0;
+  if (translationLanguage == "rus") {
+    lang = 1;
+  } else if (translationLanguage == "kor") {
+    lang = 2;
+  } else {
+    lang = 3;
+  }
 
-    try {
-      //Получаем фразеологизм на языке, который выбран к переводу
-      const translate = await supabase
-        .from("phraseological")
-        .select("phrase_id", "tag_id")
-        .eq("tag_id", val);
+  try {
+    //Получаем фразеологизм на языке, который выбран к переводу
+    const translate = await supabase
+      .from("phraseological")
+      .select("phrase_id","tag_id")
+      .eq("tag_id", val)
 
-      document.getElementById("textAreaExit").value =
-        translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
-    } catch (error) {
-      notification.open({
-        message: "Фразеологизм не найден",
-        description:
-          "Вы можете добавить фразеологизм в соответствующей вкладке",
-      });
-    }
+    document.getElementById("textAreaExit").value =
+      translate.data[0]["phrase_text_text"] //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  } catch (error) {
+    notification.open({ message: "Фразеологизм не найден", description: "Вы можете добавить фразеологизм в соответствующей вкладке" });
   }
 
   useEffect(() => {
@@ -96,7 +91,7 @@ export default function Main() {
     return data_tag;
   }
 
-  //---------------------------Функция смены языков в выпадающих меню
+  //---------------------------Функция смены языков в выпадающих меню-----------------------------
   function changeLanguage() {
     const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
     const translationLanguage =
@@ -134,7 +129,7 @@ export default function Main() {
       setButtonTextDislike(likes.data[0]["rating_dislike"]);
     }
   }
-  //Состояния цветов ------------------------------------------
+  //--------------------------Состояния цветов ------------------------------------------
   const [color, setcolor] = useState("");
   const [stylBut, setstylBut] = useState([]);
 
@@ -402,7 +397,7 @@ export default function Main() {
       .select("audio_id")
       .eq("phrase_text_text", firstText);
 
-    //----------------------------Получаем аудиодорожку
+    //----------------------------Получаем аудиодорожку----------------------------------
     const audio_path = await supabase
       .from("audio_recording")
       .select("audio_path")
@@ -415,7 +410,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -432,7 +427,7 @@ export default function Main() {
   async function PlayAudio2() {
     const firstT = document.getElementById("textAreaExit").value;
     const firstText = firstT.toLowerCase(); //Возвращаем текст фразеологизма
-
+    console.log(firstT.data)
     //Получаем айди фразеологизма
     const audio_id = await supabase
       .from("phrase_text")
@@ -452,7 +447,7 @@ export default function Main() {
 
     var audio = document.getElementById("audio");
 
-    audio.volume = 0.1;
+    audio.volume = 0.7;
 
     audio.src = path;
 
@@ -564,10 +559,9 @@ export default function Main() {
                 Поиск по категории
               </Checkbox>
             </div>
-
+          <Form.Item  style={{ display: chbox }}>
             <Select
               name="tag_id"
-              // style={{ display: chbox }}
               defaultValue="Выберите значение"
               onChange={handleChange}
               options={tag?.map((tag) => {
@@ -577,6 +571,7 @@ export default function Main() {
                 };
               })}
             />
+           </Form.Item> 
           </div>
         </Content>
 
@@ -643,7 +638,9 @@ export default function Main() {
           </div>
         </Content>
       </Layout>
-      <Pagefooter></Pagefooter>
+      <Pagefooter>
+        
+      </Pagefooter>
     </div>
   );
 }

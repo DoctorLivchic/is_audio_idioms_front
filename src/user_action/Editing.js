@@ -27,7 +27,7 @@ export default function Editing() {
 
   //Валидация корейского перевода
   function validkor(rus_request) {
-    var re = /^[가-힣\s]+$/i;
+    var re = /^[ㄱ-모\s]+$/i;
     var valid = re.test(rus_request);
     return valid;
   }
@@ -42,41 +42,89 @@ export default function Editing() {
   }
 
   async function translateFunction() {
-    const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
-    console.log(chosenLanguage);
+  //   const chosenLanguage = document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык ввода
+  //   console.log(chosenLanguage);
 
-    const translationLanguage_fre = "fre"; //Возвращаем выбранный язык вывода
-    console.log(translationLanguage_fre);
+  //   const translationLanguage_fre = "fre"; //Возвращаем выбранный язык вывода
+  //   console.log(translationLanguage_fre);
 
-    const translationLanguage_rus = "rus"; //Возвращаем выбранный язык вывода
-    console.log(translationLanguage_rus);
+  //   const translationLanguage_rus = "rus"; //Возвращаем выбранный язык вывода
+  //   console.log(translationLanguage_rus);
 
-    const translationLanguage = "kor"; //Возвращаем выбранный язык вывода
-    console.log(translationLanguage);
+  //   const translationLanguage = "kor"; //Возвращаем выбранный язык вывода
+  //   console.log(translationLanguage);
 
-    const firstT = document.getElementById("textIn").value;
-    const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
-    console.log(firstText);
+  //   const firstT = document.getElementById("textIn").value;
+  //   const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+  //   console.log(firstText);
 
-    const phrase = getPhrase();
+  //   const phrase = getPhrase();
 
-    const data = (await phrase).data;
+  //   const data = (await phrase).data;
 
-    for (let i = 0; i < data.length; i++) {
-      if (data[i][chosenLanguage] == firstText) {
-        //Сравниваем, если текст выбранного языка == введенному тексту
-        document.getElementById("log_kor").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
-      }
-      if (data[i][chosenLanguage] == firstText) {
-        document.getElementById("log_rus").value =
-          data[i][translationLanguage_rus];
-      }
-      if (data[i][chosenLanguage] == firstText) {
-        document.getElementById("log_fre").value = 
-          data[i][translationLanguage_fre];
-      }
-    }
+  //   for (let i = 0; i < data.length; i++) {
+  //     if (data[i][chosenLanguage] == firstText) {
+  //       //Сравниваем, если текст выбранного языка == введенному тексту
+  //       document.getElementById("log_kor").value = data[i][translationLanguage]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+  //     }
+  //     if (data[i][chosenLanguage] == firstText) {
+  //       document.getElementById("log_rus").value =
+  //         data[i][translationLanguage_rus];
+  //     }
+  //     if (data[i][chosenLanguage] == firstText) {
+  //       document.getElementById("log_fre").value = 
+  //         data[i][translationLanguage_fre];
+  //     }
+  //   }
+  // }
+
+ 
+  const translationLanguage =
+    document.getElementById("select_lang_enter").value; //Возвращаем выбранный язык вывода
+  // console.log(translationLanguage);
+
+  //Получаем язык на который переводим
+  let lang = 0;
+  if (translationLanguage == "rus") {
+    lang = 1;
+  } else if (translationLanguage == "kor") {
+    lang = 2;
+  } else {
+    lang = 3;
   }
+
+  const firstT = document.getElementById("textIn").value;
+  const firstText = firstT.toLowerCase(); //Возвращаем текст к переводу
+
+  if (firstText == "") {
+    document.getElementById("textAreaExit").value = "";
+  } else {
+    //Получаем айди фразеологизма с которого переводим
+    const phrase = await supabase
+      .from("phrase_text")
+      .select()
+      .eq("phrase_text_text", firstText);
+    try {
+      //Получаем фразеологизм на языке, который выбран к переводу
+      const translate = await supabase
+        .from("phrase_text")
+        .select()
+        .eq("phrase_id", phrase.data[0]["phrase_id"])
+        .eq("language_id", lang);
+
+      document.getElementById("log_rus").value =
+        translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+    } catch (error) {
+      notification.open({ message: "Фразеологизм не найден", description: "Вы можете добавить фразеологизм в соответствующей вкладке" });
+    }
+    //-------------------------------------------------------------------------------
+    
+    // Вывод лайков
+  }
+}
+
+
+
 
   //Регистрация нового Запроса(редактирование)
   async function addrequest() {
@@ -85,7 +133,7 @@ export default function Editing() {
     const kor = document.getElementById("log_kor").value;
     const request_status1 = 1;
     const Request_type1 = 0;
-
+    let userID = localStorage.getItem("userID"); //получаем айди авторизованного пользователя
     //Запись
     if (validrus(rus)) {
       if (validfre(fre)) {
@@ -99,6 +147,8 @@ export default function Editing() {
                 kor_request: kor,
                 status_id: request_status1,
                 type_id: Request_type1,
+                user_id: parseInt(userID),
+                phrase_id:27
               });
           } catch (error) {
             alert(error.error_description || error.message);

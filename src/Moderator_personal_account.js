@@ -12,7 +12,7 @@ export default function Moderator_page() {
           <h2>Личный кабинет модератора</h2>					
         <nav>
         <ul className="navig_mod_acc">
-        <Form.Item>
+        <Form.Item style={{ position: 'relative', left: '-2%' }}>
             <Button onClick={() => {navigate('/Activity_moderator_and_expert/Activity_moderator')}} className='btn-7'>Заявки пользователей</Button>
             <Button onClick={() => {navigate('/Activity_moderator_and_expert/Manag_of_phrase')}} className='btn-7'>Управление фразеологизмами</Button>
             <Button onClick={() => {navigate('/Activity_moderator_and_expert/Manag_of_tag')}} className='btn-7'>Управление категориями</Button>

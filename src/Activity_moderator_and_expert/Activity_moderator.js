@@ -143,7 +143,7 @@ export default function Activity_moderator() {
   const navigate = useNavigate();
   return (
     <div className='Activ_moder'>
-      <div style={{ position: 'relative', left: '59%' }}>
+      <div style={{ position: 'relative', left: '57%' }}>
         <Button onClick={delete_row} className='btn-7'>Удалить</Button>
         <Button onClick={update} className='btn-7'>Обновить</Button>
         <Button onClick={push_request} className='btn-7'>Добавить в проверенные</Button>
