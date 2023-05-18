@@ -5,6 +5,8 @@ import { supabase } from "./supabaseClient.js";
 import { async } from "q";
 import { func } from "prop-types";
 import Pagefooter from "./component/Pagefooter";
+import { useLocation, Navigate } from "react-router-dom";
+import { useAuth } from "./useAuth.js";
 
 export default function Authorization() {
   const [formDataReg, setFormDataReg] = useState({
@@ -147,6 +149,11 @@ export default function Authorization() {
     // const usr = data[data.length-1]; //получаем последнюю запись
   }
 
+  const { signin } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const fromPage = location.state?.from?.pathname || "/";
   //Авторизация пользователя
   async function logIn() {
     const email = document.getElementById("logemailIn").value;
@@ -173,7 +180,7 @@ export default function Authorization() {
 
           setUser_id(user.data[0]["user_id"]);
           console.log(String(user_id));
-          navigate("/Moderator_personal_account");
+          signin(true, () => navigate("/Moderator_personal_account"));
           notification.open({
             message: "Успешно",
             description: "Вы успешно авторизовались!",
@@ -181,7 +188,7 @@ export default function Authorization() {
         } else if (user.data[0]["role_id"] == 2) {
           localStorage.setItem("userID", user.data[0]["user_id"]);
           setUser_id(user.data[0]["user_id"]);
-          navigate("/Expert_personal_account");
+          signin(true, () => navigate("/Expert_personal_account"));
           notification.open({
             message: "Успешно",
             description: "Вы успешно авторизовались!",
@@ -189,7 +196,7 @@ export default function Authorization() {
         } else {
           localStorage.setItem("userID", user.data[0]["user_id"]);
           setUser_id(user.data[0]["user_id"]);
-          navigate("/main_page/Main_page_aut");
+          signin(true, () => navigate("/Main_page_aut"));
           notification.open({
             message: "Успешно",
             description: "Вы успешно авторизовались!",
@@ -201,7 +208,6 @@ export default function Authorization() {
     }
   }
 
-  const navigate = useNavigate();
   return (
     user_id,
     (

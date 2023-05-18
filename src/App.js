@@ -21,83 +21,111 @@ import St from "./St";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
-
+import { RequireAuth } from "./RequireAuth";
+import { AuthProvider } from "./AuthProvider";
 export default function App() {
   const [session, setSession] = useState(null);
 
-  // useEffect(() => {
-  //   supabase.auth.getSession().then(({ data: { session } }) => {
-  //     setSession(session);
-  //   });
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
   return (
     <div className="App">
       <div className="ty">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/main/Main" element={<Main />} />
-            <Route path="/Authorization" element={<Authorization />} />
-            <Route path="/" element={<Main_page />} />
-            <Route
-              path="/Users_personal_account"
-              element={<Users_personal_account />}
-            />
-            <Route
-              path="/Expert_personal_account"
-              element={<Expert_personal_account />}
-            />
-            <Route
-              path="/Moderator_personal_account"
-              element={<Moderator_personal_account />}
-            />
-            <Route
-              path="/main_page/Main_page_aut"
-              element={<Main_page_aut />}
-            />
-            <Route path="/main/Main_aut" element={<Main_aut />} />
-            <Route
-              path="/Authorization_Other"
-              element={<Authorization_Other />}
-            />
-            <Route path="/user_action/Addendum" element={<Addendum />} />
-            <Route path="/user_action/Editing" element={<Editing />} />
-            <Route path="/user_action/Favorit" element={<Favorit />} />
-            <Route
-              path="/Activity_moderator_and_expert/Activity_moderator"
-              element={<Activity_moderator />}
-            />
-            <Route
-              path="/Activity_moderator_and_expert/Activity_exp"
-              element={<Activity_exp />}
-            />
-            <Route
-              path="/Activity_moderator_and_expert/Manag_of_phrase"
-              element={<Management_of_phrase />}
-            />
-            <Route
-              path="/Activity_moderator_and_expert/Manag_of_tag"
-              element={<Manag_of_tag />}
-            />
-            <Route
-              path="/Activity_moderator_and_expert/Manag_of_stat"
-              element={<Manag_of_stat />}
-            />
-            <Route
-              path="/Activity_moderator_and_expert/Activity_exp_edit"
-              element={<Activity_exp_edit />}
-            />
-            <Route path="*" element={<St />} />
-          </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/main/Main" element={<Main />} />
+              <Route path="/Authorization" element={<Authorization />} />
+              <Route path="/" element={<Main_page />} />
+              <Route
+                path="/Users_personal_account"
+                element={
+                  <RequireAuth>
+                    <Users_personal_account />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Expert_personal_account"
+                element={
+                  <RequireAuth>
+                    <Expert_personal_account />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Moderator_personal_account"
+                element={
+                  <RequireAuth>
+                    <Moderator_personal_account />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/main_page/Main_page_aut"
+                element={<Main_page_aut />}
+              />
+              <Route
+                path="/main/Main_aut"
+                element={
+                  <RequireAuth>
+                    <Main_aut />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Authorization_Other"
+                element={<Authorization_Other />}
+              />
+              <Route path="/user_action/Addendum" element={<Addendum />} />
+              <Route path="/user_action/Editing" element={<Editing />} />
+              <Route path="/user_action/Favorit" element={<Favorit />} />
+              <Route
+                path="/Activity_moderator_and_expert/Activity_moderator"
+                element={<Activity_moderator />}
+              />
+              <Route
+                path="/Activity_moderator_and_expert/Activity_exp"
+                element={
+                  <RequireAuth>
+                    <Activity_exp />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Activity_moderator_and_expert/Manag_of_phrase"
+                element={
+                  <RequireAuth>
+                    <Management_of_phrase />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Activity_moderator_and_expert/Manag_of_tag"
+                element={
+                  <RequireAuth>
+                    <Manag_of_tag />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Activity_moderator_and_expert/Manag_of_stat"
+                element={
+                  <RequireAuth>
+                    <Manag_of_stat />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/Activity_moderator_and_expert/Activity_exp_edit"
+                element={
+                  <RequireAuth>
+                    <Activity_exp_edit />
+                  </RequireAuth>
+                }
+              />
+              <Route path="*" element={<St />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
       </div>
     </div>
   );

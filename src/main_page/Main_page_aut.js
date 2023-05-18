@@ -7,19 +7,24 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import Pagefooter from "../component/Pagefooter";
+import { useAuth } from "../useAuth";
 
 const handleChange = (value) => {
   console.log(`selected ${value}`);
 };
 export default function Main_page() {
   const navigate = useNavigate();
+  const { signout } = useAuth();
 
   return (
     <div className="main_page" id="main_page">
       <header>
         {/* Кнопки навигации */}
         <nav>
-          <ul style={{ position: 'relative', left: '44%' }} className="navig_main_page_aut">
+          <ul
+            style={{ position: "relative", left: "44%" }}
+            className="navig_main_page_aut"
+          >
             <Form.Item>
               <Button
                 onClick={() => {
@@ -71,7 +76,7 @@ export default function Main_page() {
               </Button>
               <Button
                 onClick={() => {
-                  navigate("/");
+                  signout(() => navigate("/", { replace: true }));
                 }}
                 className="btn-7"
               >
