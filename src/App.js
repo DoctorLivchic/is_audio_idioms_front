@@ -75,12 +75,37 @@ export default function App() {
                 path="/Authorization_Other"
                 element={<Authorization_Other />}
               />
-              <Route path="/user_action/Addendum" element={<Addendum />} />
-              <Route path="/user_action/Editing" element={<Editing />} />
-              <Route path="/user_action/Favorit" element={<Favorit />} />
+              <Route
+                path="/user_action/Addendum"
+                element={
+                  <RequireAuth>
+                    <Addendum />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/user_action/Editing"
+                element={
+                  <RequireAuth>
+                    <Editing />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/user_action/Favorit"
+                element={
+                  <RequireAuth>
+                    <Favorit />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="/Activity_moderator_and_expert/Activity_moderator"
-                element={<Activity_moderator />}
+                element={
+                  <RequireAuth>
+                    <Activity_moderator />
+                  </RequireAuth>
+                }
               />
               <Route
                 path="/Activity_moderator_and_expert/Activity_exp"
