@@ -19,7 +19,7 @@ export default function Main_page() {
       <header>
         {/* Кнопки навигации */}
         <nav>
-          <ul className="navig_main_page_aut">
+          <ul style={{ position: 'relative', left: '44%' }} className="navig_main_page_aut">
             <Form.Item>
               <Button
                 onClick={() => {

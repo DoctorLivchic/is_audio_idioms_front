@@ -842,7 +842,7 @@ header {
 /*Панели навигации кнопок*/
 .navig {
   position: relative;
-  left: 67%;
+  left: 61%;
   top: 60px;
   width: -90%;
 }

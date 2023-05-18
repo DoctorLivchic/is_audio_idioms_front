@@ -243,7 +243,7 @@ const columns = [
     const navigate = useNavigate();
     return (
       <div className='Activ_moder'>
-      <div style={{position: 'relative', left:'59%' }}>
+      <div style={{position: 'relative', left:'64%' }}>
       <Button onClick={delete_row} className='btn-7'>Удалить</Button>
       <Button onClick={update} className='btn-7'>Обновить</Button>
       <Button onClick={change_phrase} className='btn-7'>Добавить</Button>

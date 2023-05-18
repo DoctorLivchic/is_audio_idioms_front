@@ -16,9 +16,10 @@ export default function Main_page() {
 						{/* Кнопки навигации */}
                         <nav>
                         <ul className="navig">
-                 		<Form.Item>
+                 		<Form.Item>	
+							<Button onClick={() => {navigate('/List_phrase')}} className='btn-7'>Список фразеологизмов</Button>
 							<Button onClick={() => {navigate('/main/Main')}} className='btn-7'>Перевод фразеологизмов</Button>
-							<Button onClick={() => {navigate('/Authorization')}} className='btn-7'>Вход</Button>
+							<Button onClick={() => {navigate('/Authorization')}} className='btn-7'>Вход</Button>				
 							{/* <Select
 							defaultValue="Дополнительно"
 							style={{
