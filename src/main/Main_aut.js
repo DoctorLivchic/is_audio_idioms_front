@@ -15,6 +15,9 @@ export default function Main() {
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
   const [tag, settag] = useState([]);
   const [chbox, setchbox] = useState("none");
+  const [lidesc,setlidesc]= useState([]);
+  const [litranscEnter,setlitranscEnter] = useState([]);
+  const [translitExit,settranslitExit] = useState([]);
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -65,24 +68,34 @@ export default function Main() {
     } else {
       lang = 3;
     }
+    console.log(lang+" язык")
+
+    document.getElementById("textAreaEnter").value =""
 
     try {
       //Получаем фразеологизм на языке, который выбран к переводу
-      const translate = await supabase
+      const translate_tag = await supabase
         .from("phraseological")
-        .select("phrase_id", "tag_id")
-        .eq("tag_id", val);
-
-      document.getElementById("textAreaExit").value =
-        translate.data[0]["phrase_text_text"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
-    } catch (error) {
-      notification.open({
-        message: "Фразеологизм не найден",
-        description:
-          "Вы можете добавить фразеологизм в соответствующей вкладке",
-      });
+        .select("phrase_id","tag_id")
+        .eq("tag_id", val)
+  
+        console.log(translate_tag.data)
+  
+      for(let i = 0; i <= translate_tag.data.length; i++){
+      const translate_tag_enter = await supabase
+        .from("phrase_text")
+        .select("phrase_text_text")
+        .eq("phrase_id",translate_tag.data[i]["phrase_id"])
+        .eq("language_id",lang)
+        
+        console.log(translate_tag_enter.data)
+        
+      document.getElementById("textAreaEnter").value +=
+      translate_tag_enter.data[0]["phrase_text_text"]+" ; " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+    }} catch (error) {
+      notification.open({ message: "Успешно", description: "Найдены все фразеологизмы по выбранной категории" });
     }
-  }
+    };
 
   useEffect(() => {
     gettags();
@@ -209,12 +222,9 @@ export default function Main() {
           .eq("phrase_id", phrase.data[0]["phrase_id"])
           .eq("language_id", lang);
 
-        document.getElementById("textAreaExit").value =
-          translate.data[0]["phrase_text_text"] +
-          " " +
-          translate.data[0]["phrase_text_transcription"] +
-          " " +
-          translate.data[0]["phrase_text_desc"]; //то выводим во второй текстБокс перевод по выбранному языку к переводу
+          settranslitExit((translate.data[0]["phrase_text_text"]))
+          setlidesc(translate.data[0]["phrase_text_desc"])
+          setlitranscEnter(translate.data[0]["phrase_text_transcription"])//то выводим во второй текстБокс перевод по выбранному языку к переводу
       } catch (error) {
         notification.open({
           message: "Фразеологизм не найден",
@@ -632,6 +642,7 @@ export default function Main() {
               <TextArea
                 showCount
                 id="textAreaExit"
+                value={translitExit}
                 maxLength={100}
                 /*onChange={onChange}*/ placeholder="Перевод"
                 className="Text_area"
@@ -639,6 +650,10 @@ export default function Main() {
               <Button onClick={PlayAudio2} className="buttom-audio1">
                 Прослушать
               </Button>
+            </Form.Item>
+            <Form.Item>
+              <h3>Транскрипция: {litranscEnter} </h3>
+              <h3>Описание: {lidesc} </h3>
             </Form.Item>
           </div>
         </Content>

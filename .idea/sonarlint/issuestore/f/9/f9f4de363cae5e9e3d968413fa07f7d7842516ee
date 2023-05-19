@@ -1,0 +1,24 @@
+
+Ejavascript:S1128")Remove this unused import of 'useEffect'.(ó•äœ
+Fjavascript:S1128"%Remove this unused import of 'Input'.(æµ¦÷şÿÿÿÿ
+Ijavascript:S1128"(Remove this unused import of 'Checkbox'.(æµ¦÷şÿÿÿÿ
+Fjavascript:S1128"%Remove this unused import of 'Affix'.(æµ¦÷şÿÿÿÿ
+Ajavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼
+Ejavascript:S1128"$Remove this unused import of 'func'.(¾È†±ÿÿÿÿÿ
+Djavascript:S3863"('react-router-dom' import is duplicated.(´À“
+Djavascript:S1128"(Remove this unused import of 'Navigate'.(´À“
+Djavascript:S35044")Unexpected var, use let or const instead.(Íš
+Jjavascript:S35045")Unexpected var, use let or const instead.(‰ÿ„”ıÿÿÿÿ
+~javascript:S14885"]Immediately return this expression instead of assigning it to the temporary variable "valid".(‰ÿ„”ıÿÿÿÿ
+Jjavascript:S3504;")Unexpected var, use let or const instead.( È¾Ãøÿÿÿÿ
+Jjavascript:S3504<")Unexpected var, use let or const instead.(•¯è‡üÿÿÿÿ
+~javascript:S1488<"]Immediately return this expression instead of assigning it to the temporary variable "valid".(•¯è‡üÿÿÿÿ
+javascript:S1488Q"`Immediately return this expression instead of assigning it to the temporary variable "profiles".(Ş©©ıÿÿÿÿ
+Bjavascript:S1481V"!Remove unused function 'addUser'.(½Ôê¾ÿÿÿÿÿ
+Wjavascript:S1481b"6Remove the declaration of the unused 'error' variable.(ÇÎĞ€úÿÿÿÿ
+Tjavascript:S1854b"3Remove this useless assignment to variable "error".(ÇÎĞ€úÿÿÿÿ
+Wjavascript:S1481“"5Remove the declaration of the unused 'data' variable.(–İ’ıÿÿÿÿ
+Tjavascript:S1854“"2Remove this useless assignment to variable "data".(–İ’ıÿÿÿÿ
+;javascript:S125•"Remove this commented out code.(Òû‹ê
+]javascript:S1481œ"9Remove the declaration of the unused 'fromPage' variable.(˜’û½8‹´É€ƒ1
+Zjavascript:S1854œ"6Remove this useless assignment to variable "fromPage".(˜’û½8‹´É€ƒ1

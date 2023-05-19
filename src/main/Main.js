@@ -15,6 +15,9 @@ export default function Main() {
   const [buttonTextDislike, setButtonTextDislike] = useState(0);
   const [tag, settag] = useState([]);
   const [chbox, setchbox] = useState("none");
+  const [lidesc,setlidesc]= useState([]);
+  const [litranscEnter,setlitranscEnter] = useState([]);
+  const [translitExit,settranslitExit] = useState([]);
 
   const { Sider, Content } = Layout;
   const { TextArea } = Input;
@@ -177,8 +180,11 @@ export default function Main() {
         .from("phraseological")
         .select()
         .eq("phrase_id", phrase.data[0]["phrase_id"])
-        document.getElementById("textAreaExit").value =
-        translate.data[0]["phrase_text_text"]+" "+translate.data[0]["phrase_text_transcription"]+translate.data[0]["phrase_text_desc"]+" " //то выводим во второй текстБокс перевод по выбранному языку к переводу
+        settranslitExit((translate.data[0]["phrase_text_text"]))
+        setlidesc(translate.data[0]["phrase_text_desc"])
+        setlitranscEnter(translate.data[0]["phrase_text_transcription"])
+        
+         //то выводим во второй текстБокс перевод по выбранному языку к переводу
         // document.getElementById("textAreaExit").value += translate1.data[0]["link_phraseological"];
       } catch (error) {
         notification.open({ message: "Ошибка", description: error.message });
@@ -500,6 +506,7 @@ export default function Main() {
               {/* Поле вывода переведенного фразеологизма  */}
               <TextArea
                 showCount
+                value={translitExit}
                 id="textAreaExit"
                 maxLength={100}
                 /*onChange={onChange}*/ placeholder="Перевод"
@@ -508,6 +515,10 @@ export default function Main() {
               <Button onClick={PlayAudio2} className="buttom-audio1">
                 Прослушать
               </Button>
+            </Form.Item>
+            <Form.Item>
+              <h3>Транскрипция: {litranscEnter} </h3>
+              <h3>Описание: {lidesc} </h3>
             </Form.Item>
           </div>
         </Content>

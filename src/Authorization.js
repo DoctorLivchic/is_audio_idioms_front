@@ -196,7 +196,7 @@ export default function Authorization() {
         } else {
           localStorage.setItem("userID", user.data[0]["user_id"]);
           setUser_id(user.data[0]["user_id"]);
-          signin(true, () => navigate("/Main_page_aut"));
+          signin(true, () => navigate("/main_page/Main_page_aut"));
           notification.open({
             message: "Успешно",
             description: "Вы успешно авторизовались!",

@@ -4,6 +4,7 @@ import Main_page_aut from "./main_page/Main_page_aut";
 import Main_page from "./main_page/Main_page";
 import Main_aut from "./main/Main_aut";
 import Authorization from "./Authorization";
+import List_phrase from "./List_phrase";
 import Authorization_Other from "./Authorization_Other";
 import Users_personal_account from "./Users_personal_account";
 import Expert_personal_account from "./Expert_personal_account";
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/main/Main" element={<Main />} />
               <Route path="/Authorization" element={<Authorization />} />
               <Route path="/" element={<Main_page />} />
+              <Route path="/List_phrase" element={<List_phrase />} />
               <Route
                 path="/Users_personal_account"
                 element={

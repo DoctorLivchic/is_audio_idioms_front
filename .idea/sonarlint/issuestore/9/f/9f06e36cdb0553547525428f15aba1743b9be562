@@ -1,0 +1,33 @@
+
+Ajavascript:S1128"%Remove this unused import of 'async'.(èÓ—¼
+=javascript:S3863"'antd' import is duplicated.(©Û†òûÿÿÿÿ
+Njavascript:S1128
+"-Remove this unused import of 'Authorization'.(âåªùÿÿÿÿ
+9javascript:S3863"'react' import is duplicated.(¡Ş–®
+ejavascript:S1481"=Remove the declaration of the unused 'contentStyle' variable.(¡êµ«ÿÿÿÿÿ8ö´É€ƒ1
+bjavascript:S1854":Remove this useless assignment to variable "contentStyle".(¡êµ«ÿÿÿÿÿ8ö´É€ƒ1
+Qjavascript:S3504")Unexpected var, use let or const instead.(ğ×Úâşÿÿÿÿ8ö´É€ƒ1
+Jjavascript:S1481)"'Remove unused function 'onChangeInput'.(ŠÁåÎ8ö´É€ƒ1
+>javascript:S1116X"Unnecessary semicolon.(ôŸìúÿÿÿÿ8÷´É€ƒ1
+Wjavascript:S1481`"4Remove the declaration of the unused 'tag' variable.(¦÷Â8÷´É€ƒ1
+Pjavascript:S1117`"-'tag' is already declared in the upper scope.(¦÷Â8÷´É€ƒ1
+Tjavascript:S1854`"1Remove this useless assignment to variable "tag".(¦÷Â8÷´É€ƒ1
+bjavascript:S1481n":Remove the declaration of the unused 'firstText' variable.(ÄÜÆ·ıÿÿÿÿ8÷´É€ƒ1
+_javascript:S1854n"7Remove this useless assignment to variable "firstText".(ÄÜÆ·ıÿÿÿÿ8÷´É€ƒ1
+^javascript:S1481p";Remove the declaration of the unused 'secondText' variable.(±û‘Á8÷´É€ƒ1
+[javascript:S1854p"8Remove this useless assignment to variable "secondText".(±û‘Á8÷´É€ƒ1
+[javascript:S1481s"3Remove the declaration of the unused 'li' variable.(µ‰àãÿÿÿÿÿ8÷´É€ƒ1
+Xjavascript:S1854s"0Remove this useless assignment to variable "li".(µ‰àãÿÿÿÿÿ8ø´É€ƒ1
+_javascript:S1481°";Remove the declaration of the unused 'translate1' variable.(úÇêá8ø´É€ƒ1
+\javascript:S1854°"8Remove this useless assignment to variable "translate1".(úÇêá8ø´É€ƒ1
+_javascript:S1481Ò"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8ø´É€ƒ1
+\javascript:S1854Ò"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8ø´É€ƒ1
+_javascript:S1481ğ"6Remove the declaration of the unused 'error' variable.(€½ª…úÿÿÿÿ8ø´É€ƒ1
+\javascript:S1854ğ"3Remove this useless assignment to variable "error".(€½ª…úÿÿÿÿ8ø´É€ƒ1
+_javascript:S1481†";Remove the declaration of the unused 'isplaying2' variable.(ğˆÜ©8ø´É€ƒ1
+\javascript:S1854†"8Remove this useless assignment to variable "isplaying2".(ğˆÜ©8ø´É€ƒ1
+Rjavascript:S3504˜")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8ù´É€ƒ1
+Rjavascript:S3504")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8ù´É€ƒ1
+Rjavascript:S3504½")Unexpected var, use let or const instead.(™ßşıÿÿÿÿ8ù´É€ƒ1
+Rjavascript:S3504Â")Unexpected var, use let or const instead.(ØÃ»ÿùÿÿÿÿ8ù´É€ƒ1
+Pjavascript:S1117¹"-'tag' is already declared in the upper scope.(ÏıÒe8ù´É€ƒ1

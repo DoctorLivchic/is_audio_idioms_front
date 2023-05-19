@@ -1,0 +1,10 @@
+
+Jjavascript:S1128")Remove this unused import of 'Component'.(ƒΘέκψÿÿÿÿ
+Ejavascript:S3863"'react' import is duplicated.(λυήφϋÿÿÿÿ8Ϊ£νώ‚1
+Qjavascript:S1128")Remove this unused import of 'useEffect'.(λυήφϋÿÿÿÿ8Ϊ£νώ‚1
+Pjavascript:S1128"(Remove this unused import of 'supabase'.(ΣΪυΏωÿÿÿÿ8Ϊ£νώ‚1
+`javascript:S1481"8Remove the declaration of the unused 'session' variable.(Ν•μÿÿÿÿÿ8Ϋ£νώ‚1
+]javascript:S1854"5Remove this useless assignment to variable "session".(Ν•μÿÿÿÿÿ8Ϋ£νώ‚1
+cjavascript:S1481";Remove the declaration of the unused 'setSession' variable.(Ν•μÿÿÿÿÿ8Ϋ£νώ‚1
+`javascript:S1854"8Remove this useless assignment to variable "setSession".(Ν•μÿÿÿÿÿ8Ϋ£νώ‚1
+Gjavascript:S125"Remove this commented out code.(ΐΰΕύÿÿÿÿ8Ϋ£νώ‚1
